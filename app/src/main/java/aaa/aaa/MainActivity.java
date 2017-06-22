@@ -14,11 +14,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Aaa(final View view) throws InterruptedException {
+        setContentView(R.layout.next_activity);
         Runnable myRunnable = new Runnable() {
             @Override
             public void run() {
                 while (true) {
-                    setContentView(R.layout.next_activity);
+                    
                 }
             }
         };
