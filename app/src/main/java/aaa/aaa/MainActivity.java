@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 while (true) {
                     setContentView(R.layout.next_activity);
+                    //wtf
                 }
             }
         };
