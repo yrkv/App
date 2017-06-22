@@ -33,4 +33,8 @@ public class MainActivity extends AppCompatActivity {
     public void Exit() {
         playing = false;
     }
+
+    public void info() {
+        setContentView(R.layout.info_activity);
+    }
 }
