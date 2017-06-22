@@ -30,11 +30,7 @@ public class MainActivity extends AppCompatActivity {
         myThread.start();
     }
 
-    public void Exit() {
-        playing = false;
-    }
-
-    public void info() {
+    public void info(View v) {
         setContentView(R.layout.info_activity);
     }
 }
