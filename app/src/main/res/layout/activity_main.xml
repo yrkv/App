@@ -12,19 +12,25 @@
 
     <Button
         android:id="@+id/start"
+        style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="GameLoop"
         android:text="START"
-        android:layout_centerHorizontal="true"
-        android:onClick="GameLoop" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/button2"
+        style="@style/Widget.AppCompat.Button.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="X"
+        android:background="@android:drawable/ic_delete"
         android:onClick="Exit"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignBottom="@+id/start"
+        android:layout_toRightOf="@+id/start"
+        android:layout_toEndOf="@+id/start"
+        android:layout_marginLeft="111dp"
+        android:layout_marginStart="111dp"
+        android:layout_marginBottom="28dp" />
 </RelativeLayout>
