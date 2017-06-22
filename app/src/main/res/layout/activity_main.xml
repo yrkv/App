@@ -21,13 +21,13 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:id="@+id/button2"
-        style="@style/Widget.AppCompat.Button.Small"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:background="@android:drawable/ic_delete"
-        android:onClick="Exit"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:id="@+id/donate"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="Pay $1.00"
+        android:layout_below="@+id/start"
+        android:layout_alignLeft="@+id/start"
+        android:layout_alignStart="@+id/start"
+        android:layout_marginTop="220dp" />
 </RelativeLayout>
