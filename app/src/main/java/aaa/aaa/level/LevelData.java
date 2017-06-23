@@ -5,6 +5,7 @@ import android.widget.RelativeLayout;
 
 import aaa.aaa.R;
 import aaa.aaa.entity.MainPlayer;
+import aaa.aaa.entity.puller.Planet;
 
 /**
  * Created by Kaleb on 6/22/2017.
@@ -15,7 +16,9 @@ public class LevelData {
 
     public LevelData(RelativeLayout layout, Context context) {
         level = new Level(layout, context);
-        new MainPlayer(10, 10, 1, 1, 0.2f, level);
+        new MainPlayer(10, 10, 1, 1, 0.1f, level);
+
+        genLevel1();
     }
 
     public Level getLevel() {
@@ -88,7 +91,9 @@ public class LevelData {
     }
 
     private void genLevel1() {
-
+        new Planet(400, 300, 0, 0, 0.3f, level);
+        new Planet(100, 800, 0, 0, 0.2f, level);
+        new Planet(600, 1000, 0, 0, 0.25f, level);
     }
     private void genLevel2() {
 

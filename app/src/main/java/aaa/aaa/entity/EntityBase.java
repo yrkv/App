@@ -43,6 +43,11 @@ public class EntityBase {
         level.getLayout().addView(imageView);
     }
 
+    protected void changeResource(int resource) {
+        imageView.setImageResource(resource);
+    }
+
+
     public void render(float w, float h, int x, int y) {
         imageView.setTranslationX(x - level.getLayout().getWidth() / 2f);
         imageView.setTranslationY(y - level.getLayout().getHeight() / 2f);

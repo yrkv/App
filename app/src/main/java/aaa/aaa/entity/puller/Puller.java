@@ -22,13 +22,13 @@ public class Puller extends EntityBase {
         super(x, y, xVelocity, yVelocity, size, level);
         getLevel().getPullers().add(this);
 
-        getImageView().setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                gravity = (event.getAction() == MotionEvent.ACTION_BUTTON_PRESS);
-                return true;
-            }
-        });
+//        getImageView().setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                gravity = (event.getAction() == MotionEvent.ACTION_BUTTON_PRESS);
+//                return true;
+//            }
+//        });
     }
 
     protected boolean setGravity(boolean gravity) {
