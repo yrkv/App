@@ -9,13 +9,15 @@ import aaa.aaa.level.Level;
 public class EntityBase {
     private double x;
     private double y;
-    private double velocity;
+    private double xVelocity;
+    private double yVelocity;
     private Level level;
 
-    public EntityBase(double x, double y, double velocity, Level level) {
+    public EntityBase(double x, double y, double xVelocity, double yVelocity, Level level) {
         this.x = x;
         this.y = y;
-        this.velocity = velocity;
+        this.xVelocity = xVelocity;
+        this.yVelocity = yVelocity;
         this.level = level;
     }
 
@@ -37,13 +39,22 @@ public class EntityBase {
         return this.y;
     }
 
-    public double getVelocity() {
-        return velocity;
+    public double getXVelocity() {
+        return xVelocity;
     }
 
-    protected double setVelocity(double velocity) {
-        this.velocity = velocity;
-        return this.velocity;
+    protected double setXVelocity(double xVelocity) {
+        this.xVelocity = xVelocity;
+        return this.xVelocity;
+    }
+
+    public double getYVelocity() {
+        return yVelocity;
+    }
+
+    protected double setYVelocity(double yVelocity) {
+        this.yVelocity = yVelocity;
+        return this.yVelocity;
     }
 
     public Level getLevel() {
@@ -54,4 +65,23 @@ public class EntityBase {
         this.level = level;
         return level;
     }
+
+    protected double getDistanceTo(EntityBase other) {
+        double otherX = other.getX();
+        double otherY = other.getY();
+
+        return Math.sqrt((otherX - getX()) * (otherX - getX()) + (otherY - getY()) * (otherY - getY()));
+    }
+
+    protected double getDirectionTo(EntityBase other) {
+        double otherX = other.getX();
+        double otherY = other.getY();
+
+        double xdiff = otherX - getX();
+        double ydiff = otherY - getY();
+
+        double dir = Math.atan(ydiff/xdiff);
+    }
+
+    public void update() {}
 }

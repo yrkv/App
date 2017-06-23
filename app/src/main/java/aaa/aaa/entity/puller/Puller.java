@@ -1,4 +1,4 @@
-package aaa.aaa.entity.nonplayer;
+package aaa.aaa.entity.puller;
 
 import aaa.aaa.entity.EntityBase;
 import aaa.aaa.level.Level;
@@ -7,11 +7,12 @@ import aaa.aaa.level.Level;
  * Created by Kaleb on 6/22/2017.
  */
 
-public class NonPlayer extends EntityBase {
+public class Puller extends EntityBase {
     private boolean gravity = false;
 
-    public NonPlayer(double x, double y, double velocity, Level level) {
-        super(x, y, velocity, level);
+
+    public Puller(double x, double y, double xVelocity, double yVelocity, Level level) {
+        super(x, y, xVelocity, yVelocity, level);
     }
 
     protected boolean setGravity(boolean gravity) {

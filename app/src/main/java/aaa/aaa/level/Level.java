@@ -5,5 +5,5 @@ package aaa.aaa.level;
  */
 
 public class Level {
-    private
+//    private
 }

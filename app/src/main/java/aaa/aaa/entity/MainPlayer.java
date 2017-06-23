@@ -1,5 +1,7 @@
 package aaa.aaa.entity;
 
+import java.util.ArrayList;
+
 import aaa.aaa.level.Level;
 
 /**
@@ -8,11 +10,14 @@ import aaa.aaa.level.Level;
 
 public class MainPlayer extends EntityBase {
 
-    public MainPlayer(double x, double y, double velocity, Level level) {
-        super(x, y, velocity, level);
+
+    public MainPlayer(double x, double y, double xVelocity, double yVelocity, Level level) {
+        super(x, y, xVelocity, yVelocity, level);
     }
 
-    private void update() {
+
+    @Override
+    public void update() {
 
     }
 
