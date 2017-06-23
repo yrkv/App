@@ -1,6 +1,7 @@
 package aaa.aaa.level;
 
 import android.content.Context;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
@@ -18,9 +19,9 @@ public class Level {
     private RelativeLayout layout;
     private Context context;
 
-    public Level(Context context) {
+    public Level(RelativeLayout layout, Context context) {
         this.context = context;
-        layout = new RelativeLayout(context);
+        this.layout = layout;
     }
 
     public ArrayList<Puller> getPullers() {
@@ -44,7 +45,7 @@ public class Level {
     }
 
     public void resetLayout() {
-        layout = new RelativeLayout(context);
+        layout.removeAllViews();
     }
 
     public RelativeLayout getLayout() {
