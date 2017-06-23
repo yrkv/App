@@ -3,6 +3,9 @@ package aaa.aaa;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,17 +20,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void GameLoop(final View view) throws InterruptedException {
         setContentView(R.layout.next_activity);
-        Runnable myRunnable = new Runnable() {
-            @Override
-            public void run() {
-                while (playing) {
+//        Runnable myRunnable = new Runnable() {
+//            @Override
+//            public void run() {
+//                while (playing) {
+//
+//                }
+//            }
+//        };
 
-                }
-            }
-        };
-
-        Thread myThread = new Thread(myRunnable);
-        myThread.start();
+//        Thread myThread = new Thread(myRunnable);
+//        myThread.start();
     }
 
     public void info(View v) {
