@@ -8,8 +8,12 @@ import aaa.aaa.level.Level;
  */
 
 public class Puller extends EntityBase {
-    private boolean gravity = false;
 
+    //CONFIG
+    private final double PULLCOEFF = 100;
+    //END CONFIG
+
+    private boolean gravity = false;
 
     public Puller(double x, double y, double xVelocity, double yVelocity, Level level) {
         super(x, y, xVelocity, yVelocity, level);
@@ -22,5 +26,9 @@ public class Puller extends EntityBase {
 
     public boolean getGravity() {
         return gravity;
+    }
+
+    public double getPULLCOEFF() {
+        return PULLCOEFF;
     }
 }
