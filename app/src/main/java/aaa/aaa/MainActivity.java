@@ -17,7 +17,7 @@ import aaa.aaa.level.Level;
 
 public class MainActivity extends AppCompatActivity {
     //CONFIG
-    private final double TICKSPEED = 50; //in milliseconds
+    private final double TICKSPEED = 5; //in milliseconds
     //END CONFIG
     private boolean playing = true;
 
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     public void GameLoop(final View view) throws InterruptedException {
         setContentView(R.layout.next_activity);
         final Level level = new Level((RelativeLayout) findViewById(R.id.next_activity), this);
-        level.getEntities().add(new MainPlayer(10, 10, 0.01, 0.01, level));
+        level.getEntities().add(new MainPlayer(10, 10, 1, 1, level));
 
         setContentView(level.getLayout());
 
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
                 long lastTick = System.currentTimeMillis();
                 while (playing) {
                     if(System.currentTimeMillis() - lastTick > TICKSPEED) {
-                        System.out.println("aaa");
+                        lastTick = System.currentTimeMillis();
                         runOnUiThread(new Runnable() {
                             public void run() {
                                 level.update();
