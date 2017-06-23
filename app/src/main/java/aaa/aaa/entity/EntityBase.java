@@ -1,5 +1,11 @@
 package aaa.aaa.entity;
 
+import android.content.Context;
+import android.text.Layout;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+
+import aaa.aaa.R;
 import aaa.aaa.level.Level;
 
 /**
@@ -12,6 +18,7 @@ public class EntityBase {
     private double xVelocity;
     private double yVelocity;
     private Level level;
+    private ImageView imageView;
 
     public EntityBase(double x, double y, double xVelocity, double yVelocity, Level level) {
         this.x = x;
@@ -19,6 +26,19 @@ public class EntityBase {
         this.xVelocity = xVelocity;
         this.yVelocity = yVelocity;
         this.level = level;
+    }
+
+    protected void setImageView(int resource, Context context) {
+        imageView = new ImageView(context);
+        imageView.setImageResource(resource);
+    }
+
+    public void render(float w, float h, float x, float y) {
+        level.getLayout().addView(imageView);
+    }
+
+    public void render() {
+        level.getLayout().addView(imageView);
     }
 
     public double getX() {

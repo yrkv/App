@@ -20,7 +20,7 @@ public class MainPlayer extends EntityBase {
 
     @Override
     public void update() {
-        for(Puller puller : MainActivity.getPullers()) {
+        for(Puller puller : getLevel().getPullers()) {
 
         }
     }
