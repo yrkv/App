@@ -1,5 +1,8 @@
 package aaa.aaa.entity.puller;
 
+import android.view.MotionEvent;
+import android.view.View;
+
 import aaa.aaa.entity.EntityBase;
 import aaa.aaa.level.Level;
 
@@ -18,6 +21,14 @@ public class Puller extends EntityBase {
     public Puller(double x, double y, double xVelocity, double yVelocity, float size, Level level) {
         super(x, y, xVelocity, yVelocity, size, level);
         getLevel().getPullers().add(this);
+
+        getImageView().setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                gravity = (event.getAction() == MotionEvent.ACTION_BUTTON_PRESS);
+                return true;
+            }
+        });
     }
 
     protected boolean setGravity(boolean gravity) {
