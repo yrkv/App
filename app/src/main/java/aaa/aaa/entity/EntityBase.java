@@ -92,6 +92,16 @@ public class EntityBase {
         return level;
     }
 
+    public boolean canMove() {
+        return true;
+    }
+
+    public boolean move() {
+
+
+        return canMove();
+    }
+
     protected double getDistanceTo(EntityBase other) {
         double otherX = other.getX();
         double otherY = other.getY();
