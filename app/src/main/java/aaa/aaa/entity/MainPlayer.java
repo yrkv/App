@@ -3,6 +3,7 @@ package aaa.aaa.entity;
 import java.util.ArrayList;
 
 import aaa.aaa.MainActivity;
+import aaa.aaa.R;
 import aaa.aaa.entity.puller.Puller;
 import aaa.aaa.level.Level;
 
@@ -15,6 +16,8 @@ public class MainPlayer extends EntityBase {
 
     public MainPlayer(double x, double y, double xVelocity, double yVelocity, Level level) {
         super(x, y, xVelocity, yVelocity, level);
+
+        setImageView(R.drawable.planet1);
     }
 
 

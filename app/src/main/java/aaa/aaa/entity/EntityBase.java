@@ -1,9 +1,7 @@
 package aaa.aaa.entity;
 
 import android.content.Context;
-import android.text.Layout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import aaa.aaa.R;
 import aaa.aaa.level.Level;
@@ -28,17 +26,25 @@ public class EntityBase {
         this.level = level;
     }
 
-    protected void setImageView(int resource, Context context) {
-        imageView = new ImageView(context);
+    protected ImageView getImageView() {
+        return imageView;
+    }
+
+    protected void setImageView(int resource) {
+        imageView = new ImageView(level.getContext());
         imageView.setImageResource(resource);
     }
 
-    public void render(float w, float h, float x, float y) {
+    public void render(float w, float h, int x, int y) {
+        imageView.setScrollX(x);
+        imageView.setScrollY(y);
+        imageView.setScaleX(w);
+        imageView.setScaleY(h);
         level.getLayout().addView(imageView);
     }
 
     public void render() {
-        level.getLayout().addView(imageView);
+        render(0.25f, 0.25f, (int) x, (int) y);
     }
 
     public double getX() {

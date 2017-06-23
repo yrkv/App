@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import java.util.ArrayList;
 
 import aaa.aaa.entity.EntityBase;
+import aaa.aaa.entity.MainPlayer;
 import aaa.aaa.entity.puller.Puller;
 import aaa.aaa.level.Level;
 
@@ -27,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void GameLoop(final View view) throws InterruptedException {
         setContentView(R.layout.next_activity);
-        final Level level = new Level((RelativeLayout) findViewById(R.id.next_activity));
+        final Level level = new Level(this);
+        level.getEntities().add(new MainPlayer(10, 10, 0, 0, level));
         Runnable myRunnable = new Runnable() {
             @Override
             public void run() {
@@ -35,7 +37,9 @@ public class MainActivity extends AppCompatActivity {
                 while (playing) {
                     if(System.currentTimeMillis() - lastTick > TICKSPEED) {
                         level.update();
+                        level.resetLayout();
                         level.render();
+                        setContentView(level.getLayout());
                     }
                 }
             }

@@ -1,5 +1,6 @@
 package aaa.aaa.level;
 
+import android.content.Context;
 import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
@@ -15,9 +16,11 @@ public class Level {
     private ArrayList<EntityBase> entities = new ArrayList<>();
     private ArrayList<Puller> pullers = new ArrayList<>();
     private RelativeLayout layout;
+    private Context context;
 
-    public Level(RelativeLayout layout) {
-        this.layout = layout;
+    public Level(Context context) {
+        this.context = context;
+        layout = new RelativeLayout(context);
     }
 
     public ArrayList<Puller> getPullers() {
@@ -40,7 +43,15 @@ public class Level {
         }
     }
 
+    public void resetLayout() {
+        layout = new RelativeLayout(context);
+    }
+
     public RelativeLayout getLayout() {
         return layout;
+    }
+
+    public Context getContext() {
+        return context;
     }
 }
