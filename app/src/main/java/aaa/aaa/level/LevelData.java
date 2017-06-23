@@ -15,7 +15,7 @@ public class LevelData {
 
     public LevelData(RelativeLayout layout, Context context) {
         level = new Level(layout, context);
-        level.getEntities().add(new MainPlayer(10, 10, 1, 1, level));
+        new MainPlayer(10, 10, 1, 1, 0.2f, level);
     }
 
     public Level getLevel() {

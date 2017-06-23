@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     public void GameLoop(final View view) throws InterruptedException {
         setContentView(R.layout.next_activity);
         final LevelData levelData = new LevelData((RelativeLayout) findViewById(R.id.next_activity), this);
-        levelData.getLevel().getEntities().add(new MainPlayer(10, 10, 1, 1, levelData.getLevel()));
+        levelData.getLevel().getEntities().add(new MainPlayer(10, 10, 1, 1, 0.2f, levelData.getLevel()));
 
 
         setContentView(levelData.getLevel().getLayout());

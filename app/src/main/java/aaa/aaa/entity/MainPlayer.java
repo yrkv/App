@@ -14,10 +14,10 @@ import aaa.aaa.level.Level;
 public class MainPlayer extends EntityBase {
 
 
-    public MainPlayer(double x, double y, double xVelocity, double yVelocity, Level level) {
-        super(x, y, xVelocity, yVelocity, level);
+    public MainPlayer(double x, double y, double xVelocity, double yVelocity, float size, Level level) {
+        super(x, y, xVelocity, yVelocity, size, level);
 
-        setImageView(R.drawable.planet1);
+        setImageView(R.drawable.player);
     }
 
     private double changeXVelocity(Puller puller) {
