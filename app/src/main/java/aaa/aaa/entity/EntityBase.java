@@ -17,15 +17,15 @@ public class EntityBase {
     private double yVelocity;
     private Level level;
     private ImageView imageView;
-    private float size;
 
-    public EntityBase(double x, double y, double xVelocity, double yVelocity, float size, Level level) {
+    public EntityBase(double x, double y, double xVelocity, double yVelocity, Level level) {
         this.x = x;
         this.y = y;
         this.xVelocity = xVelocity;
         this.yVelocity = yVelocity;
         this.level = level;
-        this.size = size;
+
+        level.getEntities().add(this);
     }
 
     protected ImageView getImageView() {
@@ -47,7 +47,7 @@ public class EntityBase {
     }
 
     public void render() {
-        render(size, size, (int) x, (int) y);
+        render(0.25f, 0.25f, (int) x, (int) y);
     }
 
     public double getX() {
