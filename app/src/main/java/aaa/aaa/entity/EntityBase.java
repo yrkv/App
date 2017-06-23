@@ -118,6 +118,7 @@ public class EntityBase {
         double ydiff = otherY - getY();
 
         double dir = Math.atan(ydiff/xdiff);
+        if(xdiff < 0) dir += Math.PI;
 
         return dir;
     }
