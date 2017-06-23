@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         final Level level = new Level((RelativeLayout) findViewById(R.id.next_activity), this);
         level.getEntities().add(new MainPlayer(10, 10, 1, 1, level));
 
+
         setContentView(level.getLayout());
 
         Runnable myRunnable = new Runnable() {
