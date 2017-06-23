@@ -8,8 +8,8 @@ import aaa.aaa.level.Level;
 
 public class BlackHole extends Puller {
 
-    public BlackHole(double x, double y, double xVelocity, double yVelocity, Level level) {
-        super(x, y, xVelocity, yVelocity, level);
+    public BlackHole(double x, double y, double xVelocity, double yVelocity, float size, Level level) {
+        super(x, y, xVelocity, yVelocity, size, level);
         setGravity(true);
     }
 

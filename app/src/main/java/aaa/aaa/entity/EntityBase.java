@@ -1,6 +1,8 @@
 package aaa.aaa.entity;
 
 import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ImageView;
 
 import aaa.aaa.R;
