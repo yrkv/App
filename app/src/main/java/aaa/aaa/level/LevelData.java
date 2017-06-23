@@ -10,9 +10,9 @@ public class LevelData {
 
     }
 
-    public static int[][] getLevelData(int currentLevel) {
-
-    }
+//    public static int[][] getLevelData(int currentLevel) {
+//
+//    }
 
 
 

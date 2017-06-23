@@ -33,14 +33,14 @@ public class EntityBase {
     protected void setImageView(int resource) {
         imageView = new ImageView(level.getContext());
         imageView.setImageResource(resource);
+        level.getLayout().addView(imageView);
     }
 
     public void render(float w, float h, int x, int y) {
-        imageView.setScrollX(x);
-        imageView.setScrollY(y);
+        imageView.setTranslationX(x);
+        imageView.setTranslationY(y);
         imageView.setScaleX(w);
         imageView.setScaleY(h);
-        level.getLayout().addView(imageView);
     }
 
     public void render() {

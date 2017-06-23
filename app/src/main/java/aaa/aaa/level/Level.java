@@ -44,10 +44,6 @@ public class Level {
         }
     }
 
-    public void resetLayout() {
-        layout.removeAllViews();
-    }
-
     public RelativeLayout getLayout() {
         return layout;
     }

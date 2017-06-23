@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     public void GameLoop(final View view) throws InterruptedException {
         setContentView(R.layout.next_activity);
         final Level level = new Level((RelativeLayout) findViewById(R.id.next_activity), this);
-        level.getEntities().add(new MainPlayer(10, 10, 1, 1, level));
+        level.getEntities().add(new MainPlayer(10, 10, 0.01, 0.01, level));
 
         setContentView(level.getLayout());
 
@@ -40,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
                 long lastTick = System.currentTimeMillis();
                 while (playing) {
                     if(System.currentTimeMillis() - lastTick > TICKSPEED) {
+                        System.out.println("aaa");
                         runOnUiThread(new Runnable() {
                             public void run() {
                                 level.update();
-                                level.resetLayout();
                                 level.render();
                             }
                         });
