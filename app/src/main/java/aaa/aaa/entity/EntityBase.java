@@ -1,5 +1,7 @@
 package aaa.aaa.entity;
 
+import aaa.aaa.level.Level;
+
 /**
  * Created by Kaleb on 6/22/2017.
  */
