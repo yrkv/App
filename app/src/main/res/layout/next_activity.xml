@@ -15,5 +15,5 @@
         android:id="@+id/image1"
         android:layout_width="500dp"
         android:layout_height="500dp"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@drawable/planet1" />
 </RelativeLayout>
