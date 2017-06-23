@@ -2,6 +2,8 @@ package aaa.aaa.entity;
 
 import java.util.ArrayList;
 
+import aaa.aaa.MainActivity;
+import aaa.aaa.entity.puller.Puller;
 import aaa.aaa.level.Level;
 
 /**
@@ -18,7 +20,9 @@ public class MainPlayer extends EntityBase {
 
     @Override
     public void update() {
+        for(Puller puller : MainActivity.getPullers()) {
 
+        }
     }
 
 }

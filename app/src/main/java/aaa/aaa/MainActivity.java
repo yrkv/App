@@ -1,5 +1,6 @@
 package aaa.aaa;
 
+import android.content.Entity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -41,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
 
         Thread myThread = new Thread(myRunnable);
         myThread.start();
+    }
+
+    public ArrayList<Puller> getPullers() {
+        return pullers;
+    }
+
+    public ArrayList<EntityBase> getEntities() {
+        return entities;
     }
 
     public void info(View v) {

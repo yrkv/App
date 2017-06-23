@@ -81,7 +81,8 @@ public class EntityBase {
         double ydiff = otherY - getY();
 
         double dir = Math.atan(ydiff/xdiff);
-        return 1.0;
+
+        return dir;
     }
 
     public void update() {}
