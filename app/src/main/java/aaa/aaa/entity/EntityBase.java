@@ -97,7 +97,8 @@ public class EntityBase {
     }
 
     public boolean move() {
-
+        x += xVelocity;
+        y += yVelocity;
 
         return canMove();
     }
