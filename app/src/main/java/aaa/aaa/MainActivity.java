@@ -14,10 +14,11 @@ import aaa.aaa.entity.EntityBase;
 import aaa.aaa.entity.MainPlayer;
 import aaa.aaa.entity.puller.Puller;
 import aaa.aaa.level.Level;
+import aaa.aaa.level.LevelData;
 
 public class MainActivity extends AppCompatActivity {
     //CONFIG
-    private final double TICKSPEED = 5; //in milliseconds
+    private final double TICKSPEED = 10; //in milliseconds
     //END CONFIG
     private boolean playing = true;
 
@@ -29,11 +30,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void GameLoop(final View view) throws InterruptedException {
         setContentView(R.layout.next_activity);
-        final Level level = new Level((RelativeLayout) findViewById(R.id.next_activity), this);
-        level.getEntities().add(new MainPlayer(10, 10, 1, 1, level));
+        final LevelData levelData = new LevelData((RelativeLayout) findViewById(R.id.next_activity), this);
+        levelData.getLevel().getEntities().add(new MainPlayer(10, 10, 1, 1, levelData.getLevel()));
 
 
-        setContentView(level.getLayout());
+        setContentView(levelData.getLevel().getLayout());
 
         Runnable myRunnable = new Runnable() {
             @Override
@@ -44,8 +45,8 @@ public class MainActivity extends AppCompatActivity {
                         lastTick = System.currentTimeMillis();
                         runOnUiThread(new Runnable() {
                             public void run() {
-                                level.update();
-                                level.render();
+                                levelData.getLevel().update();
+                                levelData.getLevel().render();
                             }
                         });
                     }
