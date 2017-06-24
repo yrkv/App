@@ -49,8 +49,8 @@ public class EntityBase {
 
 
     public void render(float w, float h, int x, int y) {
-        imageView.setTranslationX(x - level.getLayout().getWidth() / 2f);
-        imageView.setTranslationY(y - level.getLayout().getHeight() / 2f);
+        imageView.setTranslationX(x - imageView.getMaxWidth() / 2);
+        imageView.setTranslationY(y - imageView.getMaxHeight() / 2);
         imageView.setScaleX(w);
         imageView.setScaleY(h);
     }

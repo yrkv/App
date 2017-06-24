@@ -47,6 +47,9 @@ public class MainPlayer extends EntityBase {
             }
         }
 
+        getLevel().yOffset = (int) getY();
+        getLevel().xOffset = (int) getX();
+
         move();
     }
 

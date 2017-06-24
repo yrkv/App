@@ -10,4 +10,53 @@
         android:src="@drawable/planet1"
         />
 
+    <ImageView
+        android:id="@+id/planet2"
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:src="@drawable/planet2"
+        />
+
+    <ImageView
+        android:id="@+id/planet3"
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:src="@drawable/planet3"
+        />
+
+    <ImageView
+        android:id="@+id/planet4"
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:src="@drawable/planet4"
+        />
+
+    <ImageView
+        android:id="@+id/planet5"
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:src="@drawable/planet5"
+        />
+
+    <ImageView
+        android:id="@+id/planet6"
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:src="@drawable/planet6"
+        />
+
+    <ImageView
+        android:id="@+id/planet7"
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:src="@drawable/planet7"
+        />
+
+    <ImageView
+        android:id="@+id/player"
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:src="@drawable/player"
+        />
+
 </RelativeLayout>
