@@ -5,9 +5,10 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
-import aaa.aaa.R;
 import aaa.aaa.entity.puller.Puller;
 import aaa.aaa.level.Level;
 
@@ -73,6 +74,7 @@ public class EntityBase {
         imageView.setRotation((float) (dir));
         imageView.setScaleX(w);
         imageView.setScaleY(h);
+//        imageView.setLayoutParams(new RelativeLayout.LayoutParams((int) (w * 100), (int) (h * 100)));
     }
 
     public void render() {

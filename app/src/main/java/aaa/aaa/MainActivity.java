@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     //CONFIG
     private final double TICKSPEED = 60.0; //in milliseconds
     //END CONFIG
-    private boolean playing = true;
+    public boolean playing = false;
     private int selectedLevel = 1;
 
     private boolean[] unlocks = {true,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false};
@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+        playing = true;
         Thread myThread = new Thread(myRunnable);
         myThread.start();
     }
