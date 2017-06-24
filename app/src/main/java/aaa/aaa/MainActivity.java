@@ -18,7 +18,6 @@ import aaa.aaa.level.LevelData;
 
 public class MainActivity extends AppCompatActivity {
     //CONFIG
-    private final double TICKSPEED = 10; //in milliseconds
     //END CONFIG
     private boolean playing = true;
     private int selectedLevel = 1;
@@ -46,11 +45,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(levelData.getLevel().getLayout());
 
         Runnable myRunnable = new Runnable() {
+            double t = System.currentTimeMillis();
+            double dt = 1000 / 60;
+
             @Override
             public void run() {
                 long lastTick = System.currentTimeMillis();
                 while (playing) {
-                    if(System.currentTimeMillis() - lastTick > TICKSPEED) {
+                    if(System.currentTimeMillis() - t > dt) {
+                        t += dt;
                         lastTick = System.currentTimeMillis();
                         runOnUiThread(new Runnable() {
                             public void run() {
