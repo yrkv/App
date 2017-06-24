@@ -71,7 +71,8 @@ public class EntityBase {
         imageView.setTranslationX(x - imageView.getWidth() / 2 - level.xOffset + level.getLayout().getWidth() / 2);
         imageView.setTranslationY(y - imageView.getHeight() / 2 - level.yOffset + level.getLayout().getHeight() / 2);
         imageView.setRotation((float) (dir));
-        imageView.setScaleX(w);
+        imageView.setMaxHeight((int) (size * 2));
+        imageView.setMaxWidth((int) (size * 2));
         imageView.setScaleY(h);
     }
 
