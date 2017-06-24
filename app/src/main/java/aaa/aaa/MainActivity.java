@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         final LevelData levelData = new LevelData((RelativeLayout) findViewById(R.id.next_activity), this, selectedLevel);
 
         setContentView(levelData.getLevel().getLayout());
+        levelData.getLevel().setBackground((ImageView) findViewById(R.id.background));
 
         Runnable myRunnable = new Runnable() {
             double t = System.currentTimeMillis();

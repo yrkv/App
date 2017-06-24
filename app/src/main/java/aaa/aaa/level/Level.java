@@ -3,6 +3,7 @@ package aaa.aaa.level;
 import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -22,12 +23,17 @@ public class Level {
     private Context context;
     public int xOffset = 0;
     public int yOffset = 0;
+    private ImageView background;
 
     public Level(RelativeLayout layout, Context context) {
         this.context = context;
         this.layout = layout;
 
 
+    }
+
+    public void setBackground(ImageView background) {
+        this.background = background;
     }
 
     public ArrayList<Puller> getPullers() {
@@ -48,6 +54,9 @@ public class Level {
         for (EntityBase entity : entities) {
             entity.render();
         }
+
+        background.setX((float) (xOffset / -10.0) - 50000);
+        background.setY((float) (yOffset / -10.0) - 50000);
     }
 
     public RelativeLayout getLayout() {
