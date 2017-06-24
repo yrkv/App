@@ -13,7 +13,7 @@ import aaa.aaa.level.Level;
 public class Puller extends EntityBase {
 
     //CONFIG
-    private final double PULLCOEFF = 1000;
+    private final double PULLCOEFF = 10000;
     //END CONFIG
 
     private int num;

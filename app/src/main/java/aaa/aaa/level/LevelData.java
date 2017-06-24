@@ -5,6 +5,7 @@ import android.widget.RelativeLayout;
 
 import aaa.aaa.R;
 import aaa.aaa.entity.MainPlayer;
+import aaa.aaa.entity.puller.BlackHole;
 import aaa.aaa.entity.puller.Planet;
 
 /**
@@ -103,6 +104,7 @@ public class LevelData {
         new Planet(1200, 1600, 0, 0, 0.2f, level, R.drawable.planet4);
         new Planet(1200, 1800, 0, 0, 0.2f, level, R.drawable.planet4);
         new Planet(1200, 2000, 0, 0, 0.2f, level, R.drawable.planet4);
+        new BlackHole(600, 600, 0, 0, 0.2f, level);
 
     }
     private void genLevel3() {
