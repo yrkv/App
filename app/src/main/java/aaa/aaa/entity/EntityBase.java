@@ -1,11 +1,14 @@
 package aaa.aaa.entity;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
 import aaa.aaa.R;
+import aaa.aaa.entity.puller.Puller;
 import aaa.aaa.level.Level;
 
 /**
@@ -18,7 +21,8 @@ public class EntityBase {
     private double xVelocity;
     private double yVelocity;
     private Level level;
-    private ImageView imageView;
+    protected ImageView imageView;
+    private boolean tint = false;
     private float size;
 
     public EntityBase(double x, double y, double xVelocity, double yVelocity, float size, Level level) {
@@ -38,13 +42,26 @@ public class EntityBase {
 
     protected void setImageView(int resource) {
         imageView = new ImageView(level.getContext());
+        imageView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (isPuller() && event.getAction() == 0) {
+                    ((Puller) getThis()).toggleGravity();
+                }
+                return true;
+            }
+        });
         render();
         imageView.setImageResource(resource);
         level.getLayout().addView(imageView);
     }
 
-    protected void changeResource(int resource) {
-        imageView.setImageResource(resource);
+    protected void toggleTint() {
+        tint = !tint;
+        if (tint)
+            imageView.setColorFilter(Color.argb(100, 100, 255, 255));
+        else
+            imageView.clearColorFilter();
     }
 
 
@@ -133,6 +150,14 @@ public class EntityBase {
         if(xdiff < 0) dir += Math.PI;
 
         return dir;
+    }
+
+    private EntityBase getThis() {
+        return this;
+    }
+
+    protected boolean isPuller() {
+        return false;
     }
 
     public void update() {}

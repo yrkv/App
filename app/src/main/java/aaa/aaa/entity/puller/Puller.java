@@ -13,27 +13,31 @@ import aaa.aaa.level.Level;
 public class Puller extends EntityBase {
 
     //CONFIG
-    private final double PULLCOEFF = 100;
+    private final double PULLCOEFF = 1000;
     //END CONFIG
+
+    private int num;
 
     private boolean gravity = false;
 
     public Puller(double x, double y, double xVelocity, double yVelocity, float size, Level level) {
         super(x, y, xVelocity, yVelocity, size, level);
         getLevel().getPullers().add(this);
-
-//        getImageView().setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                gravity = (event.getAction() == MotionEvent.ACTION_BUTTON_PRESS);
-//                return true;
-//            }
-//        });
     }
 
     protected boolean setGravity(boolean gravity) {
         this.gravity = gravity;
         return this.gravity;
+    }
+
+    protected boolean isPuller() {
+        return true;
+    }
+
+    public void toggleGravity() {
+        gravity = !gravity;
+
+        toggleTint();
     }
 
     public boolean getGravity() {

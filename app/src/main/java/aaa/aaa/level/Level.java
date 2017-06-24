@@ -27,12 +27,7 @@ public class Level {
         this.context = context;
         this.layout = layout;
 
-//        layout.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                return true;
-//            }
-//        });
+
     }
 
     public ArrayList<Puller> getPullers() {
