@@ -21,6 +21,19 @@
         android:layout_centerHorizontal="true" />
 
     <Button
+        android:id="@+id/tutorial"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="How to Play"
+        android:layout_below="@+id/start"
+        android:layout_alignLeft="@+id/start"
+        android:layout_alignStart="@+id/start"
+        android:layout_marginTop="10dp"
+        android:onClick="tutorial"
+        />
+
+    <Button
         android:id="@+id/donate"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="wrap_content"

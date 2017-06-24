@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean playing = false;
     private int selectedLevel = 1;
 
-    private boolean[] unlocks = {true,true,true,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false};
+    private boolean[] unlocks = {true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -317,5 +317,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void info(View v) {
         setContentView(R.layout.info_activity);
+    }
+
+    public void tutorial(View v) {
+        setContentView(R.layout.tutorial);
     }
 }
