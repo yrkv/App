@@ -3,7 +3,6 @@ package aaa.aaa.level;
 import android.content.Context;
 import android.widget.RelativeLayout;
 
-import aaa.aaa.MainActivity;
 import aaa.aaa.R;
 import aaa.aaa.entity.MainPlayer;
 import aaa.aaa.entity.puller.BlackHole;
@@ -16,9 +15,9 @@ import aaa.aaa.entity.puller.Planet;
 public class LevelData {
     final Level level;
 
-    public LevelData(RelativeLayout layout, Context context, MainActivity mainActivity, int selectedLevel) {
-        level = new Level(layout, context, mainActivity);
-        new MainPlayer(0, 0, 0.5f, 1, 1, 0.2f, level);
+    public LevelData(RelativeLayout layout, Context context, int selectedLevel) {
+        level = new Level(layout, context);
+
         getLevelData(selectedLevel);
     }
 
@@ -92,11 +91,13 @@ public class LevelData {
     }
 
     private void genLevel1() {
-        new Planet(400, 300, 0.5f, 0, 0, 0.3f, level);
-        new Planet(100, 800, 0.5f, 0, 0, 0.2f, level);
-        new Planet(600, 1000, 0.5f, 0, 0, 0.25f, level);
+        new MainPlayer(-100, 1400, 0.5f, 4, -2, 0.2f, level);
+        new Planet(0, 0, 0.5f, 0, 0, 0.4f, level, R.drawable.planet2);
+        new Planet(200, 900, 0.5f, 0, 0, 0.2f, level, R.drawable.planet6);
+
     }
     private void genLevel2() {
+        new MainPlayer(0, 0, 0.5f, 1, 1, 0.2f, level);
         new Planet(400, 300, 0.5f, 0, 0, 0.2f, level, R.drawable.planet1);
         new Planet(200, 600, 0.5f, 0, 0, 0.25f, level, R.drawable.planet2);
         new Planet(500, 900, 0.5f, 0, 0, 0.2f, level, R.drawable.planet3);
@@ -106,6 +107,7 @@ public class LevelData {
         new Planet(1200, 1800, 0.5f, 0, 0, 0.2f, level, R.drawable.planet4);
         new Planet(1200, 2000, 0.5f, 0, 0, 0.2f, level, R.drawable.planet4);
         new BlackHole(600, 600, 0.5f, 0, 0, 0.2f, level);
+
 
     }
     private void genLevel3() {
