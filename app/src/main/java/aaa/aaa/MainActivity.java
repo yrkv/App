@@ -39,9 +39,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    public void GameOver(View v) {
+        setContentView(R.layout.gameover);
+    }
+
+    public void GameOver() {
+        setContentView(R.layout.gameover);
+    }
+
     public void GameLoop(final View view) throws InterruptedException {
         setContentView(R.layout.next_activity);
-        final LevelData levelData = new LevelData((RelativeLayout) findViewById(R.id.next_activity), this, selectedLevel);
+        final LevelData levelData = new LevelData((RelativeLayout) findViewById(R.id.next_activity), this, this, selectedLevel);
 
         setContentView(levelData.getLevel().getLayout());
         levelData.getLevel().setBackground((ImageView) findViewById(R.id.background));

@@ -9,6 +9,8 @@ import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
+import aaa.aaa.MainActivity;
+import aaa.aaa.R;
 import aaa.aaa.entity.EntityBase;
 import aaa.aaa.entity.puller.Puller;
 
@@ -17,6 +19,7 @@ import aaa.aaa.entity.puller.Puller;
  */
 
 public class Level {
+    private MainActivity mainActivity;
     private ArrayList<EntityBase> entities = new ArrayList<>();
     private ArrayList<Puller> pullers = new ArrayList<>();
     private RelativeLayout layout;
@@ -25,11 +28,10 @@ public class Level {
     public int yOffset = 0;
     private ImageView background;
 
-    public Level(RelativeLayout layout, Context context) {
+    public Level(RelativeLayout layout, Context context, MainActivity mainActivity) {
+        this.mainActivity = mainActivity;
         this.context = context;
         this.layout = layout;
-
-
     }
 
     public void setBackground(ImageView background) {
@@ -61,6 +63,10 @@ public class Level {
 
     public RelativeLayout getLayout() {
         return layout;
+    }
+
+    public void GameOver() {
+        mainActivity.GameOver();
     }
 
     public Context getContext() {

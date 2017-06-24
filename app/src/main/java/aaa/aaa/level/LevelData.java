@@ -3,6 +3,7 @@ package aaa.aaa.level;
 import android.content.Context;
 import android.widget.RelativeLayout;
 
+import aaa.aaa.MainActivity;
 import aaa.aaa.R;
 import aaa.aaa.entity.MainPlayer;
 import aaa.aaa.entity.puller.BlackHole;
@@ -15,8 +16,8 @@ import aaa.aaa.entity.puller.Planet;
 public class LevelData {
     final Level level;
 
-    public LevelData(RelativeLayout layout, Context context, int selectedLevel) {
-        level = new Level(layout, context);
+    public LevelData(RelativeLayout layout, Context context, MainActivity mainActivity, int selectedLevel) {
+        level = new Level(layout, context, mainActivity);
         new MainPlayer(0, 0, 0.5f, 1, 1, 0.2f, level);
         getLevelData(selectedLevel);
     }
