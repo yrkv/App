@@ -33,6 +33,7 @@ public class Puller extends EntityBase {
 
     public void crash() {
         getLevel().GameOver();
+
     }
 
     protected boolean isPuller() {
