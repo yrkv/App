@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean playing = true;
     private int selectedLevel = 1;
 
-    private boolean[] unlocks = {true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false}
+    private boolean[] unlocks = {true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean levelUnlocked(int selectedLevel) {
-        return unlocks[selectedLevel];
+        return unlocks[selectedLevel-1];
     }
 
     public void selectLevel1(View v) throws InterruptedException {
