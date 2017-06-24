@@ -14,11 +14,10 @@ import aaa.aaa.entity.puller.Planet;
 public class LevelData {
     final Level level;
 
-    public LevelData(RelativeLayout layout, Context context) {
+    public LevelData(RelativeLayout layout, Context context, int selectedLevel) {
         level = new Level(layout, context);
         new MainPlayer(10, 10, 1, 1, 0.1f, level);
-
-        genLevel1();
+        getLevelData(selectedLevel);
     }
 
     public Level getLevel() {
