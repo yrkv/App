@@ -3,6 +3,7 @@ package aaa.aaa.entity.puller;
 import android.view.MotionEvent;
 import android.view.View;
 
+import aaa.aaa.MainActivity;
 import aaa.aaa.entity.EntityBase;
 import aaa.aaa.level.Level;
 
@@ -20,14 +21,18 @@ public class Puller extends EntityBase {
 
     private boolean gravity = false;
 
-    public Puller(double x, double y, double xVelocity, double yVelocity, float size, Level level) {
-        super(x, y, xVelocity, yVelocity, size, level);
+    public Puller(double x, double y, float dir, double xVelocity, double yVelocity, float size, Level level) {
+        super(x, y, dir, xVelocity, yVelocity, size, level);
         getLevel().getPullers().add(this);
     }
 
     protected boolean setGravity(boolean gravity) {
         this.gravity = gravity;
         return this.gravity;
+    }
+
+    public void crash() {
+
     }
 
     protected boolean isPuller() {

@@ -18,7 +18,7 @@ import aaa.aaa.level.LevelData;
 
 public class MainActivity extends AppCompatActivity {
     //CONFIG
-    private final double TICKSPEED = 60; //in milliseconds
+    private final double TICKSPEED = 60.0; //in milliseconds
     //END CONFIG
     private boolean playing = true;
     private int selectedLevel = 1;
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         Runnable myRunnable = new Runnable() {
             double t = System.currentTimeMillis();
-            double dt = 1000 / TICKSPEED;
+            double dt = 1000.0 / TICKSPEED;
 
             @Override
             public void run() {

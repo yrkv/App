@@ -17,7 +17,7 @@ public class LevelData {
 
     public LevelData(RelativeLayout layout, Context context, int selectedLevel) {
         level = new Level(layout, context);
-        new MainPlayer(0, 0, 1, 1, 0.2f, level);
+        new MainPlayer(0, 0, 0.5f, 1, 1, 0.2f, level);
         getLevelData(selectedLevel);
     }
 
@@ -91,20 +91,20 @@ public class LevelData {
     }
 
     private void genLevel1() {
-        new Planet(400, 300, 0, 0, 0.3f, level);
-        new Planet(100, 800, 0, 0, 0.2f, level);
-        new Planet(600, 1000, 0, 0, 0.25f, level);
+        new Planet(400, 300, 0.5f, 0, 0, 0.3f, level);
+        new Planet(100, 800, 0.5f, 0, 0, 0.2f, level);
+        new Planet(600, 1000, 0.5f, 0, 0, 0.25f, level);
     }
     private void genLevel2() {
-        new Planet(400, 300, 0, 0, 0.2f, level, R.drawable.planet1);
-        new Planet(200, 600, 0, 0, 0.25f, level, R.drawable.planet2);
-        new Planet(500, 900, 0, 0, 0.2f, level, R.drawable.planet3);
-        new Planet(1200, 1200, 0, 0, 0.2f, level, R.drawable.planet4);
-        new Planet(1200, 1400, 0, 0, 0.2f, level, R.drawable.planet4);
-        new Planet(1200, 1600, 0, 0, 0.2f, level, R.drawable.planet4);
-        new Planet(1200, 1800, 0, 0, 0.2f, level, R.drawable.planet4);
-        new Planet(1200, 2000, 0, 0, 0.2f, level, R.drawable.planet4);
-        new BlackHole(600, 600, 0, 0, 0.2f, level);
+        new Planet(400, 300, 0.5f, 0, 0, 0.2f, level, R.drawable.planet1);
+        new Planet(200, 600, 0.5f, 0, 0, 0.25f, level, R.drawable.planet2);
+        new Planet(500, 900, 0.5f, 0, 0, 0.2f, level, R.drawable.planet3);
+        new Planet(1200, 1200, 0.5f, 0, 0, 0.2f, level, R.drawable.planet4);
+        new Planet(1200, 1400, 0.5f, 0, 0, 0.2f, level, R.drawable.planet4);
+        new Planet(1200, 1600, 0.5f, 0, 0, 0.2f, level, R.drawable.planet4);
+        new Planet(1200, 1800, 0.5f, 0, 0, 0.2f, level, R.drawable.planet4);
+        new Planet(1200, 2000, 0.5f, 0, 0, 0.2f, level, R.drawable.planet4);
+        new BlackHole(600, 600, 0.5f, 0, 0, 0.2f, level);
 
     }
     private void genLevel3() {

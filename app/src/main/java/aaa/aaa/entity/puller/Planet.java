@@ -9,14 +9,14 @@ import aaa.aaa.level.Level;
 
 public class Planet extends Puller {
 
-    public Planet(double x, double y, double xVelocity, double yVelocity, float size, Level level) {
-        super(x, y, xVelocity, yVelocity, size, level);
+    public Planet(double x, double y, float dir, double xVelocity, double yVelocity, float size, Level level) {
+        super(x, y, dir, xVelocity, yVelocity, size, level);
 
         setImageView(randomPlanet());
     }
 
-    public Planet(double x, double y, double xVelocity, double yVelocity, float size, Level level, int image) {
-        super(x, y, xVelocity, yVelocity, size, level);
+    public Planet(double x, double y, float dir, double xVelocity, double yVelocity, float size, Level level, int image) {
+        super(x, y, dir, xVelocity, yVelocity, size, level);
 
         setImageView(image);
     }

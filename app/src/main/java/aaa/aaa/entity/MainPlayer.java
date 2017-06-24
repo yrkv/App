@@ -14,8 +14,8 @@ import aaa.aaa.level.Level;
 public class MainPlayer extends EntityBase {
 
 
-    public MainPlayer(double x, double y, double xVelocity, double yVelocity, float size, Level level) {
-        super(x, y, xVelocity, yVelocity, size, level);
+    public MainPlayer(double x, double y, float dir, double xVelocity, double yVelocity, float size, Level level) {
+        super(x, y, dir, xVelocity, yVelocity, size, level);
 
         setImageView(R.drawable.player);
     }
@@ -45,7 +45,16 @@ public class MainPlayer extends EntityBase {
                 changeXVelocity(puller);
                 changeYVelocity(puller);
             }
+            if(getDistanceTo(puller) < puller.getSize()) {
+                puller.crash();
+            }
         }
+
+        float dir = (float) Math.atan(getYVelocity()/getXVelocity());
+
+        if(getXVelocity() < 0) dir = (float) (dir + Math.PI);
+
+        setDir((float) (dir * 180/Math.PI) + 90);
 
         getLevel().yOffset = (int) getY();
         getLevel().xOffset = (int) getX();

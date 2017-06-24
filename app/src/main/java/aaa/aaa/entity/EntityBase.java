@@ -18,6 +18,7 @@ import aaa.aaa.level.Level;
 public class EntityBase {
     private double x;
     private double y;
+    private float dir;
     private double xVelocity;
     private double yVelocity;
     private Level level;
@@ -25,9 +26,10 @@ public class EntityBase {
     private boolean tint = false;
     private float size;
 
-    public EntityBase(double x, double y, double xVelocity, double yVelocity, float size, Level level) {
+    public EntityBase(double x, double y, float dir, double xVelocity, double yVelocity, float size, Level level) {
         this.x = x;
         this.y = y;
+        this.dir = dir;
         this.xVelocity = xVelocity;
         this.yVelocity = yVelocity;
         this.level = level;
@@ -65,15 +67,16 @@ public class EntityBase {
     }
 
 
-    public void render(float w, float h, int x, int y) {
+    public void render(float w, float h, float dir, int x, int y) {
         imageView.setTranslationX(x - imageView.getWidth() / 2 - level.xOffset + level.getLayout().getWidth() / 2);
         imageView.setTranslationY(y - imageView.getHeight() / 2 - level.yOffset + level.getLayout().getHeight() / 2);
+        imageView.setRotation((float) (dir));
         imageView.setScaleX(w);
         imageView.setScaleY(h);
     }
 
     public void render() {
-        render(size, size, (int) x, (int) y);
+        render(size, size, dir, (int) x, (int) y);
     }
 
     public double getX() {
@@ -94,6 +97,15 @@ public class EntityBase {
         return this.y;
     }
 
+    public float getDir() {
+        return dir;
+    }
+
+    protected float setDir(float dir) {
+        this.dir = dir;
+        return this.dir;
+    }
+
     public double getXVelocity() {
         return xVelocity;
     }
@@ -110,6 +122,10 @@ public class EntityBase {
     protected double setYVelocity(double yVelocity) {
         this.yVelocity = yVelocity;
         return this.yVelocity;
+    }
+
+    public float getSize() {
+        return size;
     }
 
     public Level getLevel() {
