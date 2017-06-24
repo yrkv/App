@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean playing = true;
     private int selectedLevel = 1;
 
-    private boolean[] unlocks = {true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false};
+    private boolean[] unlocks = {true,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

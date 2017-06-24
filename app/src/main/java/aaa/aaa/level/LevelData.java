@@ -98,7 +98,14 @@ public class LevelData {
         new Planet(400, 300, 0, 0, 0.2f, level, R.drawable.planet1);
         new Planet(200, 600, 0, 0, 0.25f, level, R.drawable.planet2);
         new Planet(500, 900, 0, 0, 0.2f, level, R.drawable.planet3);
-        new Planet(600, 1200, 0, 0, 0.2f, level, R.drawable.planet4);
+        new Planet(1200, 1200, 0, 0, 0.2f, level, R.drawable.planet4);
+        new Planet(1200, 1400, 0, 0, 0.2f, level, R.drawable.planet4);
+        new Planet(1200, 1600, 0, 0, 0.2f, level, R.drawable.planet4);
+        new Planet(1200, 1800, 0, 0, 0.2f, level, R.drawable.planet4);
+        new Planet(1200, 2000, 0, 0, 0.2f, level, R.drawable.planet4);
+        new Planet(1400, 2000, 0, 0, 0.2f, level, R.drawable.planet4);
+        new Planet(1000, 2000, 0, 0, 0.2f, level, R.drawable.planet4);
+
     }
     private void genLevel3() {
 
