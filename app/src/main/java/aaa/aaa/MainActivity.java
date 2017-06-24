@@ -45,12 +45,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Win() {
-        if (selectedLevel < 30) {
-            unlocks[selectedLevel] = true;
-            selectedLevel++;
+        if (playing) {
+            if (selectedLevel < 30) {
+                unlocks[selectedLevel] = true;
+                selectedLevel++;
+                System.out.println("aaa");
+            }
+            setContentView(R.layout.win_screen);
+            playing = false;
         }
-        setContentView(R.layout.win_screen);
-        playing = false;
     }
 
     public void GameLoop(final View view) throws InterruptedException {
@@ -81,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
         playing = true;
+        System.out.println(selectedLevel);
         Thread myThread = new Thread(myRunnable);
         myThread.start();
     }
