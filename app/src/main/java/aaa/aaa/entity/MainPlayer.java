@@ -59,8 +59,8 @@ public class MainPlayer extends EntityBase {
 
         setDir((float) (dir * 180/Math.PI) + 90);
 
-        getLevel().yOffset = (int) getY();
-        getLevel().xOffset = (int) getX();
+        getLevel().yOffset = (int) (getY() * getLevel().getZoom());
+        getLevel().xOffset = (int) (getX() * getLevel().getZoom());
 
         move();
     }

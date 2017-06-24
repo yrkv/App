@@ -27,6 +27,7 @@ public class Level {
     public int xOffset = 0;
     public int yOffset = 0;
     private ImageView background;
+    private float zoom = 1f;
 
     public Level(RelativeLayout layout, Context context, MainActivity mainActivity) {
         this.mainActivity = mainActivity;
@@ -53,6 +54,9 @@ public class Level {
     }
 
     public void render() {
+        if (layout.getWidth() != 0) {
+            zoom = layout.getWidth() / 1080f;
+        }
         for (EntityBase entity : entities) {
             entity.render();
         }
@@ -75,5 +79,9 @@ public class Level {
 
     public Context getContext() {
         return context;
+    }
+
+    public float getZoom() {
+        return zoom;
     }
 }

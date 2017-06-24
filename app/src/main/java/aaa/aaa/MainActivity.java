@@ -1,6 +1,8 @@
 package aaa.aaa;
 
+import android.content.Context;
 import android.content.Entity;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,7 +30,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        readData();
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        writeData();
     }
 
     public void LevelSelect(View v) {
@@ -49,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
             if (selectedLevel < 30) {
                 unlocks[selectedLevel] = true;
                 selectedLevel++;
-                System.out.println("aaa");
             }
             setContentView(R.layout.win_screen);
             playing = false;
@@ -84,9 +93,41 @@ public class MainActivity extends AppCompatActivity {
         };
 
         playing = true;
-        System.out.println(selectedLevel);
         Thread myThread = new Thread(myRunnable);
         myThread.start();
+    }
+
+    private void readData() {
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        int defaultValue = 1;
+        int unlocksNum = sharedPref.getInt(getString(R.string.unlocks_data), defaultValue);
+
+        numToUnlocks(unlocksNum);
+    }
+
+    private void writeData() {
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        editor.putInt(getString(R.string.unlocks_data), unlocksToInt());
+        editor.apply();
+    }
+
+    private int unlocksToInt() {
+        int num = 0;
+        for (int i = 0; i < 30; i++) {
+            if (unlocks[i])
+                num += 1<<i;
+        }
+        return num;
+    }
+
+    private int numToUnlocks(int num) {
+        for (int i = 0; i < 30; i++) {
+            unlocks[i] = (num & 1) == 1;
+            num = num>>1;
+        }
+        return num;
     }
 
     private boolean levelUnlocked(int selectedLevel) {
