@@ -71,10 +71,10 @@ public class EntityBase {
     public void render(float w, float h, float dir, int x, int y) {
         imageView.setTranslationX(x - imageView.getWidth() / 2 - level.xOffset + level.getLayout().getWidth() / 2);
         imageView.setTranslationY(y - imageView.getHeight() / 2 - level.yOffset + level.getLayout().getHeight() / 2);
-        imageView.setRotation((float) (dir));
-        imageView.setScaleX(w);
-        imageView.setScaleY(h);
-//        imageView.setLayoutParams(new RelativeLayout.LayoutParams((int) (w * 100), (int) (h * 100)));
+        imageView.setRotation(dir);
+//        imageView.setScaleX(w);
+//        imageView.setScaleY(h);
+        imageView.setLayoutParams(new RelativeLayout.LayoutParams((int) (w*2), (int) (h*2)));
     }
 
     public void render() {

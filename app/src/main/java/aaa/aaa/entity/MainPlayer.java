@@ -45,7 +45,7 @@ public class MainPlayer extends EntityBase {
                 changeXVelocity(puller);
                 changeYVelocity(puller);
             }
-            if(getDistanceTo(puller) < (puller.getSize() + 100)) {
+            if(getDistanceTo(puller) < (puller.getSize() + getSize() / 2)) {
                 puller.crash();
             }
         }

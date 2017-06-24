@@ -53,4 +53,8 @@ public class Puller extends EntityBase {
     public double getPULLCOEFF() {
         return PULLCOEFF;
     }
+
+    public boolean isEarth() {
+        return false;
+    }
 }
