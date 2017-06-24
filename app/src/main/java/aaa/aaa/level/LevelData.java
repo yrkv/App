@@ -17,7 +17,7 @@ public class LevelData {
 
     public LevelData(RelativeLayout layout, Context context, int selectedLevel) {
         level = new Level(layout, context);
-        new MainPlayer(0, 0, 0.5f, 1, 1, 0.2f, level);
+
         getLevelData(selectedLevel);
     }
 
@@ -94,6 +94,7 @@ public class LevelData {
         new Planet(400, 300, 0.5f, 0, 0, 0.3f, level);
         new Planet(100, 800, 0.5f, 0, 0, 0.2f, level);
         new Planet(600, 1000, 0.5f, 0, 0, 0.25f, level);
+        new MainPlayer(0, 0, 0.5f, 1, 1, 0.2f, level);
     }
     private void genLevel2() {
         new Planet(400, 300, 0.5f, 0, 0, 0.2f, level, R.drawable.planet1);
@@ -105,6 +106,7 @@ public class LevelData {
         new Planet(1200, 1800, 0.5f, 0, 0, 0.2f, level, R.drawable.planet4);
         new Planet(1200, 2000, 0.5f, 0, 0, 0.2f, level, R.drawable.planet4);
         new BlackHole(600, 600, 0.5f, 0, 0, 0.2f, level);
+        new MainPlayer(0, 0, 0.5f, 1, 1, 0.2f, level);
 
     }
     private void genLevel3() {
