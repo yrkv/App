@@ -15,6 +15,12 @@ public class Planet extends Puller {
         setImageView(randomPlanet());
     }
 
+    public Planet(double x, double y, double xVelocity, double yVelocity, float size, Level level, int image) {
+        super(x, y, xVelocity, yVelocity, size, level);
+
+        setImageView(image);
+    }
+
     private int randomPlanet() {
         int num = (int) (Math.random() * 7 + 1);
         switch (num) {

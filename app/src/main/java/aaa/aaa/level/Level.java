@@ -1,6 +1,8 @@
 package aaa.aaa.level;
 
 import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -18,10 +20,19 @@ public class Level {
     private ArrayList<Puller> pullers = new ArrayList<>();
     private RelativeLayout layout;
     private Context context;
+    public int xOffset = 0;
+    public int yOffset = 0;
 
     public Level(RelativeLayout layout, Context context) {
         this.context = context;
         this.layout = layout;
+
+//        layout.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                return true;
+//            }
+//        });
     }
 
     public ArrayList<Puller> getPullers() {
