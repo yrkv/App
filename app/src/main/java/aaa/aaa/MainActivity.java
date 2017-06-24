@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean playing = false;
     private int selectedLevel = 1;
 
-    private boolean[] unlocks = {true,true,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false};
+    private boolean[] unlocks = {true,true,true,true,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
