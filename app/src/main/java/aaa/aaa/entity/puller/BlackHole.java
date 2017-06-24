@@ -1,5 +1,6 @@
 package aaa.aaa.entity.puller;
 
+import aaa.aaa.R;
 import aaa.aaa.level.Level;
 
 /**
@@ -11,6 +12,8 @@ public class BlackHole extends Puller {
     public BlackHole(double x, double y, float dir, double xVelocity, double yVelocity, float size, Level level) {
         super(x, y, dir, xVelocity, yVelocity, size, level);
         setGravity(true);
+
+        setImageView(R.drawable.blackhole);
     }
 
     @Override
