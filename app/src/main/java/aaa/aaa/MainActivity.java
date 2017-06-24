@@ -51,11 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void run() {
-                long lastTick = System.currentTimeMillis();
                 while (playing) {
                     if(System.currentTimeMillis() - t > dt) {
                         t += dt;
-                        lastTick = System.currentTimeMillis();
                         runOnUiThread(new Runnable() {
                             public void run() {
                                 levelData.getLevel().update();

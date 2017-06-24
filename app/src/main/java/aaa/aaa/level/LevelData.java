@@ -16,7 +16,7 @@ public class LevelData {
 
     public LevelData(RelativeLayout layout, Context context, int selectedLevel) {
         level = new Level(layout, context);
-        new MainPlayer(0, 0, 1, 1, 0.1f, level);
+        new MainPlayer(0, 0, 1, 1, 0.2f, level);
         getLevelData(selectedLevel);
     }
 
