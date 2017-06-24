@@ -46,7 +46,10 @@ public class MainPlayer extends EntityBase {
                 changeYVelocity(puller);
             }
             if(getDistanceTo(puller) < (puller.getSize() + getSize() / 2)) {
-                puller.crash();
+                if (puller.isEarth())
+                    getLevel().Win();
+                else
+                    puller.crash();
             }
         }
 

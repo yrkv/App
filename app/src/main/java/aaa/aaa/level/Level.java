@@ -67,7 +67,10 @@ public class Level {
 
     public void GameOver() {
         mainActivity.GameOver();
-        mainActivity.playing = false;
+    }
+
+    public void Win() {
+        mainActivity.Win();
     }
 
     public Context getContext() {

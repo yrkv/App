@@ -39,12 +39,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void GameOver(View v) {
-        setContentView(R.layout.gameover);
-    }
-
     public void GameOver() {
         setContentView(R.layout.gameover);
+        playing = false;
+    }
+
+    public void Win() {
+        if (selectedLevel < 30) {
+            unlocks[selectedLevel] = true;
+            selectedLevel++;
+        }
+        setContentView(R.layout.win_screen);
+        playing = false;
     }
 
     public void GameLoop(final View view) throws InterruptedException {
