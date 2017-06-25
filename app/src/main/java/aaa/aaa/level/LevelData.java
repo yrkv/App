@@ -118,7 +118,10 @@ public class LevelData {
         new Planet(200, -900, 0.5f, 0, 0, 50, level, R.drawable.planet6);
     }
     private void genLevel5() {
-
+        new MainPlayer(-800, -400, 0.5f, 6, -3, 50, level);
+        new Earth(0, 0, 0.5f, 0, 0, 100, level);
+        new Planet(-50, -500, 0.5f, 0, 0, 70, level, R.drawable.planet6);
+        new Planet(800, 800, 0.5f, 0, 0, 70, level, R.drawable.planet6);
     }
     private void genLevel6() {
 
