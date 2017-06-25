@@ -1,21 +1,14 @@
 package aaa.aaa;
 
 import android.content.Context;
-import android.content.Entity;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import java.util.ArrayList;
-
-import aaa.aaa.entity.EntityBase;
-import aaa.aaa.entity.MainPlayer;
-import aaa.aaa.entity.puller.Puller;
-import aaa.aaa.level.Level;
 import aaa.aaa.level.LevelData;
 
 public class MainActivity extends AppCompatActivity {
@@ -65,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void GameLoop(final View view) throws InterruptedException {
-        setContentView(R.layout.next_activity);
+    public void GameLoop(final View view) {
+        setContentView(R.layout.game_activity);
         final LevelData levelData = new LevelData((RelativeLayout) findViewById(R.id.next_activity), this, this, selectedLevel);
 
         setContentView(levelData.getLevel().getLayout());
@@ -85,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                             public void run() {
                                 levelData.getLevel().update();
                                 levelData.getLevel().render();
+                                findViewById(R.id.restartButton).bringToFront();
                             }
                         });
                     }
@@ -95,6 +89,11 @@ public class MainActivity extends AppCompatActivity {
         playing = true;
         Thread myThread = new Thread(myRunnable);
         myThread.start();
+    }
+
+    public void Restart(View v) {
+        playing = false;
+        GameLoop(v);
     }
 
     private void readData() {
