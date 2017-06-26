@@ -14,7 +14,7 @@ import aaa.aaa.level.Level;
 public class Puller extends EntityBase {
 
     //CONFIG
-    private final double PULLCOEFF = 5000;
+    private final double PULLCOEFF;
     //END CONFIG
 
     private int num;
@@ -23,6 +23,7 @@ public class Puller extends EntityBase {
 
     public Puller(double x, double y, float dir, double xVelocity, double yVelocity, float size, Level level) {
         super(x, y, dir, xVelocity, yVelocity, size, level);
+        PULLCOEFF = size * 100;
         getLevel().getPullers().add(this);
     }
 

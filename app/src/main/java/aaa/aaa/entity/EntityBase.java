@@ -26,6 +26,7 @@ public class EntityBase {
     protected ImageView imageView;
     private boolean tint = false;
     private float size;
+    private boolean render = false;
 
     public EntityBase(double x, double y, float dir, double xVelocity, double yVelocity, float size, Level level) {
         this.x = x;
@@ -56,7 +57,7 @@ public class EntityBase {
         });
         render();
         imageView.setImageResource(resource);
-        level.getLayout().addView(imageView);
+        render = true;
     }
 
     protected void toggleTint() {
@@ -73,6 +74,10 @@ public class EntityBase {
         imageView.setTranslationY(y - imageView.getHeight() / 2 - level.yOffset + level.getLayout().getHeight() / 2);
         imageView.setRotation(dir);
         imageView.setLayoutParams(new RelativeLayout.LayoutParams((int) (w*2), (int) (h*2)));
+        if (render && level.getZoom() != (float) Math.PI) {
+            level.getLayout().addView(imageView);
+            render = false;
+        }
     }
 
     public void render() {

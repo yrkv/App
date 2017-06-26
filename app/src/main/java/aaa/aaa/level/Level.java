@@ -27,7 +27,7 @@ public class Level {
     public int xOffset = 0;
     public int yOffset = 0;
     private ImageView background;
-    private float zoom = 1f;
+    private float zoom = (float) Math.PI;
 
     public Level(RelativeLayout layout, Context context, MainActivity mainActivity) {
         this.mainActivity = mainActivity;

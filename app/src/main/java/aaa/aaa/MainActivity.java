@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(levelData.getLevel().getLayout());
         levelData.getLevel().setBackground((ImageView) findViewById(R.id.background));
+        levelData.getLevel().update();
 
         Runnable myRunnable = new Runnable() {
             double t = System.currentTimeMillis();
@@ -76,9 +77,8 @@ public class MainActivity extends AppCompatActivity {
                         t += dt;
                         runOnUiThread(new Runnable() {
                             public void run() {
-                                levelData.getLevel().update();
                                 levelData.getLevel().render();
-                                findViewById(R.id.restartButton).bringToFront();
+                                levelData.getLevel().update();
                             }
                         });
                     }
