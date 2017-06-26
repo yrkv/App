@@ -36,10 +36,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void LevelSelect(View v) {
         setContentView(R.layout.levelselect);
+        playing = false;
     }
 
     public void MainMenu(View v) {
         setContentView(R.layout.activity_main);
+        playing = false;
     }
 
     public void GameOver() {
@@ -316,9 +318,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void info(View v) {
         setContentView(R.layout.info_activity);
+        playing = false;
     }
 
     public void tutorial(View v) {
         setContentView(R.layout.tutorial);
+        playing = false;
     }
 }
