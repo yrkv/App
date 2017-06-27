@@ -68,8 +68,7 @@ public class EntityBase {
             imageView.clearColorFilter();
     }
 
-
-    public void render(float w, float h, float dir, int x, int y) {
+    private void render(float w, float h, float dir, int x, int y) {
         imageView.setTranslationX(x - imageView.getWidth() / 2 - level.xOffset + level.getLayout().getWidth() / 2);
         imageView.setTranslationY(y - imageView.getHeight() / 2 - level.yOffset + level.getLayout().getHeight() / 2);
         imageView.setRotation(dir);
