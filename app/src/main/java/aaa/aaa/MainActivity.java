@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        readData();
+//        readData();
         setContentView(R.layout.activity_main);
     }
 
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
 
-        writeData();
+//        writeData();
     }
 
     public void LevelSelect(View v) {
