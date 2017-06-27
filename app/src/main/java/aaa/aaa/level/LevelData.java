@@ -135,8 +135,16 @@ public class LevelData {
     private void genLevel9() {
 
     }
-    private void genLevel10() {}
-    private void genLevel11() {}
+    private void genLevel10() {
+
+
+
+    }
+    private void genLevel11() {
+        new MainPlayer(0, 150, 0.5f, 6, 0, 50, level);
+        new Earth(600, 0, 0.5f, 0, 0, 75, level);
+        new BlackHole(0, 0, 0.5f, 0, 0, 50, level);
+    }
     private void genLevel12() {}
     private void genLevel13() {}
     private void genLevel14() {}
