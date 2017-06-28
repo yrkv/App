@@ -137,9 +137,14 @@ public class LevelData {
 
     }
     private void genLevel10() {
-
-
-
+        new MainPlayer(0, -345, 0.5f, 4.5, 0, 50, level);
+        new Earth(0, 0, 0.5f, 0, 0, 100, level).toggleGravity();
+        new Planet(0, -600, 0.5f, 0, 0, 30, level, R.drawable.planet6);
+        new Planet(Math.sqrt(3)*300, -300, 0.5f, 0, 0, 30, level, R.drawable.planet6);
+        new Planet(Math.sqrt(3)*300,  300, 0.5f, 0, 0, 30, level, R.drawable.planet6);
+        new Planet(0,  600, 0.5f, 0, 0, 20, level, R.drawable.planet6);
+        new Planet(Math.sqrt(3)*-300,  300, 0.5f, 0, 0, 30, level, R.drawable.planet6);
+        new Planet(Math.sqrt(3)*-300, -300, 0.5f, 0, 0, 30, level, R.drawable.planet6);
     }
     private void genLevel11() {
         new MainPlayer(0, 150, 0.5f, 6, 0, 50, level);
