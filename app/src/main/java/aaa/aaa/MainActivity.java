@@ -12,6 +12,9 @@ import android.widget.RelativeLayout;
 import aaa.aaa.level.LevelData;
 
 public class MainActivity extends AppCompatActivity {
+    //TODO: Change navigation to include system back button navigation
+    //TODO: Lock the screen as vertical so that it may not be rotated
+
     //CONFIG
     private final double TICKSPEED = 60.0; //in milliseconds
     //END CONFIG

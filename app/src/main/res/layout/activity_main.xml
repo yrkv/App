@@ -45,4 +45,13 @@
         android:layout_marginTop="220dp"
         android:onClick="info"
         />
+
+    <!--<com.google.android.gms.ads.AdView-->
+        <!--android:id="@+id/adView"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/donate"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:adSize="40dp"-->
+        <!--android:layout_marginTop="72dp" />-->
 </RelativeLayout>
