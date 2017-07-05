@@ -95,8 +95,8 @@ public class LevelData {
 
     private void genLevel1() {
         new MainPlayer(-300, 1500, 0.5f, 4, -2, 50, level);
-        new Earth(0, 0, 0.5f, 0, 0, 100, level);
-        new Planet(200, 900, 0.5f, 0, 0, 50, level, R.drawable.planet6);
+        new Earth(0, 0, 0.5f, 0, 0, 80, level);
+        new Planet(200, 900, 0.5f, 0, 0, 70, level, R.drawable.planet6);
 
     }
     private void genLevel2() {
@@ -114,21 +114,28 @@ public class LevelData {
 
     }
     private void genLevel4() {
+
+        new MainPlayer(-1000, -1200, 0.5f, 10, 0, 50, level);
+        new Earth(0, -50, 0.5f, 0, 0, 100, level);
+        new Planet(-50, -1000, 0.5f, 0, 0, 100, level, R.drawable.planet6);
+        new Planet(800, -250, 0.5f, 0, 0, 100, level, R.drawable.planet6);
+
+    }
+    private void genLevel5() {
+        new MainPlayer(100, 1000, 0.5f, 5, -8, 50, level);
+        new Earth(0, 0, 0.5f, 0, 0, 80, level);
+        new Planet(100, 600, 0.5f, 0, 0, 90, level, R.drawable.planet6);
+        new Planet(600, -300, 0.5f, 0, 0, 50, level, R.drawable.planet6);
+    }
+    private void genLevel6() {
+        new MainPlayer(-800, -400, 0.5f, 8, -3, 50, level);
+        new Earth(0, -50, 0.5f, 0, 0, 100, level);
+        new Planet(-50, -500, 0.5f, 0, 0, 70, level, R.drawable.planet6);
+    }
+    private void genLevel7() {
         new MainPlayer(50, 1000, 0.5f, -2, -2, 50, level);
         new Earth(0, 0, 0.5f, 0, 0, 100, level);
         new Planet(200, -900, 0.5f, 0, 0, 50, level, R.drawable.planet6);
-    }
-    private void genLevel5() {
-        new MainPlayer(-800, -400, 0.5f, 6, -3, 50, level);
-        new Earth(0, 0, 0.5f, 0, 0, 100, level);
-        new Planet(-50, -500, 0.5f, 0, 0, 70, level, R.drawable.planet6);
-        new Planet(800, 800, 0.5f, 0, 0, 70, level, R.drawable.planet6);
-    }
-    private void genLevel6() {
-
-    }
-    private void genLevel7() {
-
     }
     private void genLevel8() {
 
@@ -151,7 +158,14 @@ public class LevelData {
         new Earth(600, 0, 0.5f, 0, 0, 75, level);
         new BlackHole(0, 0, 0.5f, 0, 0, 50, level);
     }
-    private void genLevel12() {}
+    private void genLevel12() {
+        new MainPlayer(-100, 600, 0.5f, 6, 0, 50, level);
+        new Earth(0, 0, 0.5f, 0, 0, 75, level);
+        new BlackHole(300, -300, 0.5f, 0, 0, 40, level);
+        new BlackHole(-300, 300, 0.5f, 0, 0, 40, level);
+        new BlackHole(-300, -300, 0.5f, 0, 0, 40, level);
+        new BlackHole(300, 300, 0.5f, 0, 0, 40, level);
+    }
     private void genLevel13() {}
     private void genLevel14() {}
     private void genLevel15() {}
