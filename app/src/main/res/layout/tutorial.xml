@@ -43,15 +43,5 @@
         android:text="Tap on planets to toggle their gravity on and off. If you collide with something other than Earth, you have to restart the level. If you collide with Earth, the level is completed. GLHF"
         android:textSize="24sp" />
 
-    <Button
-        android:id="@+id/button34"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:onClick="MainMenu"
-        android:text="Main Menu" />
-
 
 </RelativeLayout>

@@ -40,6 +40,6 @@
         android:layout_alignBottom="@+id/button32"
         android:layout_alignEnd="@+id/textView6"
         android:layout_alignRight="@+id/textView6"
-        android:text="Return to Main Menu"
-        android:onClick="MainMenu"/>
+        android:text="Return to Level Select"
+        android:onClick="callOnBackPressed"/>
 </RelativeLayout>

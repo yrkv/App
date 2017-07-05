@@ -2,18 +2,23 @@ package aaa.aaa;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
+import java.util.ArrayList;
 
 import aaa.aaa.level.LevelData;
 
 public class MainActivity extends AppCompatActivity {
-    //TODO: Change navigation to include system back button navigation
-    //TODO: Lock the screen as vertical so that it may not be rotated
 
     //CONFIG
     private final double TICKSPEED = 60.0; //in milliseconds
@@ -21,13 +26,31 @@ public class MainActivity extends AppCompatActivity {
     public boolean playing = false;
     private int selectedLevel = 1;
 
+    private ArrayList<Integer> viewHistory = new ArrayList<>();
+
     private boolean[] unlocks = {true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true};
+
+    private static final int[][] stages = {
+            {0, 10},
+            {10, 20},
+            {20, 30}
+    };
+
+    private int stage = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 //        readData();
         setContentView(R.layout.activity_main);
+
+    }
+
+    public void setContentView(int layoutResID) {
+        super.setContentView(layoutResID);
+
+        viewHistory.add(layoutResID);
     }
 
     @Override
@@ -38,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void LevelSelect(View v) {
-        setContentView(R.layout.levelselect);
+        setContentView(R.layout.stage_select);
         playing = false;
     }
 
@@ -64,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void GameLoop(final View view) {
-        setContentView(R.layout.game_activity);
+        super.setContentView(R.layout.game_activity);
         final LevelData levelData = new LevelData((RelativeLayout) findViewById(R.id.next_activity), this, this, selectedLevel);
 
         setContentView(levelData.getLevel().getLayout());
@@ -94,6 +117,26 @@ public class MainActivity extends AppCompatActivity {
         playing = true;
         Thread myThread = new Thread(myRunnable);
         myThread.start();
+    }
+
+    public void onBackPressed() {
+        playing = false;
+        if (viewHistory.size() > 1) {
+            viewHistory.remove(viewHistory.size() - 1);
+            int lastView = viewHistory.get(viewHistory.size() - 1);
+            super.setContentView(lastView);
+            if (lastView == R.layout.level_select)
+                generateLevelSelectButtons(this.getCurrentFocus());
+            if (lastView == R.layout.game_activity) {
+                super.setContentView(R.layout.level_select);
+                viewHistory.remove(viewHistory.size() - 1);
+                generateLevelSelectButtons(this.getCurrentFocus());
+            }
+        }
+    }
+
+    public void callOnBackPressed(View v) {
+        onBackPressed();
     }
 
     public void Restart(View v) {
@@ -132,6 +175,57 @@ public class MainActivity extends AppCompatActivity {
             num = num>>1;
         }
         return num;
+    }
+
+    public void stage1(View v) {
+        stage = 0;
+        setContentView(R.layout.level_select);
+        generateLevelSelectButtons(v);
+    }
+
+    public void stage2(View v) {
+        stage = 1;
+        setContentView(R.layout.level_select);
+        generateLevelSelectButtons(v);
+    }
+
+    public void stage3(View v) {
+        stage = 2;
+        setContentView(R.layout.level_select);
+        generateLevelSelectButtons(v);
+    }
+
+    private void generateLevelSelectButtons(View v) {
+        LinearLayout select = (LinearLayout) findViewById(R.id.levelSelectLayout);
+
+        for (int i = stages[stage][0]; i < stages[stage][1]; i++) {
+            Button button = new Button(this);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams( LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT );
+            Resources r = getResources();
+            int px = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    20,
+                    r.getDisplayMetrics()
+            );
+            params.setMargins(0, 0, 0, px);
+            button.setLayoutParams(params);
+
+            button.setText("" + (i+1));
+
+            final int level = i+1;
+
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (levelUnlocked(level)) {
+                        selectedLevel = level;
+                        GameLoop(v);
+                    }
+                }
+            });
+
+            select.addView(button);
+        }
     }
 
     private boolean levelUnlocked(int selectedLevel) {
