@@ -53,9 +53,6 @@ public class MainPlayer extends EntityBase {
                 else
                     puller.crash();
             }
-            if (puller.getGravity() && getDistanceTo(puller) > 1000) {
-                puller.toggleGravity();
-            }
         }
 
         float dir = (float) Math.atan(getYVelocity()/getXVelocity());
