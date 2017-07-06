@@ -8,12 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 
 import java.util.ArrayList;
 
@@ -161,12 +159,12 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
 
-        editor.putInt(getString(R.string.unlocks_data), unlocksToInt(unlocks));
-        editor.putInt(getString(R.string.completed_data), unlocksToInt(completed));
+        editor.putInt(getString(R.string.unlocks_data), arrToInt(unlocks));
+        editor.putInt(getString(R.string.completed_data), arrToInt(completed));
         editor.apply();
     }
 
-    private int unlocksToInt(boolean[] arr) {
+    private int arrToInt(boolean[] arr) {
         int num = 0;
         for (int i = 0; i < 30; i++) {
             if (arr[i])

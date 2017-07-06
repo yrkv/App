@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:onClick="stage1"
-            android:text="Stage 1: Normal" />
+            android:text="Stage 1: The Basics" />
 
         <Button
             android:id="@+id/button39"
