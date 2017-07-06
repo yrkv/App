@@ -16,15 +16,21 @@
         android:layout_height="2dip"
         android:background="#FF000000" />
 
-    <LinearLayout
-        android:id="@+id/levelSelectLayout"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="20dp">
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/levelSelectLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="20dp">
 
 
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>
