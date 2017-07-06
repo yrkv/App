@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void GameLoop(final View view) {
-        super.setContentView(R.layout.game_activity);
+        setContentView(R.layout.game_activity);
         final LevelData levelData = new LevelData((RelativeLayout) findViewById(R.id.next_activity), this, this, selectedLevel);
 
         setContentView(levelData.getLevel().getLayout());
@@ -127,10 +127,10 @@ public class MainActivity extends AppCompatActivity {
             super.setContentView(lastView);
             if (lastView == R.layout.level_select)
                 generateLevelSelectButtons(this.getCurrentFocus());
-            if (lastView == R.layout.game_activity) {
-                super.setContentView(R.layout.level_select);
-                viewHistory.remove(viewHistory.size() - 1);
-                generateLevelSelectButtons(this.getCurrentFocus());
+            if (lastView == R.layout.game_activity ||
+                    lastView == R.layout.gameover ||
+                    lastView == R.layout.win_screen) {
+                onBackPressed();
             }
         }
     }
