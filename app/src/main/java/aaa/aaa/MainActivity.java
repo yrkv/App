@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Integer> viewHistory = new ArrayList<>();
 
     private boolean[] unlocks = {true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true};
+    private boolean[] completed = new boolean[30];
 
     private static final int[][] stages = {
             {0, 10},
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void Win() {
         if (playing) {
+            completed[selectedLevel-1] = true;
             if (selectedLevel < 30) {
                 unlocks[selectedLevel] = true;
                 selectedLevel++;
@@ -149,33 +151,37 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         int defaultValue = 1;
         int unlocksNum = sharedPref.getInt(getString(R.string.unlocks_data), defaultValue);
+        int completedNum = sharedPref.getInt(getString(R.string.completed_data), defaultValue);
 
-        numToUnlocks(unlocksNum);
+        unlocks = numToArr(unlocksNum);
+        completed = numToArr(completedNum);
     }
 
     private void writeData() {
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
 
-        editor.putInt(getString(R.string.unlocks_data), unlocksToInt());
+        editor.putInt(getString(R.string.unlocks_data), unlocksToInt(unlocks));
+        editor.putInt(getString(R.string.completed_data), unlocksToInt(completed));
         editor.apply();
     }
 
-    private int unlocksToInt() {
+    private int unlocksToInt(boolean[] arr) {
         int num = 0;
         for (int i = 0; i < 30; i++) {
-            if (unlocks[i])
+            if (arr[i])
                 num += 1<<i;
         }
         return num;
     }
 
-    private int numToUnlocks(int num) {
+    private boolean[] numToArr(int num) {
+        boolean[] out = new boolean[unlocks.length];
         for (int i = 0; i < 30; i++) {
-            unlocks[i] = (num & 1) == 1;
+            out[i] = (num & 1) == 1;
             num = num>>1;
         }
-        return num;
+        return out;
     }
 
     public void stage1(View v) {
@@ -212,6 +218,14 @@ public class MainActivity extends AppCompatActivity {
             button.setLayoutParams(params);
 
             button.setText("" + (i+1));
+
+            if (completed[i]) {
+                button.setBackgroundColor(0xffaaffaa);
+            } else if (unlocks[i]) {
+                button.setBackgroundColor(0xffaaaaff);
+            } else {
+                button.setBackgroundColor(0xffaaaaaa);
+            }
 
             final int level = i+1;
 

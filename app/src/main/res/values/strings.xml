@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Down to Earth</string>
     <string name="unlocks_data">com.downToEarth.unlocks</string>
+    <string name="completed_data">com.downToEarth.completed</string>
 </resources>
