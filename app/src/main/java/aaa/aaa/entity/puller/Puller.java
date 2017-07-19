@@ -3,6 +3,8 @@ package aaa.aaa.entity.puller;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.ArrayList;
+
 import aaa.aaa.MainActivity;
 import aaa.aaa.entity.EntityBase;
 import aaa.aaa.level.Level;
@@ -18,6 +20,7 @@ public class Puller extends EntityBase {
     //END CONFIG
 
     private int num;
+    private ArrayList<Puller> attractedTo = new ArrayList<>();
 
     private boolean gravity = false;
 
@@ -45,6 +48,10 @@ public class Puller extends EntityBase {
         gravity = !gravity;
 
         toggleTint();
+    }
+
+    public void addPuller(Puller puller) {
+        attractedTo.add(puller);
     }
 
     public boolean getGravity() {

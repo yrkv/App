@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
 //        readData();
         setContentView(R.layout.activity_main);
 
+        selectedLevel = 31;
+        gameLoop();
     }
 
     public void setContentView(int layoutResID) {
@@ -88,10 +90,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void GameLoop(final View view) {
-        setContentView(R.layout.game_activity);
-        final LevelData levelData = new LevelData((RelativeLayout) findViewById(R.id.next_activity), this, this, selectedLevel);
+        gameLoop();
+    }
 
-        setContentView(levelData.getLevel().getLayout());
+    public void gameLoop() {
+        final LevelData levelData;
+        if (selectedLevel == 31) {
+            setContentView(R.layout.activity_main);
+            levelData = new LevelData((RelativeLayout) findViewById(R.id.activity_main), this, this, selectedLevel);
+        } else {
+            setContentView(R.layout.game_activity);
+            levelData = new LevelData((RelativeLayout) findViewById(R.id.next_activity), this, this, selectedLevel);
+        }
+
         levelData.getLevel().setBackground((ImageView) findViewById(R.id.background));
         levelData.getLevel().update();
 
@@ -120,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
         myThread.start();
     }
 
+
     public void onBackPressed() {
         playing = false;
         if (viewHistory.size() > 1) {
@@ -128,6 +140,10 @@ public class MainActivity extends AppCompatActivity {
             super.setContentView(lastView);
             if (lastView == R.layout.level_select)
                 generateLevelSelectButtons(this.getCurrentFocus());
+            if (lastView == R.layout.activity_main) {
+                selectedLevel = 31;
+                gameLoop();
+            }
             if (lastView == R.layout.game_activity ||
                     lastView == R.layout.gameover ||
                     lastView == R.layout.win_screen) {

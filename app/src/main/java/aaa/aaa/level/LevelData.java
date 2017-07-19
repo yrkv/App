@@ -89,7 +89,7 @@ public class LevelData {
                 break;
             case 30: genLevel30();
                 break;
-            default: genRandomLevel();
+            default: startScreen();
         }
     }
 
@@ -185,39 +185,8 @@ public class LevelData {
     private void genLevel29() {}
     private void genLevel30() {}
 
-    private void genRandomLevel() {
-        new MainPlayer(0, 0, 0, 0, -4, 50, level);
-
-        for (int x = -5; x < 5; x++) {
-            for (int y = -5; y < 5; y++) {
-                if (Math.random() > 0.5)
-                    randomPlanetRegion(x*600, y*600, x*600 + 600, y*600 + 600);
-            }
-        }
-
-        new Earth(Math.random() * 6000 - 3000, Math.random() * 6000 - 3000, 0.5f, 0, 0, (float)Math.random() * 60 + 60, level);
-    }
-
-    private void randomPlanetRegion(float x1, float y1, float x2, float y2) {
-        if (x1 > x2) {
-            float temp = x2;
-            x2 = x1;
-            x1 = temp;
-        }
-        if (y1 > y2) {
-            float temp = y2;
-            y2 = y1;
-            y1 = temp;
-        }
-
-        float size = (float) (Math.random() * 40 + 40);
-        x1 += size;
-        y1 += size;
-        x2 -= size;
-        y2 -= size;
-        double x = Math.random() * (x2 - x1) + x1;
-        double y = Math.random() * (y2 - y1) + y1;
-
-        new Planet(x, y, 0.5f, 0, 0, size, level);
+    private void startScreen() {
+        new Earth(0, 200, 0.5f, 0, 0, 75, level).toggleGravity();
+        new MainPlayer(0, 0, 0.5f, 6, 0, 50, level);
     }
 }
