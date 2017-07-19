@@ -145,6 +145,24 @@ public class EntityBase {
         return true;
     }
 
+    protected double changeXVelocity(Puller puller) {
+        double dir = getDirectionTo(puller);
+        double r = getDistanceTo(puller);
+
+        double gravForce = puller.getPULLCOEFF() / (r * r);
+
+        return setXVelocity(getXVelocity() + gravForce * Math.cos(dir));
+    }
+
+    protected double changeYVelocity(Puller puller) {
+        double dir = getDirectionTo(puller);
+        double r = getDistanceTo(puller);
+
+        double gravForce = puller.getPULLCOEFF() / (r * r);
+
+        return setYVelocity(getYVelocity() + gravForce * Math.sin(dir));
+    }
+
     public boolean move() {
         x += xVelocity;
         y += yVelocity;

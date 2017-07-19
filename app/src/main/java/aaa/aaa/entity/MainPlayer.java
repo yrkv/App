@@ -22,24 +22,6 @@ public class MainPlayer extends EntityBase {
         setImageView(R.drawable.player);
     }
 
-    private double changeXVelocity(Puller puller) {
-        double dir = getDirectionTo(puller);
-        double r = getDistanceTo(puller);
-
-        double gravForce = puller.getPULLCOEFF() / (r * r);
-
-        return setXVelocity(getXVelocity() + gravForce * Math.cos(dir));
-    }
-
-    private double changeYVelocity(Puller puller) {
-        double dir = getDirectionTo(puller);
-        double r = getDistanceTo(puller);
-
-        double gravForce = puller.getPULLCOEFF() / (r * r);
-
-        return setYVelocity(getYVelocity() + gravForce * Math.sin(dir));
-    }
-
     @Override
     public void update() {
         for(Puller puller : getLevel().getPullers()) {

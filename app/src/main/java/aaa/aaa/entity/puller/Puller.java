@@ -65,4 +65,22 @@ public class Puller extends EntityBase {
     public boolean isEarth() {
         return false;
     }
+
+    @Override
+    public void update() {
+        if (attractedTo.size() > 0) {
+            for (Puller puller : attractedTo) {
+                changeXVelocity(puller);
+                changeYVelocity(puller);
+            }
+
+            float dir = (float) Math.atan(getYVelocity() / getXVelocity());
+
+            if (getXVelocity() < 0) dir = (float) (dir + Math.PI);
+
+            setDir((float) (dir * 180 / Math.PI) + 90);
+
+            move();
+        }
+    }
 }
