@@ -159,6 +159,7 @@ public class LevelData {
         new BlackHole(0, 0, 0.5f, 0, 0, 50, level);
     }
     private void genLevel12() {
+
         new MainPlayer(-100, 600, 0.5f, 6, 0, 50, level);
         new Earth(0, 0, 0.5f, 0, 0, 75, level);
         new BlackHole(300, -300, 0.5f, 0, 0, 40, level);
