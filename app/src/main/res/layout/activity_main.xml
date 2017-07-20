@@ -26,7 +26,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:elevation="0dp"
-        android:text="Down to Earth"
+        android:text="Down 卍 Earth"
         android:textAlignment="center"
         android:textColor="@color/common_google_signin_btn_text_dark_pressed"
         android:textSize="40sp"
