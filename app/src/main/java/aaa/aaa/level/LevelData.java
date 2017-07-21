@@ -168,27 +168,28 @@ public class LevelData {
         new BlackHole(300, 300, 0.5f, 0, 0, 40, level);
     }
     private void genLevel13() {
-        Earth earth = new Earth(0, 200, 0.5f, 0, 0, 75, level);
-        earth.toggleGravity();
-        new MainPlayer(0, 0, 0.5f, 6, 0, 50, level);
-
-        new Planet(0, 400, 0.5f, -6, 0, 50, level, R.drawable.planet3).addPuller(earth);
     }
-    private void genLevel14() {
-        Planet planet = new Planet(0, 300, 0.5f, 0, 0, 75, level, R.drawable.planet3);
-        planet.toggleGravity();
-        new MainPlayer(0, 0, 0.5f, 4, 0, 50, level);
-
-        new Earth(0, 600, 0.5f, -4, 0, 50, level).addPuller(planet);
-    }
+    private void genLevel14() {}
     private void genLevel15() {}
     private void genLevel16() {}
     private void genLevel17() {}
     private void genLevel18() {}
     private void genLevel19() {}
     private void genLevel20() {}
-    private void genLevel21() {}
-    private void genLevel22() {}
+    private void genLevel21() {
+        Earth earth = new Earth(0, 200, 0.5f, 0, 0, 75, level);
+        earth.toggleGravity();
+        new MainPlayer(0, 0, 0.5f, 6, 0, 50, level);
+
+        new Planet(0, 400, 0.5f, -6, 0, 50, level, R.drawable.planet3).addPuller(earth);
+    }
+    private void genLevel22() {
+        Planet planet = new Planet(0, 300, 0.5f, 0, 0, 75, level, R.drawable.planet3);
+        planet.toggleGravity();
+        new MainPlayer(0, 0, 0.5f, 4, 0, 50, level);
+
+        new Earth(0, 600, 0.5f, -4, 0, 50, level).addPuller(planet);
+    }
     private void genLevel23() {}
     private void genLevel24() {}
     private void genLevel25() {}
