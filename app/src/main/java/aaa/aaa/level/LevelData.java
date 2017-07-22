@@ -190,7 +190,16 @@ public class LevelData {
 
         new Earth(0, 600, 0.5f, -4, 0, 50, level).addPuller(planet);
     }
-    private void genLevel23() {}
+    private void genLevel23() {
+        Earth earth = new Earth(0, 0, 0.5f, 0, 0, 75, level);
+        earth.toggleGravity();
+
+        new Planet(0, 100, 0.5f, 11, 0, 25, level, R.drawable.planet5).addPuller(earth);
+        new Planet(0, -100, 0.5f, -11, 0, 25, level, R.drawable.planet5).addPuller(earth);
+//        new Planet(500, 0, 0.5f, 0, 5, 25, level, R.drawable.planet5).addPuller(earth);
+//        new Planet(-500, 0, 0.5f, 0, -5, 25, level, R.drawable.planet5).addPuller(earth);
+        new MainPlayer(0, 500, 0.5f, 4, 0, 50, level);
+    }
     private void genLevel24() {}
     private void genLevel25() {}
     private void genLevel26() {}
