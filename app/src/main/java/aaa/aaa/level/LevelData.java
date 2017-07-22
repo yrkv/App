@@ -194,11 +194,13 @@ public class LevelData {
         Earth earth = new Earth(0, 0, 0.5f, 0, 0, 75, level);
         earth.toggleGravity();
 
-        new Planet(0, 100, 0.5f, 11, 0, 25, level, R.drawable.planet5).addPuller(earth);
-        new Planet(0, -100, 0.5f, -11, 0, 25, level, R.drawable.planet5).addPuller(earth);
-//        new Planet(500, 0, 0.5f, 0, 5, 25, level, R.drawable.planet5).addPuller(earth);
-//        new Planet(-500, 0, 0.5f, 0, -5, 25, level, R.drawable.planet5).addPuller(earth);
-        new MainPlayer(0, 500, 0.5f, 4, 0, 50, level);
+        new Planet(0, 100, 0.5f, 11, 0, 25, level, R.drawable.planet6).addPuller(earth);
+        new Planet(0, -100, 0.5f, -11, 0, 25, level, R.drawable.planet6).addPuller(earth);
+        new Planet(421.91, 0, 0.5f, -0.23, 2.6, 25, level, R.drawable.planet6).addPuller(earth);
+        new Planet(-421.91, 0, 0.5f, 0.23, -2.6, 25, level, R.drawable.planet6).addPuller(earth);
+        // 421.9108971401853, 2.59687808808825, 0.23213718906861144
+        double dist = 250;
+        new MainPlayer(0, dist, 0.5f, Math.sqrt(7500/dist), 0, 50, level);
     }
     private void genLevel24() {}
     private void genLevel25() {}
@@ -211,6 +213,6 @@ public class LevelData {
     private void startScreen() {
         Earth earth = new Earth(0, 200, 0.5f, 0, 0, 75, level);
         earth.toggleGravity();
-        new MainPlayer(0, 0, 0.5f, 6, 0, 50, level);
+        new MainPlayer(0, 0, 0.5f, 6.12372, 0, 50, level);
     }
 }

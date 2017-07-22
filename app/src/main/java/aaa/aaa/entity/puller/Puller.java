@@ -19,6 +19,10 @@ public class Puller extends EntityBase {
     private final double PULLCOEFF;
     //END CONFIG
 
+    private static double maxDist = 0;
+    private static double vX = 0;
+    private static double vY = 0;
+
     private int num;
     private ArrayList<Puller> attractedTo = new ArrayList<>();
 
@@ -73,6 +77,14 @@ public class Puller extends EntityBase {
                 changeXVelocity(puller);
                 changeYVelocity(puller);
             }
+
+            double dist = getDistanceTo(attractedTo.get(0));
+            if (dist > maxDist) {
+                maxDist = dist;
+                vX = Math.abs(getXVelocity());
+                vY = Math.abs(getYVelocity());
+            }
+            System.out.println(maxDist + ", " + vX + ", " + vY);
 
             float dir = (float) Math.atan(getYVelocity() / getXVelocity());
 
