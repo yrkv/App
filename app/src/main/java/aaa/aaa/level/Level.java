@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import aaa.aaa.MainActivity;
 import aaa.aaa.R;
 import aaa.aaa.entity.EntityBase;
+import aaa.aaa.entity.MainPlayer;
 import aaa.aaa.entity.puller.Puller;
 
 /**
@@ -28,6 +29,7 @@ public class Level {
     public int yOffset = 0;
     private ImageView background;
     private float zoom = (float) Math.PI;
+    public MainPlayer mainPlayer;
 
     public Level(RelativeLayout layout, Context context, MainActivity mainActivity) {
         this.mainActivity = mainActivity;

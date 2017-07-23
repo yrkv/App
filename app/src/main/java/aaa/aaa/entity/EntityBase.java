@@ -27,6 +27,7 @@ public class EntityBase {
     private boolean tint = false;
     private float size;
     private boolean render = false;
+    protected boolean display = true;
 
     public EntityBase(double x, double y, float dir, double xVelocity, double yVelocity, float size, Level level) {
         this.x = x;
@@ -52,12 +53,22 @@ public class EntityBase {
                 if (isPuller() && event.getAction() == 0) {
                     ((Puller) getThis()).toggleGravity();
                 }
+                if (isIndicator() && event.getAction() == 0) {
+                    if (((Indicator) getThis()).getParent().getGravity())
+                    ((Indicator) getThis()).getParent().toggleGravity();
+                }
                 return true;
             }
         });
         render();
         imageView.setImageResource(resource);
         render = true;
+    }
+
+    public boolean isOnScreen() {
+        double xPos = x * level.getZoom() - imageView.getWidth() / 2 - level.xOffset + level.getLayout().getWidth() / 2;
+        double yPos = y * level.getZoom() - imageView.getHeight() / 2 - level.yOffset + level.getLayout().getHeight() / 2;
+        return (xPos > -100 && yPos > -100 && xPos < level.getLayout().getWidth() + 100 && yPos < level.getLayout().getHeight() + 100);
     }
 
     protected void toggleTint() {
@@ -69,14 +80,23 @@ public class EntityBase {
     }
 
     private void render(float w, float h, float dir, int x, int y) {
-        imageView.setTranslationX(x - imageView.getWidth() / 2 - level.xOffset + level.getLayout().getWidth() / 2);
-        imageView.setTranslationY(y - imageView.getHeight() / 2 - level.yOffset + level.getLayout().getHeight() / 2);
+        if (display) {
+            imageView.setTranslationX(x - imageView.getWidth() / 2 - level.xOffset + level.getLayout().getWidth() / 2);
+            imageView.setTranslationY(y - imageView.getHeight() / 2 - level.yOffset + level.getLayout().getHeight() / 2);
+        } else {
+            imageView.setTranslationX(-10000f);
+            imageView.setTranslationY(-10000f);
+        }
         imageView.setRotation(dir);
         imageView.setLayoutParams(new RelativeLayout.LayoutParams((int) (w*2), (int) (h*2)));
         if (render && level.getZoom() != (float) Math.PI) {
             level.getLayout().addView(imageView);
             render = false;
         }
+    }
+
+    public void setDisplay(boolean display) {
+        this.display = display;
     }
 
     public void render() {
@@ -195,6 +215,10 @@ public class EntityBase {
     }
 
     protected boolean isPuller() {
+        return false;
+    }
+
+    protected boolean isIndicator() {
         return false;
     }
 

@@ -1,6 +1,7 @@
 package aaa.aaa.entity.puller;
 
 import aaa.aaa.R;
+import aaa.aaa.entity.IndicatorNormal;
 import aaa.aaa.level.Level;
 
 /**
@@ -11,12 +12,14 @@ public class Planet extends Puller {
 
     public Planet(double x, double y, float dir, double xVelocity, double yVelocity, float size, Level level) {
         super(x, y, dir, xVelocity, yVelocity, size, level);
+        new IndicatorNormal(this);
 
         setImageView(randomPlanet());
     }
 
     public Planet(double x, double y, float dir, double xVelocity, double yVelocity, float size, Level level, int image) {
         super(x, y, dir, xVelocity, yVelocity, size, level);
+        new IndicatorNormal(this);
 
         setImageView(image);
     }

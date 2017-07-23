@@ -18,6 +18,7 @@ public class MainPlayer extends EntityBase {
         super(x, y, dir, xVelocity, yVelocity, size, level);
         getLevel().yOffset = (int) (getY() * getLevel().getZoom());
         getLevel().xOffset = (int) (getX() * getLevel().getZoom());
+        getLevel().mainPlayer = this;
 
         setImageView(R.drawable.player);
     }
