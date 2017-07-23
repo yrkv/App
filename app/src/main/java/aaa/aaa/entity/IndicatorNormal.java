@@ -10,6 +10,6 @@ import aaa.aaa.entity.puller.Puller;
 public class IndicatorNormal extends Indicator {
     public IndicatorNormal(Puller parent) {
         super(parent);
-        setImageView(R.drawable.planet1);
+        setImageView(R.drawable.arrow2);
     }
 }

@@ -10,6 +10,6 @@ import aaa.aaa.entity.puller.Puller;
 public class IndicatorEarth extends Indicator {
     public IndicatorEarth(Puller parent) {
         super(parent);
-        setImageView(R.drawable.earth);
+        setImageView(R.drawable.eartharrow);
     }
 }
