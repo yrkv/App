@@ -11,7 +11,7 @@ public class Indicator extends EntityBase {
     private Puller parent;
 
     public Indicator(Puller parent) {
-        super(-100000, -100000, 0.5f, 0, 0, 30, parent.getLevel());
+        super(-100000, -100000, 0.5f, 0, 0, 40, parent.getLevel());
         this.parent = parent;
     }
 
@@ -20,6 +20,7 @@ public class Indicator extends EntityBase {
             double dir = getLevel().mainPlayer.getDirectionTo(parent);
             setX(getLevel().mainPlayer.getX() + Math.cos(dir) * 500);
             setY(getLevel().mainPlayer.getY() + Math.sin(dir) * 500);
+            setDir((float) (getLevel().mainPlayer.getDirectionTo(parent) * 180 / Math.PI + 90));
             display = true;
         } else {
             display = false;
