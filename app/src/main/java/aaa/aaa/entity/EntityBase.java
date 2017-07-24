@@ -187,6 +187,28 @@ public class EntityBase {
         x += xVelocity;
         y += yVelocity;
 
+        if (isPuller()) {
+            Puller puller = (Puller) this;
+
+            for (Puller orbiting: puller.getAttracts()) {
+                if (orbiting.getAttractedTo().size() == 1) {
+                    orbiting.setX(orbiting.getX() + xVelocity);
+                    orbiting.setY(orbiting.getY() + yVelocity);
+                }
+            }
+
+            if (puller.getGravity()) {
+                int x = 0;
+                for (Puller planet: level.getPullers())
+                    if (planet.getGravity())
+                        x++;
+                if (x == 1) {
+                    level.mainPlayer.setX(level.mainPlayer.getX() + xVelocity);
+                    level.mainPlayer.setY(level.mainPlayer.getY() + yVelocity);
+                }
+            }
+        }
+
         return canMove();
     }
 

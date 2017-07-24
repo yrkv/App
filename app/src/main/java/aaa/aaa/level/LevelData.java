@@ -202,7 +202,13 @@ public class LevelData {
         double dist = 250;
         new MainPlayer(0, dist, 0.5f, Math.sqrt(7500/dist), 0, 50, level);
     }
-    private void genLevel24() {}
+    private void genLevel24() {
+        Planet p = new Planet(0, 0, 0.5f, 0, 0, 100, level, R.drawable.planet3);
+        Planet a = new Planet(-700, 0, 0.5f, 0, Math.sqrt(100/7.0), 75, level, R.drawable.planet5);
+        a.addPuller(p);
+        a.toggleGravity();
+        new MainPlayer(-900, 0, 0.5f, 0, Math.sqrt(75/2.0), 50, level);
+    }
     private void genLevel25() {}
     private void genLevel26() {}
     private void genLevel27() {}

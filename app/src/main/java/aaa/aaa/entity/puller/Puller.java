@@ -25,6 +25,7 @@ public class Puller extends EntityBase {
 
     private int num;
     private ArrayList<Puller> attractedTo = new ArrayList<>();
+    private ArrayList<Puller> attracts = new ArrayList<>();
 
     private boolean gravity = false;
 
@@ -56,6 +57,19 @@ public class Puller extends EntityBase {
 
     public void addPuller(Puller puller) {
         attractedTo.add(puller);
+        puller.addAttracts(this);
+    }
+
+    public ArrayList<Puller> getAttractedTo() {
+        return attractedTo;
+    }
+
+    public void addAttracts(Puller puller) {
+        attracts.add(puller);
+    }
+
+    public ArrayList<Puller> getAttracts() {
+        return attracts;
     }
 
     public boolean getGravity() {
