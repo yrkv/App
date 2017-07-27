@@ -169,7 +169,19 @@ public class LevelData {
     }
     private void genLevel13() {
     }
-    private void genLevel14() {}
+    private void genLevel14() {
+        Planet p = new Planet(0, 0, 0.5f, 0, 0, 75, level, R.drawable.planet4);
+        p.toggleGravity();
+        new MainPlayer(0, 300, 0.5f, 5, 0, 50, level);
+
+        BlackHole a = new BlackHole(-1500, 100, 0.5f, 0, 0, 50, level);
+        BlackHole b = new BlackHole(-1500, -500, 0.5f, 0, 0, 50, level);
+        p.addPuller(a);
+        p.addPuller(b);
+
+        new Earth(-2000, -300, 0.5f, 0, 0, 50, level);
+
+    }
     private void genLevel15() {}
     private void genLevel16() {}
     private void genLevel17() {}
