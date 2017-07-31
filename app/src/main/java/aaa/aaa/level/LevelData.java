@@ -89,13 +89,33 @@ public class LevelData {
                 break;
             case 30: genLevel30();
                 break;
-            default: startScreen();
+            case 31: genLevel31();
+                break;
+            case 32: genLevel32();
+                break;
+            case 33: genLevel33();
+                break;
+            case 34: genLevel34();
+                break;
+            case 35: genLevel35();
+                break;
+            case 36: genLevel36();
+                break;
+            case 37: genLevel37();
+                break;
+            case 38: genLevel38();
+                break;
+            case 39: genLevel39();
+                break;
+            case 40: genLevel40();
+                break;
+            case -1: startScreen();
         }
     }
 
     //
     //
-    // THE BASICS
+    // TUTORIAL
     //
     //
     private void genLevel1() {
@@ -178,7 +198,7 @@ public class LevelData {
     }
     //
     //
-    // BLACK HOLES
+    // THE BASICS
     //
     //
     private void genLevel11() {
@@ -250,7 +270,7 @@ public class LevelData {
     private void genLevel20() {}
     //
     //
-    // DYNAMIC PLANETS
+    // BLACK HOLES
     //
     //
     private void genLevel21() {
@@ -292,6 +312,21 @@ public class LevelData {
     private void genLevel28() {}
     private void genLevel29() {}
     private void genLevel30() {}
+    //
+    //
+    // DYNAMIC PLANETS
+    //
+    //
+    private void genLevel31() {}
+    private void genLevel32() {}
+    private void genLevel33() {}
+    private void genLevel34() {}
+    private void genLevel35() {}
+    private void genLevel36() {}
+    private void genLevel37() {}
+    private void genLevel38() {}
+    private void genLevel39() {}
+    private void genLevel40() {}
 
     private void startScreen() {
         Earth earth = new Earth(0, 200, 0.5f, 0, 0, 75, level);

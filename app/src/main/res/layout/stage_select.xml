@@ -30,31 +30,31 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:onClick="stage1"
-            android:text="Stage 0: Tutorial" />
+            android:text="Stage 1: Tutorial" />
 
         <Button
             android:id="@+id/button38"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:onClick="stage1"
-            android:text="Stage 1: The Basics" />
+            android:onClick="stage2"
+            android:text="Stage 2: The Basics" />
 
         <Button
             android:id="@+id/button39"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:onClick="stage2"
-            android:text="Stage 2: Black Holes" />
+            android:onClick="stage3"
+            android:text="Stage 3: Black Holes" />
 
         <Button
             android:id="@+id/button40"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:onClick="stage3"
-            android:text="Stage 3: Dynamic Planets" />
+            android:onClick="stage4"
+            android:text="Stage 4: Dynamic Planets" />
 
     </LinearLayout>
 

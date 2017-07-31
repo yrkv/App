@@ -27,14 +27,15 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Integer> viewHistory = new ArrayList<>();
 
-    private boolean[] unlocks = {true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true};
-    private boolean[] completed = new boolean[30];
-    private boolean[] shownInfoScreens = new boolean[30];
+    private boolean[] unlocks = {true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true};
+    private boolean[] completed = new boolean[40];
+    private boolean[] shownInfoScreens = new boolean[40];
 
     private static final int[][] stages = {
             {0, 10},
             {10, 20},
-            {20, 30}
+            {20, 30},
+            {30, 40}
     };
 
     private int stage = 0;
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 //        readData();
         setContentView(R.layout.activity_main);
 
-        selectedLevel = 31;
+        selectedLevel = -1;
         gameLoop();
     }
 
@@ -95,12 +96,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void gameLoop() {
-        if (selectedLevel < 31 && !shownInfoScreens[selectedLevel-1] && levelToInfoScreen(selectedLevel) != -1) {
+        if (selectedLevel != -1 && !shownInfoScreens[selectedLevel-1] && levelToInfoScreen(selectedLevel) != -1) {
             shownInfoScreens[selectedLevel-1] = true;
             setContentView(levelToInfoScreen(selectedLevel));
         } else {
             final LevelData levelData;
-            if (selectedLevel == 31) {
+            if (selectedLevel == -1) {
                 setContentView(R.layout.activity_main);
                 levelData = new LevelData((RelativeLayout) findViewById(R.id.activity_main), this, this, selectedLevel);
             } else {
@@ -157,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
             if (lastView == R.layout.level_select)
                 generateLevelSelectButtons(this.getCurrentFocus());
             if (lastView == R.layout.activity_main) {
-                selectedLevel = 31;
+                selectedLevel = -1;
                 gameLoop();
             }
             if (lastView == R.layout.game_activity ||
@@ -233,6 +234,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void stage3(View v) {
         stage = 2;
+        setContentView(R.layout.level_select);
+        generateLevelSelectButtons(v);
+    }
+
+    public void stage4(View v) {
+        stage = 3;
         setContentView(R.layout.level_select);
         generateLevelSelectButtons(v);
     }
