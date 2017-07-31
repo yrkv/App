@@ -196,6 +196,11 @@ public class LevelData {
         new BlackHole(300, 300, 0.5f, 0, 0, 40, level);
     }
     private void genLevel13() {
+        new MainPlayer(-50, 0, 0.5f, 2, 4, 50, level);
+        new Earth(0, 1000, 0.5f, 0, 0, 75, level);
+        new BlackHole(0, 200, 0.5f, 0, 0, 40, level);
+        new BlackHole(0, 600, 0.5f, 0, 0, 40, level);
+        new BlackHole(0, 800, 0.5f, 0, 0, 40, level);
     }
     private void genLevel14() {
         Planet p = new Planet(0, 0, 0.5f, 0, 0, 75, level, R.drawable.planet4);
@@ -210,9 +215,36 @@ public class LevelData {
         new Earth(-2000, -300, 0.5f, 0, 0, 50, level);
 
     }
-    private void genLevel15() {}
-    private void genLevel16() {}
-    private void genLevel17() {}
+    private void genLevel15() {
+        new MainPlayer(800, 0, 0.5f, -2, -3, 50, level);
+        Earth e = new Earth(0, 0, 0.5f, 0, 0, 100, level);
+        // e.toggleGravity();
+        new Planet(0, 400, 0.5f,  5, 0, 70, level, R.drawable.planet6).addPuller(e);
+        new Planet(0, -400, 0.5f, -5, 0, 70, level, R.drawable.planet6).addPuller(e);
+        new Planet(400,  0, 0.5f, 0, -5, 70, level, R.drawable.planet6).addPuller(e);
+        new Planet(-400, 0, 0.5f, 0, 5, 70, level, R.drawable.planet6).addPuller(e);
+        // new Planet(,  , 0.5f, 0, 0, 30, level, R.drawable.planet6).addPuller(e);
+        // new Planet(, , 0.5f, 0, 0, 30, level, R.drawable.planet6).addPuller(e);
+    }
+    private void genLevel16() {
+        new MainPlayer(800, 0, 0.5f, -2, -3, 50, level);
+        Earth e = new Earth(0, 0, 0.5f, 0, 0, 100, level);
+        // e.toggleGravity();
+        new Planet(0, 400, 0.5f,  5, 0, 40, level, R.drawable.planet1).addPuller(e);
+        new Planet(0, -400, 0.5f, -5, 0, 40, level, R.drawable.planet2).addPuller(e);
+        new Planet(400,  0, 0.5f, 0, -5, 40, level, R.drawable.planet3).addPuller(e);
+        new Planet(-400, 0, 0.5f, 0, 5, 40, level, R.drawable.planet4).addPuller(e);
+        new Planet(400 * Math.sin(45),  -400 * Math.sin(45), 0.5f, -5 * Math.sin(45), -5 * Math.sin(45), 40, level, R.drawable.planet5).addPuller(e);
+        new Planet(-400 * Math.sin(45), -400 * Math.sin(45), 0.5f, 5 * Math.sin(45), 5 * Math.sin(45), 40, level, R.drawable.planet6).addPuller(e);
+    }
+    private void genLevel17() {
+        new MainPlayer(600, 0, 0.5f, 0, Math.sqrt(20), 50, level);
+        new Earth(0, 0, 0.5f, 0, 0, 75, level);
+        BlackHole a = new BlackHole(0, 250, 0.5f, Math.sqrt(5), 0, 60, level);
+        BlackHole b = new BlackHole(0, -250, 0.5f, -Math.sqrt(5), 0, 60, level);
+        a.addPuller(b);
+        b.addPuller(a);
+    }
     private void genLevel18() {}
     private void genLevel19() {}
     private void genLevel20() {}
