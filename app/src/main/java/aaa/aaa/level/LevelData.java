@@ -93,6 +93,11 @@ public class LevelData {
         }
     }
 
+    //
+    //
+    // THE BASICS
+    //
+    //
     private void genLevel1() {
         new MainPlayer(-300, 1500, 0.5f, 4, -2, 50, level);
         new Earth(0, 0, 0.5f, 0, 0, 80, level);
@@ -138,10 +143,28 @@ public class LevelData {
         new Planet(200, -900, 0.5f, 0, 0, 50, level, R.drawable.planet6);
     }
     private void genLevel8() {
-
+        new MainPlayer(0,0,0.5f,-1,-3,50,level);
+        new Planet(0,-1000,0.5f,0,0,70,level);
+        new Planet(300,-1000,0.5f,0,0,120,level);
+        new Planet(0,-2000,0.5f,0,0,70,level);
+        new Planet(-300,-2000,0.5f,0,0,120,level);
+        new Planet(0,-3000,0.5f,0,0,70,level);
+        new Planet(300,-3000,0.5f,0,0,120,level);
+        new Planet(0,-4000,0.5f,0,0,70,level);
+        new Planet(-300,-4000,0.5f,0,0,120,level);
+        new Planet(0,-5000,0.5f,0,0,70,level);
+        new Planet(300,-5000,0.5f,0,0,120,level);
+        new Earth(0,-6000,0.5f,0,0,75,level);
     }
     private void genLevel9() {
-
+        new MainPlayer(0,0,0.5f,0,0,50,level);
+        new Planet(-300,0,0.5f,0,0,100,level);
+        new Planet(300,0,0.5f,0,0,100,level);
+        new Planet(0,300,0.5f,0,0,100,level);
+        new Planet(0,-300,0.5f,0,0,100,level);
+        new Planet(150,150,0.5f,0,0,100,level);
+        new Planet(150,-150,0.5f,0,0,100,level);
+        new Planet(-150,-150,0.5f,0,0,100,level);
     }
     private void genLevel10() {
         new MainPlayer(0, -345, 0.5f, 4.5, 0, 50, level);
@@ -153,6 +176,11 @@ public class LevelData {
         new Planet(Math.sqrt(3)*-300,  300, 0.5f, 0, 0, 30, level, R.drawable.planet6);
         new Planet(Math.sqrt(3)*-300, -300, 0.5f, 0, 0, 30, level, R.drawable.planet6);
     }
+    //
+    //
+    // BLACK HOLES
+    //
+    //
     private void genLevel11() {
         new MainPlayer(0, 150, 0.5f, 6, 0, 50, level);
         new Earth(600, 0, 0.5f, 0, 0, 75, level);
@@ -188,6 +216,11 @@ public class LevelData {
     private void genLevel18() {}
     private void genLevel19() {}
     private void genLevel20() {}
+    //
+    //
+    // DYNAMIC PLANETS
+    //
+    //
     private void genLevel21() {
         Earth earth = new Earth(0, 200, 0.5f, 0, 0, 75, level);
         earth.toggleGravity();

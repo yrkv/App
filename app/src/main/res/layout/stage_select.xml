@@ -25,6 +25,14 @@
         android:paddingTop="20dp">
 
         <Button
+            android:id="@+id/button37"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:onClick="stage1"
+            android:text="Stage 0: Tutorial" />
+
+        <Button
             android:id="@+id/button38"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
