@@ -55,6 +55,13 @@ public class Level {
         }
     }
 
+    //TODO: actually set this up lmao
+    public void updateGUI() {
+//        for(GUI gui : guiComponents) {
+//            gui.update();
+//        }
+    }
+
     public void render() {
         if (layout.getWidth() != 0) {
             zoom = layout.getWidth() / 1080f;

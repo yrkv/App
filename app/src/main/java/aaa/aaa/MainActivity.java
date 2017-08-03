@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private final double TICKSPEED = 60.0; //in milliseconds
     //END CONFIG
     public boolean playing = false;
+    public boolean pause = false;
     private int selectedLevel = 1;
 
     private ArrayList<Integer> viewHistory = new ArrayList<>();
@@ -124,7 +125,10 @@ public class MainActivity extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 public void run() {
                                     levelData.getLevel().render();
-                                    levelData.getLevel().update();
+                                    if(!pause) {
+                                        levelData.getLevel().update();
+                                    }
+                                    levelData.getLevel().updateGUI();
                                 }
                             });
                         }
