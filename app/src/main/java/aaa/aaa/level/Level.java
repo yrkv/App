@@ -37,6 +37,14 @@ public class Level {
         this.layout = layout;
     }
 
+    //returns the state pause is set to
+    public void pause() {
+        mainActivity.pause();
+    }
+    public void unPause() {
+        mainActivity.unPause();
+    }
+
     public void setBackground(ImageView background) {
         this.background = background;
     }

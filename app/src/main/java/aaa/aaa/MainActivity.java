@@ -80,6 +80,17 @@ public class MainActivity extends AppCompatActivity {
         playing = false;
     }
 
+    public void pause() {
+        pause = true;
+    }
+    public void unPause() {
+        pause = false;
+    }
+
+    public boolean isPause() {
+        return pause;
+    }
+
     public void Win() {
         if (playing) {
             completed[selectedLevel-1] = true;
@@ -154,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onBackPressed() {
+        pause = false;
         playing = false;
         if (viewHistory.size() > 1) {
             viewHistory.remove(viewHistory.size() - 1);

@@ -124,7 +124,8 @@ public class LevelData {
     }
     private void genLevel2() {
         new MainPlayer(0, 0, 0.5f, 0, 1, 50, level);
-        new Earth(0, 1000, 0.5f, 0, 0, 80, level);
+        new Earth(0, 1300, 0.5f, 0, 0, 80, level);
+        getLevel().pause();
     }
     private void genLevel3() {
         new MainPlayer(0, 2300, 0.5f, 0, -6, 50, level);
