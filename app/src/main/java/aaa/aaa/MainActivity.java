@@ -4,14 +4,18 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.Display;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 
 import java.util.ArrayList;
 
@@ -28,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Integer> viewHistory = new ArrayList<>();
 
-    private boolean[] unlocks = {true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true,true};
+    private boolean[] unlocks = new boolean[40];
     private boolean[] completed = new boolean[40];
     private boolean[] shownInfoScreens = new boolean[40];
 
@@ -45,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        unlocks[0] = true;
+//        for (int i = 0; i < unlocks.length; i++) {
+//            unlocks[i] = true;
+//        }
+//        writeData();
 //        readData();
         setContentView(R.layout.activity_main);
 
@@ -94,9 +103,11 @@ public class MainActivity extends AppCompatActivity {
     public void Win() {
         if (playing) {
             completed[selectedLevel-1] = true;
-            if (selectedLevel < 30) {
+            if (selectedLevel < 40) { // TODO fix to # of levels
                 unlocks[selectedLevel] = true;
                 selectedLevel++;
+                if (selectedLevel < 40)
+                    unlocks[selectedLevel] = true;
             }
             setContentView(R.layout.win_screen);
             playing = false;
@@ -220,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int arrToInt(boolean[] arr) {
         int num = 0;
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < unlocks.length; i++) {
             if (arr[i])
                 num += 1<<i;
         }
@@ -229,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean[] numToArr(int num) {
         boolean[] out = new boolean[unlocks.length];
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < unlocks.length; i++) {
             out[i] = (num & 1) == 1;
             num = num>>1;
         }
@@ -261,28 +272,56 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void generateLevelSelectButtons(View v) {
+        final ImageView background = (ImageView) findViewById(R.id.level_bg);
+
+        RelativeLayout layout = (RelativeLayout) findViewById(R.id.level_select);
+
+        Resources r = getResources();
+        int px = 2000;
+
+        final RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams( RelativeLayout.LayoutParams.MATCH_PARENT, px );
+        background.setLayoutParams(p);
+
+        ScrollView scrollView = (ScrollView) findViewById(R.id.level_select_scroll);
+
+        scrollView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                p.setMargins(0, -v.getScrollY(), 0, 0);
+
+                background.requestLayout();
+
+                return false;
+            }
+        });
+
+
         LinearLayout select = (LinearLayout) findViewById(R.id.levelSelectLayout);
 
         for (int i = stages[stage][0]; i < stages[stage][1]; i++) {
             Button button = new Button(this);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams( LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT );
-            Resources r = getResources();
-            int px = (int) TypedValue.applyDimension(
+
+            px = (int) TypedValue.applyDimension(
                     TypedValue.COMPLEX_UNIT_DIP,
                     20,
                     r.getDisplayMetrics()
             );
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams( LinearLayout.LayoutParams.MATCH_PARENT, px * 2);
             params.setMargins(0, 0, 0, px);
             button.setLayoutParams(params);
 
             button.setText("" + (i+1));
 
             if (completed[i]) {
-                button.setBackgroundColor(0xffaaffaa);
-            } else if (unlocks[i]) {
-                button.setBackgroundColor(0xffaaaaff);
+                button.setBackgroundColor(0x8888ff88);
             } else {
-                button.setBackgroundColor(0xffaaaaaa);
+                button.setBackgroundColor(0xaaaaaaaa);
+            }
+
+            if (!unlocks[i]) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    button.setForeground(getResources().getDrawable(R.drawable.lock, getTheme()));
+                }
             }
 
             final int level = i+1;
