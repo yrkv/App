@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
     public void pause() {
         pause = true;
     }
-    public void unPause() {
+    public void unPause(View v) {
         pause = false;
     }
 

@@ -42,7 +42,7 @@ public class Level {
         mainActivity.pause();
     }
     public void unPause() {
-        mainActivity.unPause();
+        mainActivity.unPause(layout);
     }
 
     public void setBackground(ImageView background) {

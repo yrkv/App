@@ -9,7 +9,8 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    tools:context="aaa.aaa.MainActivity">
+    tools:context="aaa.aaa.MainActivity"
+    android:onClick="unPause">
 
     <ImageView
         android:layout_width="fill_parent"
