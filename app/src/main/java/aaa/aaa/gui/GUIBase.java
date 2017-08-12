@@ -10,4 +10,8 @@ public class GUIBase {
     public GUIBase() {
 
     }
+
+    public void update() {
+
+    }
 }

@@ -22,6 +22,7 @@ public class EntityBase {
     private float dir;
     private double xVelocity;
     private double yVelocity;
+    private double slowCoeff;
     private Level level;
     protected ImageView imageView;
     private boolean tint = false;
@@ -135,7 +136,7 @@ public class EntityBase {
     }
 
     protected double setXVelocity(double xVelocity) {
-        this.xVelocity = xVelocity;
+        this.xVelocity = xVelocity * slowCoeff;
         return this.xVelocity;
     }
 
@@ -144,8 +145,17 @@ public class EntityBase {
     }
 
     protected double setYVelocity(double yVelocity) {
-        this.yVelocity = yVelocity;
+        this.yVelocity = yVelocity * slowCoeff;
         return this.yVelocity;
+    }
+
+    public double getSlowCoeff() {
+        return slowCoeff;
+    }
+
+    public double setSlowCoeff(double slowCoeff) {
+        this.slowCoeff = slowCoeff;
+        return slowCoeff;
     }
 
     public float getSize() {
@@ -184,30 +194,10 @@ public class EntityBase {
     }
 
     public boolean move() {
-        x += xVelocity;
-        y += yVelocity;
-
-//        if (isPuller()) {
-//            Puller puller = (Puller) this;
-//
-//            for (Puller orbiting: puller.getAttracts()) {
-//                if (orbiting.getAttractedTo().size() == 1) {
-//                    orbiting.setX(orbiting.getX() + xVelocity);
-//                    orbiting.setY(orbiting.getY() + yVelocity);
-//                }
-//            }
-//
-//            if (puller.getGravity()) {
-//                int x = 0;
-//                for (Puller planet: level.getPullers())
-//                    if (planet.getGravity())
-//                        x++;
-//                if (x == 1) {
-//                    level.mainPlayer.setX(level.mainPlayer.getX() + xVelocity);
-//                    level.mainPlayer.setY(level.mainPlayer.getY() + yVelocity);
-//                }
-//            }
-//        }
+        if(canMove()) {
+            x += xVelocity;
+            y += yVelocity;
+        }
 
         return canMove();
     }

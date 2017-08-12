@@ -35,6 +35,12 @@ public class Puller extends EntityBase {
         getLevel().getPullers().add(this);
     }
 
+    public Puller(double x, double y, double xVelocity, double yVelocity, float size, Level level) {
+        super(x, y, 0.5f, xVelocity, yVelocity, size, level);
+        PULLCOEFF = size * 100;
+        getLevel().getPullers().add(this);
+    }
+
     protected boolean setGravity(boolean gravity) {
         this.gravity = gravity;
         return this.gravity;
