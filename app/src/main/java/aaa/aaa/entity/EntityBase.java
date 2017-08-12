@@ -51,19 +51,16 @@ public class EntityBase {
         imageView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if (isPuller() && event.getAction() == 0) {
-                    ((Puller) getThis()).toggleGravity();
-                }
-                if (isIndicator() && event.getAction() == 0) {
-                    if (((Indicator) getThis()).getParent().getGravity())
-                    ((Indicator) getThis()).getParent().toggleGravity();
-                }
-                return true;
+                return getThis().onTouch(v, event);
             }
         });
         render();
         imageView.setImageResource(resource);
         render = true;
+    }
+
+    protected boolean onTouch(View v, MotionEvent event) {
+        return true;
     }
 
     public boolean isOnScreen() {
@@ -227,14 +224,6 @@ public class EntityBase {
 
     private EntityBase getThis() {
         return this;
-    }
-
-    protected boolean isPuller() {
-        return false;
-    }
-
-    protected boolean isIndicator() {
-        return false;
     }
 
     public void update() {}

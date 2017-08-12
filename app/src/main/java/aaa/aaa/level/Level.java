@@ -31,10 +31,31 @@ public class Level {
     private float zoom = (float) Math.PI;
     public MainPlayer mainPlayer;
 
+    private boolean airlockLeft = false;
+    private boolean airlockRight = false;
+
+    private final static double AIRLOCK_POWER = 5.0;
+
+    private boolean canAirlock = false;
+    private float x = -1;
+
     public Level(RelativeLayout layout, Context context, MainActivity mainActivity) {
         this.mainActivity = mainActivity;
         this.context = context;
         this.layout = layout;
+    }
+
+    public void enableAirlocks() {
+        airlockLeft = true;
+        airlockRight = true;
+    }
+
+    public void enableLeftAirlock() {
+        airlockLeft = true;
+    }
+
+    public void enableRightAirlock() {
+        airlockRight = true;
     }
 
     //returns the state pause is set to
@@ -47,6 +68,48 @@ public class Level {
 
     public void setBackground(ImageView background) {
         this.background = background;
+
+        this.background.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    x = event.getX();
+                    canAirlock = true;
+                }
+                if (event.getAction() == MotionEvent.ACTION_MOVE && canAirlock) {
+                    float xDiff = event.getX() - x;
+                    if (xDiff < -50) {
+                        airlockLeft();
+                        canAirlock = false;
+                    }
+                    if (xDiff > 50) {
+                        airlockRight();
+                        canAirlock = false;
+                    }
+                }
+                return true;
+            }
+        });
+    }
+
+    private void airlockLeft() {
+        if (airlockLeft) {
+            mainPlayer.setXVelocity(mainPlayer.getXVelocity() +
+                    Math.cos((mainPlayer.getDir()+180) * Math.PI / 180) * AIRLOCK_POWER);
+            mainPlayer.setYVelocity(mainPlayer.getYVelocity() +
+                    Math.sin((mainPlayer.getDir()+180) * Math.PI / 180) * AIRLOCK_POWER);
+            airlockLeft = false;
+        }
+    }
+
+    private void airlockRight() {
+        if (airlockRight) {
+            mainPlayer.setXVelocity(mainPlayer.getXVelocity() +
+                    Math.cos((mainPlayer.getDir()-0) * Math.PI / 180) * AIRLOCK_POWER);
+            mainPlayer.setYVelocity(mainPlayer.getYVelocity() +
+                    Math.sin((mainPlayer.getDir()-0) * Math.PI / 180) * AIRLOCK_POWER);
+            airlockRight = false;
+        }
     }
 
     public ArrayList<Puller> getPullers() {

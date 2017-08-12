@@ -51,7 +51,11 @@ public class Puller extends EntityBase {
 
     }
 
-    protected boolean isPuller() {
+    @Override
+    protected boolean onTouch(View v, MotionEvent event) {
+        if (event.getAction() == 0) {
+            toggleGravity();
+        }
         return true;
     }
 

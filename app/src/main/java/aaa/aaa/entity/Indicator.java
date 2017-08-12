@@ -1,5 +1,8 @@
 package aaa.aaa.entity;
 
+import android.view.MotionEvent;
+import android.view.View;
+
 import aaa.aaa.entity.puller.Puller;
 import aaa.aaa.level.Level;
 
@@ -27,11 +30,16 @@ public class Indicator extends EntityBase {
         }
     }
 
-    public Puller getParent() {
-        return parent;
+    @Override
+    protected boolean onTouch(View v, MotionEvent event) {
+        if (event.getAction() == 0) {
+            if (getParent().getGravity())
+                getParent().toggleGravity();
+        }
+        return true;
     }
 
-    protected boolean isIndicator() {
-        return true;
+    public Puller getParent() {
+        return parent;
     }
 }

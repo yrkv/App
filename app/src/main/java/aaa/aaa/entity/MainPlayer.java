@@ -1,5 +1,8 @@
 package aaa.aaa.entity;
 
+import android.view.MotionEvent;
+import android.view.View;
+
 import java.util.ArrayList;
 
 import aaa.aaa.MainActivity;
@@ -12,7 +15,6 @@ import aaa.aaa.level.Level;
  */
 
 public class MainPlayer extends EntityBase {
-
 
     public MainPlayer(double x, double y, float dir, double xVelocity, double yVelocity, float size, Level level) {
         super(x, y, dir, xVelocity, yVelocity, size, level);
@@ -49,5 +51,4 @@ public class MainPlayer extends EntityBase {
 
         move();
     }
-
 }
