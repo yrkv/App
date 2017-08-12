@@ -5,6 +5,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:spinnerMode="dialog"
+    android:background="@drawable/bg"
     android:onClick="Restart">
 
     <ImageView
@@ -20,6 +21,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:textColor="#ffffff"
         android:layout_toRightOf="@+id/imageView"
         android:ems="10"
         android:inputType="none"
@@ -31,6 +33,7 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:id="@+id/editText5"
+        android:textColor="#dddddd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/untitled"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:onClick="Restart">
 
@@ -13,28 +14,21 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:ems="10"
+        android:textColor="#ffffff"
         android:inputType="none"
-        android:text="Black holes are just like normal planets, except these bastards are always pulling you in."
+        android:text="Black holes are just like normal planets, except their gravity is always toggled on."
         android:textSize="34sp"
         android:textStyle="bold"
         android:layout_margin="15dp"
         android:id="@+id/textView4" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        app:srcCompat="@drawable/blackhole"
-        android:layout_marginTop="19dp"
-        android:layout_below="@+id/textView4"
-        android:layout_centerHorizontal="true" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView"
+        android:textColor="#ffffff"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginBottom="20dp"
         android:text="tap to continue"
         android:textSize="20sp" />
 

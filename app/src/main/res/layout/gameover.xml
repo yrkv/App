@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@drawable/lose"
     android:layout_height="match_parent">
 
     <TextView
@@ -9,6 +10,8 @@
         android:layout_height="wrap_content"
         android:text="Try not to crash into anything unless it's the Earth, otherwise it's game over."
         android:textSize="40dp"
+        android:background="#bb000000"
+        android:textColor="#ffffff"
         android:gravity="center"
         android:layout_centerVertical="true"/>
 
@@ -17,6 +20,7 @@
         android:layout_height="wrap_content"
         android:text="YOU LOSE!"
         android:textSize="70dp"
+        android:textColor="#ffffff"
         android:gravity="center"
         android:layout_centerHorizontal="true"
         android:paddingTop="20dp"

@@ -67,77 +67,43 @@ public class LevelData {
                 break;
             case 19: genLevel19();
                 break;
-            case 20: genLevel20();
-                break;
-            case 21: genLevel21();
-                break;
-            case 22: genLevel22();
-                break;
-            case 23: genLevel23();
-                break;
-            case 24: genLevel24();
-                break;
-            case 25: genLevel25();
-                break;
-            case 26: genLevel26();
-                break;
-            case 27: genLevel27();
-                break;
-            case 28: genLevel28();
-                break;
-            case 29: genLevel29();
-                break;
-            case 30: genLevel30();
-                break;
-            case 31: genLevel31();
-                break;
-            case 32: genLevel32();
-                break;
-            case 33: genLevel33();
-                break;
-            case 34: genLevel34();
-                break;
-            case 35: genLevel35();
-                break;
-            case 36: genLevel36();
-                break;
-            case 37: genLevel37();
-                break;
-            case 38: genLevel38();
-                break;
-            case 39: genLevel39();
-                break;
-            case 40: genLevel40();
-                break;
             case -1: startScreen();
         }
     }
 
+
     //
     //
-    // TUTORIAL
+    // THE BASICS
     //
     //
     private void genLevel1() {
-        new MainPlayer(0, 0, 0.5f, 0, 0.01, 50, level);
-        new Earth(0, 400, 0.5f, 0, 0, 80, level);
+        new MainPlayer(-300, 1500, 0.5f, 4, -2, 50, level);
+        new Earth(0, 0, 0.5f, 0, 0, 80, level);
+        new Planet(200, 900, 0.5f, 0, 0, 70, level, R.drawable.planet6);
+
     }
     private void genLevel2() {
-        new MainPlayer(0, 0, 0.5f, 0, 1, 50, level);
-        new Earth(0, 1300, 0.5f, 0, 0, 80, level);
-        getLevel().pause();
+        new MainPlayer(-500, 1700, 0.5f, 5, -3, 50, level);
+        new Earth(0, 0, 0.5f, 0, 0, 100, level);
+        new Planet(-300, 1000, 0.5f, 0, 0, 60, level, R.drawable.planet5);
+        new Planet(200, 900, 0.5f, 0, 0, 50, level, R.drawable.planet6);
+
     }
     private void genLevel3() {
         new MainPlayer(0, 2300, 0.5f, 0, -6, 50, level);
         new Earth(0, 0, 0.5f, 0, 0, 100, level);
         new Planet(50, 1000, 0.5f, 0, 0, 60, level, R.drawable.planet1);
         new Planet(500, 1400, 0.5f, 0, 0, 100, level, R.drawable.planet4);
+
     }
     private void genLevel4() {
+
         new MainPlayer(-1000, -1200, 0.5f, 10, 0, 50, level);
         new Earth(0, -50, 0.5f, 0, 0, 100, level);
         new Planet(-50, -1000, 0.5f, 0, 0, 100, level, R.drawable.planet6);
         new Planet(800, -250, 0.5f, 0, 0, 100, level, R.drawable.planet6);
+
     }
     private void genLevel5() {
         new MainPlayer(100, 1000, 0.5f, 5, -8, 50, level);
@@ -170,16 +136,6 @@ public class LevelData {
         new Earth(0,-6000,0.5f,0,0,75,level);
     }
     private void genLevel9() {
-        new MainPlayer(0,0,0.5f,0,0,50,level);
-        new Planet(-300,0,0.5f,0,0,100,level);
-        new Planet(300,0,0.5f,0,0,100,level);
-        new Planet(0,300,0.5f,0,0,100,level);
-        new Planet(0,-300,0.5f,0,0,100,level);
-        new Planet(150,150,0.5f,0,0,100,level);
-        new Planet(150,-150,0.5f,0,0,100,level);
-        new Planet(-150,-150,0.5f,0,0,100,level);
-    }
-    private void genLevel10() {
         new MainPlayer(0, -345, 0.5f, 4.5, 0, 50, level);
         new Earth(0, 0, 0.5f, 0, 0, 100, level).toggleGravity();
         new Planet(0, -600, 0.5f, 0, 0, 30, level, R.drawable.planet6);
@@ -189,17 +145,17 @@ public class LevelData {
         new Planet(Math.sqrt(3)*-300,  300, 0.5f, 0, 0, 30, level, R.drawable.planet6);
         new Planet(Math.sqrt(3)*-300, -300, 0.5f, 0, 0, 30, level, R.drawable.planet6);
     }
-    //
-    //
-    // THE BASICS
-    //
-    //
-    private void genLevel11() {
+
+
+
+
+
+    private void genLevel10() {
         new MainPlayer(0, 150, 0.5f, 6, 0, 50, level);
         new Earth(0, 600, 0.5f, 0, 0, 75, level);
         new BlackHole(0, 0, 0.5f, 0, 0, 50, level);
     }
-    private void genLevel12() {
+    private void genLevel11() {
 
         new MainPlayer(-100, 600, 0.5f, 6, 0, 50, level);
         new Earth(0, 0, 0.5f, 0, 0, 75, level);
@@ -208,14 +164,7 @@ public class LevelData {
         new BlackHole(-300, -300, 0.5f, 0, 0, 40, level);
         new BlackHole(300, 300, 0.5f, 0, 0, 40, level);
     }
-    private void genLevel13() {
-        new MainPlayer(-50, 0, 0.5f, 2, 4, 50, level);
-        new Earth(0, 1000, 0.5f, 0, 0, 75, level);
-        new BlackHole(0, 200, 0.5f, 0, 0, 40, level);
-        new BlackHole(0, 600, 0.5f, 0, 0, 40, level);
-        new BlackHole(0, 800, 0.5f, 0, 0, 40, level);
-    }
-    private void genLevel14() {
+    private void genLevel12() {
         Planet p = new Planet(0, 0, 0.5f, 0, 0, 75, level, R.drawable.planet4);
         p.toggleGravity();
         new MainPlayer(0, 300, 0.5f, 5, 0, 50, level);
@@ -228,7 +177,7 @@ public class LevelData {
         new Earth(-2000, -300, 0.5f, 0, 0, 50, level);
 
     }
-    private void genLevel15() {
+    private void genLevel13() {
         new MainPlayer(800, 0, 0.5f, -2, -3, 50, level);
         Earth e = new Earth(0, 0, 0.5f, 0, 0, 100, level);
         // e.toggleGravity();
@@ -239,7 +188,7 @@ public class LevelData {
         // new Planet(,  , 0.5f, 0, 0, 30, level, R.drawable.planet6).addPuller(e);
         // new Planet(, , 0.5f, 0, 0, 30, level, R.drawable.planet6).addPuller(e);
     }
-    private void genLevel16() {
+    private void genLevel14() {
         new MainPlayer(800, 0, 0.5f, -2, -3, 50, level);
         Earth e = new Earth(0, 0, 0.5f, 0, 0, 100, level);
         // e.toggleGravity();
@@ -250,7 +199,7 @@ public class LevelData {
         new Planet(400 * Math.sin(45),  -400 * Math.sin(45), 0.5f, -5 * Math.sin(45), -5 * Math.sin(45), 40, level, R.drawable.planet5).addPuller(e);
         new Planet(-400 * Math.sin(45), -400 * Math.sin(45), 0.5f, 5 * Math.sin(45), 5 * Math.sin(45), 40, level, R.drawable.planet6).addPuller(e);
     }
-    private void genLevel17() {
+    private void genLevel15() {
         new MainPlayer(600, 0, 0.5f, 0, Math.sqrt(20), 50, level);
         new Earth(0, 0, 0.5f, 0, 0, 75, level);
         BlackHole a = new BlackHole(0, 250, 0.5f, Math.sqrt(5), 0, 60, level);
@@ -258,29 +207,26 @@ public class LevelData {
         a.addPuller(b);
         b.addPuller(a);
     }
-    private void genLevel18() {}
-    private void genLevel19() {}
-    private void genLevel20() {}
     //
     //
     // BLACK HOLES
     //
     //
-    private void genLevel21() {
+    private void genLevel16() {
         Earth earth = new Earth(0, 200, 0.5f, 0, 0, 75, level);
         earth.toggleGravity();
         new MainPlayer(0, 0, 0.5f, 6, 0, 50, level);
 
         new Planet(0, 400, 0.5f, -6, 0, 50, level, R.drawable.planet3).addPuller(earth);
     }
-    private void genLevel22() {
+    private void genLevel17() {
         Planet planet = new Planet(0, 300, 0.5f, 0, 0, 75, level, R.drawable.planet3);
         planet.toggleGravity();
         new MainPlayer(0, 0, 0.5f, 4, 0, 50, level);
 
         new Earth(0, 600, 0.5f, -4, 0, 50, level).addPuller(planet);
     }
-    private void genLevel23() {
+    private void genLevel18() {
         Earth earth = new Earth(0, 0, 0.5f, 0, 0, 75, level);
         earth.toggleGravity();
 
@@ -292,34 +238,13 @@ public class LevelData {
         double dist = 250;
         new MainPlayer(0, dist, 0.5f, Math.sqrt(7500/dist), 0, 50, level);
     }
-    private void genLevel24() {
+    private void genLevel19() {
         Planet p = new Planet(0, 0, 0.5f, 0, 0, 100, level, R.drawable.planet3);
         Planet a = new Planet(-700, 0, 0.5f, 0, Math.sqrt(100/7.0), 75, level, R.drawable.planet5);
         a.addPuller(p);
         a.toggleGravity();
         new MainPlayer(-900, 0, 0.5f, 0, Math.sqrt(75/2.0), 50, level);
     }
-    private void genLevel25() {}
-    private void genLevel26() {}
-    private void genLevel27() {}
-    private void genLevel28() {}
-    private void genLevel29() {}
-    private void genLevel30() {}
-    //
-    //
-    // DYNAMIC PLANETS
-    //
-    //
-    private void genLevel31() {}
-    private void genLevel32() {}
-    private void genLevel33() {}
-    private void genLevel34() {}
-    private void genLevel35() {}
-    private void genLevel36() {}
-    private void genLevel37() {}
-    private void genLevel38() {}
-    private void genLevel39() {}
-    private void genLevel40() {}
 
     private void startScreen() {
         Earth earth = new Earth(0, 200, 0.5f, 0, 0, 75, level);

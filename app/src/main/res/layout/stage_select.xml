@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@drawable/what"
     android:layout_height="match_parent">
 
     <TextView
@@ -8,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Stage Select"
+        android:background="#ffffff"
         android:textAlignment="center"
         android:textSize="30sp" />
 
@@ -27,40 +29,39 @@
         <Button
             android:id="@+id/button37"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:layout_marginBottom="10dp"
+            android:background="#80bbbbbb"
+            android:textColor="#ffffff"
             android:onClick="stage1"
-            android:text="Stage 1: Tutorial" />
+            android:text="Stage 1: The Basics"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/button38"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:layout_marginBottom="10dp"
+            android:background="#80bbbbbb"
+            android:textColor="#ffffff"
             android:onClick="stage2"
-            android:text="Stage 2: The Basics" />
+            android:text="Stage 2: Black Holes"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/button39"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:layout_marginBottom="10dp"
+            android:background="#80bbbbbb"
+            android:textColor="#ffffff"
             android:onClick="stage3"
-            android:text="Stage 3: Black Holes" />
+            android:text="Stage 3: Dynamic Planets"
+            android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/button40"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:onClick="stage4"
-            android:text="Stage 4: Dynamic Planets" />
 
     </LinearLayout>
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="2dip"
-        android:background="#FF000000" />
+
 
 </LinearLayout>

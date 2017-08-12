@@ -32,15 +32,14 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Integer> viewHistory = new ArrayList<>();
 
-    private boolean[] unlocks = new boolean[40];
-    private boolean[] completed = new boolean[40];
-    private boolean[] shownInfoScreens = new boolean[40];
+    private boolean[] unlocks = new boolean[19];
+    private boolean[] completed = new boolean[19];
+    private boolean[] shownInfoScreens = new boolean[19];
 
     private static final int[][] stages = {
-            {0, 10},
-            {10, 20},
-            {20, 30},
-            {30, 40}
+            {0, 9},
+            {9, 15},
+            {15, 19}
     };
 
     private int stage = 0;
@@ -49,12 +48,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        unlocks[0] = true;
-//        for (int i = 0; i < unlocks.length; i++) {
-//            unlocks[i] = true;
-//        }
-//        writeData();
-//        readData();
+        readData();
         setContentView(R.layout.activity_main);
 
         selectedLevel = -1;
@@ -71,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
 
-//        writeData();
+        writeData();
     }
 
     public void LevelSelect(View v) {
@@ -103,10 +97,10 @@ public class MainActivity extends AppCompatActivity {
     public void Win() {
         if (playing) {
             completed[selectedLevel-1] = true;
-            if (selectedLevel < 40) { // TODO fix to # of levels
+            if (selectedLevel < completed.length) { // TODO fix to # of levels
                 unlocks[selectedLevel] = true;
                 selectedLevel++;
-                if (selectedLevel < 40)
+                if (selectedLevel < completed.length)
                     unlocks[selectedLevel] = true;
             }
             setContentView(R.layout.win_screen);
@@ -168,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
         switch (level) {
             case 1:
                 return R.layout.tutorial;
-            case 11:
+            case 10:
                 return R.layout.info_black_holes;
             default:
                 return -1;
@@ -261,12 +255,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void stage3(View v) {
         stage = 2;
-        setContentView(R.layout.level_select);
-        generateLevelSelectButtons(v);
-    }
-
-    public void stage4(View v) {
-        stage = 3;
         setContentView(R.layout.level_select);
         generateLevelSelectButtons(v);
     }
