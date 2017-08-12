@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         readData();
+        unlocks[0] = true;
         setContentView(R.layout.activity_main);
 
         selectedLevel = -1;
