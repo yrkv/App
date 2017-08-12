@@ -22,7 +22,7 @@ public class EntityBase {
     private float dir;
     private double xVelocity;
     private double yVelocity;
-    private double slowCoeff;
+    private double slowCoeff = 1.0;
     private Level level;
     protected ImageView imageView;
     private boolean tint = false;
@@ -136,7 +136,7 @@ public class EntityBase {
     }
 
     protected double setXVelocity(double xVelocity) {
-        this.xVelocity = xVelocity * slowCoeff;
+        this.xVelocity = xVelocity;
         return this.xVelocity;
     }
 
@@ -145,7 +145,7 @@ public class EntityBase {
     }
 
     protected double setYVelocity(double yVelocity) {
-        this.yVelocity = yVelocity * slowCoeff;
+        this.yVelocity = yVelocity;
         return this.yVelocity;
     }
 
@@ -194,6 +194,9 @@ public class EntityBase {
     }
 
     public boolean move() {
+        xVelocity *= slowCoeff;
+        yVelocity *= slowCoeff;
+
         if(canMove()) {
             x += xVelocity;
             y += yVelocity;
