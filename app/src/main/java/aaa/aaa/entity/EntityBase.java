@@ -135,7 +135,7 @@ public class EntityBase {
         return xVelocity;
     }
 
-    protected double setXVelocity(double xVelocity) {
+    public double setXVelocity(double xVelocity) {
         this.xVelocity = xVelocity;
         return this.xVelocity;
     }
@@ -144,7 +144,7 @@ public class EntityBase {
         return yVelocity;
     }
 
-    protected double setYVelocity(double yVelocity) {
+    public double setYVelocity(double yVelocity) {
         this.yVelocity = yVelocity;
         return this.yVelocity;
     }

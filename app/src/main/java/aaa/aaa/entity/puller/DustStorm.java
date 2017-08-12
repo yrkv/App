@@ -23,9 +23,7 @@ public class DustStorm extends EntityBase{
     public void update() {
         for(EntityBase entity : getLevel().getEntities()) {
             if(getDistanceTo(entity) < getSize() + entity.getSize()) {
-                System.out.println(entity.getSlowCoeff());
-                entity.setSlowCoeff(0.05);
-                System.out.println(entity.getSlowCoeff());
+                entity.setSlowCoeff(0.983);
             }
             else entity.setSlowCoeff(1);
         }

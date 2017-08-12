@@ -81,11 +81,9 @@ public class LevelData {
     //
     //
     private void genLevel1() {
-//        new MainPlayer(-300, 1500, 0.5f, 4, -2, 50, level);
-//        new Earth(0, 0, 0.5f, 0, 0, 80, level);
-//        new Planet(200, 900, 0.5f, 0, 0, 70, level, R.drawable.planet6);
-        new DustStorm(0,-400,0,0,100,level);
-        new MainPlayer(0,0,0.5f,0,-1.5,50,level);
+        new MainPlayer(-300, 1500, 0.5f, 4, -2, 50, level);
+        new Earth(0, 0, 0.5f, 0, 0, 80, level);
+        new Planet(200, 900, 0.5f, 0, 0, 70, level, R.drawable.planet6);
     }
     private void genLevel2() {
         new MainPlayer(-500, 1700, 0.5f, 5, -3, 50, level);
