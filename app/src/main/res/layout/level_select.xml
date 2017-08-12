@@ -4,56 +4,34 @@
     android:id="@+id/level_select"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/level_bg"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@drawable/sunrise"
-        android:layout_below="@+id/viewLine"/>
-
-    <View
-        android:id="@+id/textBackground"
-        android:layout_width="fill_parent"
-        android:layout_height="2dip"
-        android:background="#FFFFFFFF"
-        android:layout_alignTop="@+id/textView8"
-        android:layout_alignBottom="@+id/textView8" />
-
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/stageName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Level Select"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_height="50dp"
+        android:text="Error: failed to load stage name"
+        android:background="@drawable/bg"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:textColor="#ffffff"
+        />
 
     <View
-        android:id="@+id/viewLine"
-        android:layout_width="fill_parent"
-        android:layout_height="2dip"
-        android:background="#FF000000"
-        android:layout_below="@+id/textView8" />
+        android:id="@+id/horizontalBar"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="#bbbbbb"
+        android:layout_below="@id/stageName"
+        />
 
-    <ScrollView
+    <LinearLayout
+        android:id="@+id/levelsLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/viewLine"
-        android:id="@+id/level_select_scroll">
-
-        <LinearLayout
-            android:id="@+id/levelSelectLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="20dp">
+        android:layout_below="@id/horizontalBar"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
 
 
-        </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 
 </RelativeLayout>

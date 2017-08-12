@@ -4,18 +4,24 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
+import android.graphics.Rect;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -30,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
     public boolean pause = false;
     private int selectedLevel = 1;
 
+    private int activeView = R.layout.activity_main;
+
+    public static int width = 0;
+    public static int height = 0;
+
     private ArrayList<Integer> viewHistory = new ArrayList<>();
 
     private boolean[] unlocks = new boolean[19];
@@ -42,6 +53,12 @@ public class MainActivity extends AppCompatActivity {
             {15, 19}
     };
 
+    private static final String[] STAGE_NAMES = {
+            "Stage 1: The Basics",
+            "Stage 2: Black Holes",
+            "Stage 3: Dynamic Planets"
+    };
+
     private int stage = 0;
 
     @Override
@@ -52,6 +69,11 @@ public class MainActivity extends AppCompatActivity {
         unlocks[0] = true;
         setContentView(R.layout.activity_main);
 
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        height = displayMetrics.heightPixels;
+        width = displayMetrics.widthPixels;
+
         selectedLevel = -1;
         gameLoop();
     }
@@ -60,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         super.setContentView(layoutResID);
 
         viewHistory.add(layoutResID);
+        activeView = layoutResID;
     }
 
     @Override
@@ -70,7 +93,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void LevelSelect(View v) {
-        setContentView(R.layout.stage_select);
+        setContentView(R.layout.updated_level_select);
+        createLevelSelect(v);
         playing = false;
     }
 
@@ -177,8 +201,8 @@ public class MainActivity extends AppCompatActivity {
             viewHistory.remove(viewHistory.size() - 1);
             int lastView = viewHistory.get(viewHistory.size() - 1);
             super.setContentView(lastView);
-            if (lastView == R.layout.level_select)
-                generateLevelSelectButtons(this.getCurrentFocus());
+            if (lastView == R.layout.updated_level_select)
+                createLevelSelect(this.getCurrentFocus());
             if (lastView == R.layout.activity_main) {
                 selectedLevel = -1;
                 gameLoop();
@@ -242,25 +266,130 @@ public class MainActivity extends AppCompatActivity {
         return out;
     }
 
-    public void stage1(View v) {
-        stage = 0;
-        setContentView(R.layout.level_select);
-        generateLevelSelectButtons(v);
+    float x = -1;
+    int s = 0;
+    boolean canScroll = false;
+
+    public void createLevelSelect(View v) {
+        HorizontalScrollView scrollView = (HorizontalScrollView) findViewById(R.id.horizontalScroll);
+
+        scrollView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    x = event.getX();
+                    canScroll = true;
+                }
+                if (event.getAction() == MotionEvent.ACTION_MOVE && canScroll) {
+                    float xDiff = event.getX() - x;
+                    canScroll = false;
+
+                    if (xDiff > 0 && s > 0) {
+                        s--;
+                    }
+                    if (xDiff < 0 && s < STAGE_NAMES.length - 1) {
+                        s++;
+                    }
+                    scrollTo(s);
+                }
+                return true;
+            }
+        });
+
+        LinearLayout levelSelects = (LinearLayout) findViewById(R.id.levelSelects);
+
+        for (int i = 0; i < STAGE_NAMES.length; i++) {
+            String STAGE_NAME = STAGE_NAMES[i];
+            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(width, ViewGroup.LayoutParams.MATCH_PARENT);
+
+            View stage = getLayoutInflater().inflate(R.layout.level_select, levelSelects, false);
+            stage.setLayoutParams(p);
+
+            stage.findViewById(R.id.levelsLayout).setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    return false;
+                }
+            });
+
+            ((TextView) stage.findViewById(R.id.stageName)).setText(STAGE_NAME);
+
+            levelSelects.addView(stage);
+
+
+            for (int j = stages[i][0]; j < stages[i][1]; j++) {
+                Button button = new Button(this);
+
+                int px = (int) TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_DIP,
+                        40,
+                        getResources().getDisplayMetrics()
+                );
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, px);
+                params.setMargins(px / 4, px / 8, px / 4, 0);
+                button.setLayoutParams(params);
+
+                button.setText("" + (j + 1));
+
+                if (completed[j]) {
+                    button.setBackgroundColor(0x8888ff88);
+                } else {
+                    button.setBackgroundColor(0xaaaaaaaa);
+                }
+
+                if (!unlocks[j]) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        button.setForeground(getResources().getDrawable(R.drawable.lock, getTheme()));
+                    }
+                }
+
+                final int level = j + 1;
+
+                button.setOnTouchListener(new View.OnTouchListener() {
+
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        System.out.println(event.getAction());
+                        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                            x = event.getX();
+                            canScroll = true;
+                        }
+                        if(event.getAction() == MotionEvent.ACTION_MOVE){
+                            if (canScroll) {
+                                float xDiff = event.getX() - x;
+                                canScroll = false;
+
+                                if (xDiff > 0 && s > 0) {
+                                    s--;
+                                }
+                                if (xDiff < 0 && s < STAGE_NAMES.length - 1) {
+                                    s++;
+                                }
+                                scrollTo(s);
+                            }
+                        }
+
+                        if (event.getAction() == MotionEvent.ACTION_UP && levelUnlocked(level)) {
+                            selectedLevel = level;
+                            GameLoop(v);
+                        }
+
+                        return true;
+                    }
+                });
+
+                ((ViewGroup) stage.findViewById(R.id.levelsLayout)).addView(button);
+            }
+        }
     }
 
-    public void stage2(View v) {
-        stage = 1;
-        setContentView(R.layout.level_select);
-        generateLevelSelectButtons(v);
+    private void scrollTo(int stage) {
+        HorizontalScrollView scrollView = (HorizontalScrollView) findViewById(R.id.horizontalScroll);
+
+        scrollView.smoothScrollTo(stage * width, 0);
     }
 
-    public void stage3(View v) {
-        stage = 2;
-        setContentView(R.layout.level_select);
-        generateLevelSelectButtons(v);
-    }
-
-    private void generateLevelSelectButtons(View v) {
+    /*private void generateLevelSelectButtons(View v) {
         final ImageView background = (ImageView) findViewById(R.id.level_bg);
 
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.level_select);
@@ -327,7 +456,7 @@ public class MainActivity extends AppCompatActivity {
 
             select.addView(button);
         }
-    }
+    }*/
 
     private boolean levelUnlocked(int selectedLevel) {
         return unlocks[selectedLevel-1];
