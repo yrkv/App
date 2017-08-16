@@ -141,8 +141,8 @@ public class Level {
             entity.render();
         }
 
-        background.setX((float) (xOffset / -10.0) - 50000);
-        background.setY((float) (yOffset / -10.0) - 50000);
+        background.setX((float) (xOffset / -5.0) - 50000);
+        background.setY((float) (yOffset / -5.0) - 50000);
     }
 
     public RelativeLayout getLayout() {

@@ -269,9 +269,10 @@ public class MainActivity extends AppCompatActivity {
     float x = -1;
     int s = 0;
     boolean canScroll = false;
+    private static final int SCROLL_MINIMUM = 60;
 
     public void createLevelSelect(View v) {
-        HorizontalScrollView scrollView = (HorizontalScrollView) findViewById(R.id.horizontalScroll);
+        final HorizontalScrollView scrollView = (HorizontalScrollView) findViewById(R.id.horizontalScroll);
 
         scrollView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -282,12 +283,16 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (event.getAction() == MotionEvent.ACTION_MOVE && canScroll) {
                     float xDiff = event.getX() - x;
+                    scrollView.setScrollX((int) (-xDiff) + width * s);
+                }
+                if (event.getAction() == MotionEvent.ACTION_UP) {
                     canScroll = false;
+                    float xDiff = event.getX() - x;
 
-                    if (xDiff > 0 && s > 0) {
+                    if (xDiff > SCROLL_MINIMUM && s > 0) {
                         s--;
                     }
-                    if (xDiff < 0 && s < STAGE_NAMES.length - 1) {
+                    if (xDiff < -SCROLL_MINIMUM && s < STAGE_NAMES.length - 1) {
                         s++;
                     }
                     scrollTo(s);
@@ -349,29 +354,31 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
-                        System.out.println(event.getAction());
                         if (event.getAction() == MotionEvent.ACTION_DOWN) {
                             x = event.getX();
                             canScroll = true;
                         }
-                        if(event.getAction() == MotionEvent.ACTION_MOVE){
-                            if (canScroll) {
-                                float xDiff = event.getX() - x;
-                                canScroll = false;
+                        if (event.getAction() == MotionEvent.ACTION_MOVE && canScroll) {
+                            float xDiff = event.getX() - x;
+                            scrollView.setScrollX((int) (-xDiff) + width * s);
+                        }
+                        if (event.getAction() == MotionEvent.ACTION_UP) {
+                            canScroll = false;
+                            float xDiff = event.getX() - x;
 
-                                if (xDiff > 0 && s > 0) {
-                                    s--;
-                                }
-                                if (xDiff < 0 && s < STAGE_NAMES.length - 1) {
-                                    s++;
-                                }
+                            if (xDiff > SCROLL_MINIMUM && s > 0) {
+                                s--;
                                 scrollTo(s);
                             }
-                        }
-
-                        if (event.getAction() == MotionEvent.ACTION_UP && levelUnlocked(level)) {
-                            selectedLevel = level;
-                            GameLoop(v);
+                            else if (xDiff < -SCROLL_MINIMUM && s < STAGE_NAMES.length - 1) {
+                                s++;
+                                scrollTo(s);
+                            } else if (levelUnlocked(level)) {
+                                selectedLevel = level;
+                                GameLoop(v);
+                            } else {
+                                scrollTo(s);
+                            }
                         }
 
                         return true;
