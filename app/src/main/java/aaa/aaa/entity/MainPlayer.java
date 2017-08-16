@@ -16,8 +16,8 @@ import aaa.aaa.level.Level;
 
 public class MainPlayer extends EntityBase {
 
-    public MainPlayer(double x, double y, float dir, double xVelocity, double yVelocity, float size, Level level) {
-        super(x, y, dir, xVelocity, yVelocity, size, level);
+    public MainPlayer(double x, double y, double xVelocity, double yVelocity, Level level) {
+        super(x, y, 0.5f, xVelocity, yVelocity, 50, level);
         getLevel().yOffset = (int) (getY() * getLevel().getZoom());
         getLevel().xOffset = (int) (getX() * getLevel().getZoom());
         getLevel().mainPlayer = this;
@@ -32,7 +32,7 @@ public class MainPlayer extends EntityBase {
                 changeXVelocity(puller);
                 changeYVelocity(puller);
             }
-            if(getDistanceTo(puller) < (puller.getSize() + getSize() / 2)) {
+            if(getDistanceTo(puller) < (puller.getSize() + getSize())) {
                 if (puller.isEarth())
                     getLevel().Win();
                 else
