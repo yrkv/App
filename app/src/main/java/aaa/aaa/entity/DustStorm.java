@@ -1,4 +1,4 @@
-package aaa.aaa.entity.puller;
+package aaa.aaa.entity;
 import aaa.aaa.R;
 import aaa.aaa.entity.EntityBase;
 import aaa.aaa.level.Level;

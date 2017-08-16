@@ -3,16 +3,11 @@ package aaa.aaa.level;
 import android.content.Context;
 import android.widget.RelativeLayout;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
 import aaa.aaa.MainActivity;
 import aaa.aaa.R;
 import aaa.aaa.entity.MainPlayer;
+import aaa.aaa.entity.Wormhole;
 import aaa.aaa.entity.puller.BlackHole;
-import aaa.aaa.entity.puller.DustStorm;
 import aaa.aaa.entity.puller.Earth;
 import aaa.aaa.entity.puller.Planet;
 
@@ -81,9 +76,14 @@ public class LevelData {
     //
     //
     private void genLevel1() {
-        new MainPlayer(-300, 1500, 0.5f, 4, -2, 50, level);
-        new Earth(0, 0, 0.5f, 0, 0, 80, level);
-        new Planet(200, 900, 0.5f, 0, 0, 70, level, R.drawable.planet6);
+//        new MainPlayer(-300, 1500, 0.5f, 4, -2, 50, level);
+//        new Earth(0, 0, 0.5f, 0, 0, 80, level);
+//        new Planet(200, 900, 0.5f, 0, 0, 70, level, R.drawable.planet6);
+        Wormhole one = new Wormhole(200,-200,0,0,80,level);
+        Wormhole two = new Wormhole(-200,200,0,0,80,level);
+        two.mutualPair(one);
+        new Planet(400,-400,0.5f,0,0,100,level);
+        new MainPlayer(0,0,0.5f,0,0,50,level);
     }
     private void genLevel2() {
         new MainPlayer(-500, 1700, 0.5f, 5, -3, 50, level);
