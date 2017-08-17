@@ -16,19 +16,8 @@ import aaa.aaa.level.Level;
 
 public class MainPlayer extends EntityBase {
 
-//    private static final int[][] collision = {
-//            {-10, -50}, // top left
-//            {10, -50},  // top right
-//            {-10, 50},  // bot left
-//            {10, 50}    // bot right
-//    };
-
-    private static final int[][] collision = {
-            {0, 0}, // center
-    };
-
-    public MainPlayer(double x, double y, float dir, double xVelocity, double yVelocity, float size, Level level) {
-        super(x, y, dir, xVelocity, yVelocity, size, level);
+    public MainPlayer(double x, double y, double xVelocity, double yVelocity, Level level) {
+        super(x, y, 0.5f, xVelocity, yVelocity, 50, level);
         getLevel().yOffset = (int) (getY() * getLevel().getZoom());
         getLevel().xOffset = (int) (getX() * getLevel().getZoom());
         getLevel().mainPlayer = this;
@@ -39,13 +28,11 @@ public class MainPlayer extends EntityBase {
     @Override
     public void update() {
         for(Puller puller : getLevel().getPullers()) {
-//            checkCollisionWith(puller);
-//            getLevel().Win();
             if(puller.getGravity()) {
                 changeXVelocity(puller);
                 changeYVelocity(puller);
             }
-            if(getDistanceTo(puller) < (puller.getSize() + getSize() / 2)) {
+            if(getDistanceTo(puller) < (puller.getSize() + getSize())) {
                 if (puller.isEarth())
                     getLevel().Win();
                 else
