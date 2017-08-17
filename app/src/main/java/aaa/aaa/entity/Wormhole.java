@@ -43,6 +43,14 @@ public class Wormhole extends EntityBase {
     @Override
     public void update() {
         MainPlayer player = getLevel().mainPlayer;
+//        if (player.wormholeCollision(this)) {
+//            double xDiff = getX() - player.getX();
+//            double yDiff = getY() - player.getY();
+//
+//            player.setX(pair.getX() + xDiff);
+//            player.setY(pair.getY() + yDiff);
+//        }
+
         if(getDistanceTo(player) < (getSize() + player.getSize())) {
             double inputDirection = getDirectionTo(player);
             double outputDirection = inputDirection - (Math.PI);

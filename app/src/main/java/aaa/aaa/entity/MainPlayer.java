@@ -16,6 +16,17 @@ import aaa.aaa.level.Level;
 
 public class MainPlayer extends EntityBase {
 
+//    private static final int[][] collision = {
+//            {-10, -50}, // top left
+//            {10, -50},  // top right
+//            {-10, 50},  // bot left
+//            {10, 50}    // bot right
+//    };
+
+    private static final int[][] collision = {
+            {0, 0}, // center
+    };
+
     public MainPlayer(double x, double y, float dir, double xVelocity, double yVelocity, float size, Level level) {
         super(x, y, dir, xVelocity, yVelocity, size, level);
         getLevel().yOffset = (int) (getY() * getLevel().getZoom());
@@ -28,6 +39,8 @@ public class MainPlayer extends EntityBase {
     @Override
     public void update() {
         for(Puller puller : getLevel().getPullers()) {
+//            checkCollisionWith(puller);
+//            getLevel().Win();
             if(puller.getGravity()) {
                 changeXVelocity(puller);
                 changeYVelocity(puller);
@@ -50,5 +63,62 @@ public class MainPlayer extends EntityBase {
         getLevel().xOffset = (int) (getX() * getLevel().getZoom());
 
         move();
+    }
+
+    public boolean checkCollisionWith(EntityBase entityBase) {
+        // get location of the entity and translate it by the player's location
+        double x = entityBase.getX() - getX();
+        double y = entityBase.getY() - getY();
+        float r  = entityBase.getSize();
+
+        double rot = (getDir() - 90) * Math.PI / 180;
+
+        double dist = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+
+            System.out.println(dist + ", " + x + ", " + y);
+//        System.out.println(rot);
+//
+//        System.out.println(entityBase.getX() + ", " + getX());
+//        System.out.println(rot);
+
+        // rotation matrix to translate the entity's location by the player's rotation
+        x =  x * Math.cos(rot) - y * Math.sin(rot);
+        y =  x * Math.sin(rot) + y * Math.cos(rot);
+
+//        System.out.println(x + "\t\t\t" + y);
+
+        // check if any of the collision points are within the entity's circle
+        for (int i = 0; i < collision.length; i++) {
+            dist = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+
+//            System.out.println(dist + ", " + x + ", " + y);
+            if (dist < r)
+                return true;
+        }
+
+        return false;
+    }
+
+    public boolean wormholeCollision(EntityBase entityBase) {
+        // get location of the entity and translate it by the player's location
+        double x = entityBase.getX() - getX();
+        double y = entityBase.getY() - getY();
+        float r  = entityBase.getSize();
+
+        double rot = getDir();
+
+        // rotation matrix to translate the entity's location by the player's rotation
+        x =  x * Math.cos(rot) + y * Math.sin(rot);
+        y = -x * Math.sin(rot) + y * Math.cos(rot);
+
+        // check if any of the collision points are within the entity's circle
+        for (int i = 0; i < collision.length; i++) {
+            double dist = Math.sqrt(Math.pow(getX() - x, 2) + Math.pow(getY() - y, 2));
+
+            if (dist > r)
+                return false;
+        }
+
+        return true;
     }
 }

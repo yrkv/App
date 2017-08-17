@@ -1,6 +1,7 @@
 package aaa.aaa;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
@@ -350,44 +351,52 @@ public class MainActivity extends AppCompatActivity {
 
                 final int level = j + 1;
 
-                button.setOnTouchListener(new View.OnTouchListener() {
-
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                            x = event.getX();
-                            canScroll = true;
-                        }
-                        if (event.getAction() == MotionEvent.ACTION_MOVE && canScroll) {
-                            float xDiff = event.getX() - x;
-                            scrollView.setScrollX((int) (-xDiff) + width * s);
-                        }
-                        if (event.getAction() == MotionEvent.ACTION_UP) {
-                            canScroll = false;
-                            float xDiff = event.getX() - x;
-
-                            if (xDiff > SCROLL_MINIMUM && s > 0) {
-                                s--;
-                                scrollTo(s);
-                            }
-                            else if (xDiff < -SCROLL_MINIMUM && s < STAGE_NAMES.length - 1) {
-                                s++;
-                                scrollTo(s);
-                            } else if (levelUnlocked(level)) {
-                                selectedLevel = level;
-                                GameLoop(v);
-                            } else {
-                                scrollTo(s);
-                            }
-                        }
-
-                        return true;
-                    }
-                });
-
-                ((ViewGroup) stage.findViewById(R.id.levelsLayout)).addView(button);
+                createLevelButton((LinearLayout) stage, scrollView, level);
             }
         }
+    }
+
+    private void createLevelButton(LinearLayout layout, final HorizontalScrollView scrollView, final int level) {
+        final View button = getLayoutInflater().inflate(R.layout.level_select_button, layout, false);
+
+        // do all the shit here
+
+        button.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    x = event.getX();
+                    canScroll = true;
+                }
+                if (event.getAction() == MotionEvent.ACTION_MOVE && canScroll) {
+                    float xDiff = event.getX() - x;
+                    scrollView.setScrollX((int) (-xDiff) + width * s);
+                }
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    canScroll = false;
+                    float xDiff = event.getX() - x;
+
+                    if (xDiff > SCROLL_MINIMUM && s > 0) {
+                        s--;
+                        scrollTo(s);
+                    }
+                    else if (xDiff < -SCROLL_MINIMUM && s < STAGE_NAMES.length - 1) {
+                        s++;
+                        scrollTo(s);
+                    } else if (levelUnlocked(level)) {
+                        selectedLevel = level;
+                        GameLoop(v);
+                    } else {
+                        scrollTo(s);
+                    }
+                }
+
+                return true;
+            }
+        });
+
+        layout.addView(button);
     }
 
     private void scrollTo(int stage) {
