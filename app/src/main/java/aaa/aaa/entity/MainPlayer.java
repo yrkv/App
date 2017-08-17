@@ -16,6 +16,10 @@ import aaa.aaa.level.Level;
 
 public class MainPlayer extends EntityBase {
 
+    private static final int[][] collision = {
+            {0, 0}
+    };
+
     public MainPlayer(double x, double y, double xVelocity, double yVelocity, Level level) {
         super(x, y, 0.5f, xVelocity, yVelocity, 50, level);
         getLevel().yOffset = (int) (getY() * getLevel().getZoom());
