@@ -17,7 +17,11 @@ import aaa.aaa.level.Level;
 public class MainPlayer extends EntityBase {
 
     private static final int[][] collision = {
-            {0, 0}
+            {0, 0},
+            {-20, 50},
+            {-20, -50},
+            {20, 50},
+            {20, -50}
     };
 
     public MainPlayer(double x, double y, double xVelocity, double yVelocity, Level level) {
@@ -36,7 +40,7 @@ public class MainPlayer extends EntityBase {
                 changeXVelocity(puller);
                 changeYVelocity(puller);
             }
-            if(getDistanceTo(puller) < (puller.getSize() + getSize())) {
+            if(checkCollisionWith(puller)) {
                 if (puller.isEarth())
                     getLevel().Win();
                 else
@@ -62,27 +66,16 @@ public class MainPlayer extends EntityBase {
         double y = entityBase.getY() - getY();
         float r  = entityBase.getSize();
 
-        double rot = (getDir() - 90) * Math.PI / 180;
-
-        double dist = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
-
-            System.out.println(dist + ", " + x + ", " + y);
-//        System.out.println(rot);
-//
-//        System.out.println(entityBase.getX() + ", " + getX());
-//        System.out.println(rot);
+        double rot = 30 * Math.PI / 180;//(getDir() - 90) * Math.PI / 180;
 
         // rotation matrix to translate the entity's location by the player's rotation
-        x =  x * Math.cos(rot) - y * Math.sin(rot);
-        y =  x * Math.sin(rot) + y * Math.cos(rot);
-
-//        System.out.println(x + "\t\t\t" + y);
+        double newX = x * Math.cos(rot) - y * Math.sin(rot);
+        double newY = x * Math.sin(rot) + y * Math.cos(rot);
 
         // check if any of the collision points are within the entity's circle
         for (int i = 0; i < collision.length; i++) {
-            dist = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
+            double dist = Math.sqrt(Math.pow(newX - collision[i][0], 2) + Math.pow(newY - collision[i][1], 2));
 
-//            System.out.println(dist + ", " + x + ", " + y);
             if (dist < r)
                 return true;
         }

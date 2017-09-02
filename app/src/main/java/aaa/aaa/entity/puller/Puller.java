@@ -102,14 +102,6 @@ public class Puller extends EntityBase {
                 changeYVelocity(puller);
             }
 
-            double dist = getDistanceTo(attractedTo.get(0));
-            if (dist > maxDist) {
-                maxDist = dist;
-                vX = Math.abs(getXVelocity());
-                vY = Math.abs(getYVelocity());
-            }
-            System.out.println(maxDist + ", " + vX + ", " + vY);
-
             float dir = (float) Math.atan(getYVelocity() / getXVelocity());
 
             if (getXVelocity() < 0) dir = (float) (dir + Math.PI);
