@@ -125,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
                     unlocks[selectedLevel] = true;
             }
             setContentView(R.layout.win_screen);
+
             playing = false;
         }
     }

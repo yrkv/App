@@ -16,24 +16,41 @@
         android:paddingTop="20dp"
         android:id="@+id/textView6" />
 
-    <Button
-        android:id="@+id/button32"
-        android:layout_width="180dp"
-        android:layout_height="400dp"
-        android:layout_below="@+id/textView6"
-        android:layout_marginTop="37dp"
-        android:background="#88ffffff"
-        android:onClick="callOnBackPressed"
-        android:text="Return to Level Select" />
 
-    <Button
-        android:id="@+id/button33"
-        android:layout_width="180dp"
-        android:layout_height="400dp"
-        android:layout_alignTop="@+id/button32"
-        android:layout_alignParentRight="true"
-        android:background="#88ffffff"
-        android:text="Next Level"
-        android:onClick="GameLoop"/>
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/textView6"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="35dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/button32"
+            android:layout_width="0dp"
+            android:layout_weight="0.45"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:background="#88ffffff"
+            android:onClick="callOnBackPressed"
+            android:text="Return to\nLevel Select" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="0.1"
+            android:layout_height="match_parent"
+            />
+
+        <Button
+            android:id="@+id/button33"
+            android:layout_width="0dp"
+            android:layout_weight="0.45"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:background="#88ffffff"
+            android:text="Next Level"
+            android:onClick="GameLoop"/>
+    </LinearLayout>
 
 </RelativeLayout>
