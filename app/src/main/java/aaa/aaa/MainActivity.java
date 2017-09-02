@@ -37,30 +37,26 @@ public class MainActivity extends AppCompatActivity {
     public boolean pause = false;
     private int selectedLevel = 1;
 
-    private int activeView = R.layout.activity_main;
-
     public static int width = 0;
     public static int height = 0;
 
     private ArrayList<Integer> viewHistory = new ArrayList<>();
 
-    private boolean[] unlocks = new boolean[19];
-    private boolean[] completed = new boolean[19];
-    private boolean[] shownInfoScreens = new boolean[19];
-
     private static final int[][] stages = {
             {0, 9},
             {9, 15},
-            {15, 19}
+            {15, 18}
     };
+
+    private boolean[] unlocks = new boolean[stages[stages.length-1][1]];
+    private boolean[] completed = new boolean[stages[stages.length-1][1]];
+    private boolean[] shownInfoScreens = new boolean[stages[stages.length-1][1]];
 
     private static final String[] STAGE_NAMES = {
             "Stage 1: The Basics",
             "Stage 2: Black Holes",
             "Stage 3: Dynamic Planets"
     };
-
-    private int stage = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
         super.setContentView(layoutResID);
 
         viewHistory.add(layoutResID);
-        activeView = layoutResID;
     }
 
     @Override
@@ -123,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
     public void Win() {
         if (playing) {
             completed[selectedLevel-1] = true;
-            if (selectedLevel < completed.length) { // TODO fix to # of levels
+            if (selectedLevel < completed.length) {
                 unlocks[selectedLevel] = true;
                 selectedLevel++;
                 if (selectedLevel < completed.length)
@@ -310,9 +305,9 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i = 0; i < STAGE_NAMES.length; i++) {
             String STAGE_NAME = STAGE_NAMES[i];
-            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(width, ViewGroup.LayoutParams.MATCH_PARENT);
+            RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(width, ViewGroup.LayoutParams.MATCH_PARENT);
 
-            View stage = getLayoutInflater().inflate(R.layout.level_select, levelSelects, false);
+            RelativeLayout stage = (RelativeLayout) getLayoutInflater().inflate(R.layout.level_select, levelSelects, false);
             stage.setLayoutParams(p);
 
             stage.findViewById(R.id.levelsLayout).setOnTouchListener(new View.OnTouchListener() {
@@ -328,34 +323,9 @@ public class MainActivity extends AppCompatActivity {
 
 
             for (int j = stages[i][0]; j < stages[i][1]; j++) {
-                Button button = new Button(this);
-
-                int px = (int) TypedValue.applyDimension(
-                        TypedValue.COMPLEX_UNIT_DIP,
-                        40,
-                        getResources().getDisplayMetrics()
-                );
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, px);
-                params.setMargins(px / 4, px / 8, px / 4, 0);
-                button.setLayoutParams(params);
-
-                button.setText("" + (j + 1));
-
-                if (completed[j]) {
-                    button.setBackgroundColor(0x8888ff88);
-                } else {
-                    button.setBackgroundColor(0xaaaaaaaa);
-                }
-
-                if (!unlocks[j]) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        button.setForeground(getResources().getDrawable(R.drawable.lock, getTheme()));
-                    }
-                }
-
                 final int level = j + 1;
 
-                createLevelButton((LinearLayout) stage, scrollView, level);
+                createLevelButton((LinearLayout) stage.findViewById(R.id.levelsLayout), scrollView, level);
             }
         }
     }
@@ -363,9 +333,39 @@ public class MainActivity extends AppCompatActivity {
     private void createLevelButton(LinearLayout layout, final HorizontalScrollView scrollView, final int level) {
         final View button = getLayoutInflater().inflate(R.layout.level_select_button, layout, false);
 
-        // do all the shit here
+        int px = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                40,
+                getResources().getDisplayMetrics()
+        );
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, px);
+        params.setMargins(px / 4, px / 8, px / 4, 0);
+        button.setLayoutParams(params);
+
+        Button asdf = (Button)(button.findViewById(R.id.asdf_button));
+
+        asdf.setText(""+level); // keep the ""+, it makes it use the right method
+
+        if (completed[level-1]) {
+            asdf.setBackgroundColor(0x8888ff88);
+        } else {
+            asdf.setBackgroundColor(0xaaaaaaaa);
+        }
+
+        if (!unlocks[level-1]) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                asdf.setForeground(getResources().getDrawable(R.drawable.lock, getTheme()));
+            }
+        }
 
         button.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return false;
+            }
+        });
+
+        asdf.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
             public boolean onTouch(View v, MotionEvent event) {
