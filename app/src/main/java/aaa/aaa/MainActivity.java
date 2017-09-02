@@ -227,6 +227,10 @@ public class MainActivity extends AppCompatActivity {
         GameLoop(v);
     }
 
+    public void Hint(View v) {
+
+    }
+
     private void readData() {
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         int defaultValue = 1;
