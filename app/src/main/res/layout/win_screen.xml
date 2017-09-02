@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:background="@drawable/firework"
     android:layout_height="match_parent">
@@ -11,39 +12,28 @@
         android:textSize="70dp"
         android:gravity="center"
         android:layout_centerHorizontal="true"
-        android:textColor="#ffffff"
+        android:textColor="#ffff00"
         android:paddingTop="20dp"
         android:id="@+id/textView6" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="match_parent"
-        android:textColor="#ffffff"
-        android:layout_height="wrap_content"
-        android:text="Good Job. You managed to get down to Earth."
-        android:textSize="40dp"
-        android:gravity="center"
-        android:layout_centerVertical="true"/>
-
     <Button
         android:id="@+id/button32"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:layout_alignLeft="@+id/textView6"
-        android:layout_alignStart="@+id/textView6"
-        android:layout_below="@+id/textView5"
+        android:layout_width="180dp"
+        android:layout_height="400dp"
+        android:layout_below="@+id/textView6"
         android:layout_marginTop="37dp"
-        android:text="Next Level"
-        android:onClick="GameLoop"/>
+        android:background="#88ffffff"
+        android:onClick="callOnBackPressed"
+        android:text="Return to Level Select" />
 
     <Button
         android:id="@+id/button33"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:layout_alignBottom="@+id/button32"
-        android:layout_alignEnd="@+id/textView6"
-        android:layout_alignRight="@+id/textView6"
-        android:text="Return to Level Select"
-        android:onClick="callOnBackPressed"/>
+        android:layout_width="180dp"
+        android:layout_height="400dp"
+        android:layout_alignTop="@+id/button32"
+        android:layout_alignParentRight="true"
+        android:background="#88ffffff"
+        android:text="Next Level"
+        android:onClick="GameLoop"/>
 
 </RelativeLayout>
