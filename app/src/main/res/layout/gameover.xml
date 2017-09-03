@@ -1,19 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:background="@drawable/lose"
+    android:background="@drawable/desolate"
     android:layout_height="match_parent">
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Try not to crash into anything unless it's the Earth, otherwise it's game over."
-        android:textSize="40dp"
-        android:background="#bb000000"
-        android:textColor="#ffffff"
-        android:gravity="center"
-        android:layout_centerVertical="true"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -26,24 +15,39 @@
         android:paddingTop="20dp"
         android:id="@+id/textView6" />
 
-    <Button
-        android:id="@+id/button32"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:layout_alignLeft="@+id/textView6"
-        android:layout_alignStart="@+id/textView6"
-        android:layout_below="@+id/textView5"
-        android:layout_marginTop="37dp"
-        android:text="Restart Level"
-        android:onClick="GameLoop"/>
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/textView6"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="35dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/button33"
-        android:layout_width="100dp"
-        android:layout_height="70dp"
-        android:layout_alignBottom="@+id/button32"
-        android:layout_alignEnd="@+id/textView6"
-        android:layout_alignRight="@+id/textView6"
-        android:text="Return to Level Select"
-        android:onClick="callOnBackPressed"/>
+        <Button
+            android:id="@+id/button32"
+            android:layout_width="0dp"
+            android:layout_weight="0.45"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:background="#88ffffff"
+            android:onClick="callOnBackPressed"
+            android:text="Return to\nLevel Select" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="0.1"
+            android:layout_height="match_parent"
+            />
+
+        <Button
+            android:id="@+id/button33"
+            android:layout_width="0dp"
+            android:layout_weight="0.45"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:background="#88ffffff"
+            android:text="Restart Level"
+            android:onClick="GameLoop"/>
+    </LinearLayout>
 </RelativeLayout>
