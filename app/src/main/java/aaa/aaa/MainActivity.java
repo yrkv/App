@@ -286,16 +286,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    x = event.getX();
+                    x = event.getRawX();
                     canScroll = true;
                 }
                 if (event.getAction() == MotionEvent.ACTION_MOVE && canScroll) {
-                    float xDiff = event.getX() - x;
+                    float xDiff = event.getRawX() - x;
                     scrollView.setScrollX((int) (-xDiff) + width * s);
                 }
                 if (event.getAction() == MotionEvent.ACTION_UP) {
                     canScroll = false;
-                    float xDiff = event.getX() - x;
+                    float xDiff = event.getRawX() - x;
 
                     if (xDiff > SCROLL_MINIMUM && s > 0) {
                         s--;
@@ -350,44 +350,35 @@ public class MainActivity extends AppCompatActivity {
         params.setMargins(px / 4, px / 8, px / 4, 0);
         button.setLayoutParams(params);
 
-        Button asdf = (Button)(button.findViewById(R.id.asdf_button));
-
-        asdf.setText(""+level); // keep the ""+, it makes it use the right method
+        ((TextView)button.findViewById(R.id.levelText)).setText(""+level); // keep the ""+, it makes it use the right method
 
         if (completed[level-1]) {
-            asdf.setBackgroundColor(0x8888ff88);
+            button.findViewById(R.id.button_color).setBackgroundColor(0x8888ff88);
         } else {
-            asdf.setBackgroundColor(0xaaaaaaaa);
+            button.findViewById(R.id.button_color).setBackgroundColor(0xaaaaaaaa);
         }
 
         if (!unlocks[level-1]) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                asdf.setForeground(getResources().getDrawable(R.drawable.lock, getTheme()));
+                button.findViewById(R.id.levelText).setForeground(getResources().getDrawable(R.drawable.lock, getTheme()));
             }
         }
+
 
         button.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                return false;
-            }
-        });
-
-        asdf.setOnTouchListener(new View.OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    x = event.getX();
+                    x = event.getRawX();
                     canScroll = true;
                 }
                 if (event.getAction() == MotionEvent.ACTION_MOVE && canScroll) {
-                    float xDiff = event.getX() - x;
+                    float xDiff = event.getRawX() - x;
                     scrollView.setScrollX((int) (-xDiff) + width * s);
                 }
                 if (event.getAction() == MotionEvent.ACTION_UP) {
                     canScroll = false;
-                    float xDiff = event.getX() - x;
+                    float xDiff = event.getRawX() - x;
 
                     if (xDiff > SCROLL_MINIMUM && s > 0) {
                         s--;
@@ -399,6 +390,41 @@ public class MainActivity extends AppCompatActivity {
                     } else if (levelUnlocked(level)) {
                         selectedLevel = level;
                         GameLoop(v);
+                    } else {
+                        scrollTo(s);
+                    }
+                }
+
+                return true;
+            }
+        });
+
+        button.findViewById(R.id.preview).setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    x = event.getRawX();
+                    canScroll = true;
+                }
+                if (event.getAction() == MotionEvent.ACTION_MOVE && canScroll) {
+                    float xDiff = event.getRawX() - x;
+                    scrollView.setScrollX((int) (-xDiff) + width * s);
+                }
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    canScroll = false;
+                    float xDiff = event.getRawX() - x;
+
+                    if (xDiff > SCROLL_MINIMUM && s > 0) {
+                        s--;
+                        scrollTo(s);
+                    }
+                    else if (xDiff < -SCROLL_MINIMUM && s < STAGE_NAMES.length - 1) {
+                        s++;
+                        scrollTo(s);
+                    } else if (levelUnlocked(level)) {
+                        selectedLevel = level;
+                        GameLoop(v); // TODO: replace this with the preview
                     } else {
                         scrollTo(s);
                     }

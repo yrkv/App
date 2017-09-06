@@ -1,8 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/round_corners"
     android:layout_width="match_parent" android:layout_height="match_parent">
-    <Button
-        android:id="@+id/asdf_button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_weight="0.15"
+        android:layout_height="match_parent"
+        android:id="@+id/button_color"
+        />
+
+    <TextView
+        android:background="#aaaaaaaa"
+        android:id="@+id/levelText"
+        android:layout_width="0dp"
+        android:layout_weight="0.15"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:layout_height="match_parent"
+        />
+
+    <RelativeLayout
+        android:id="@+id/starsLayout"
+        android:layout_width="0dp"
+        android:layout_weight="0.4"
+        android:layout_height="match_parent">
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="0.3"
+        android:layout_height="match_parent"
+        android:text="preview"
+        android:id="@+id/preview"
+        android:gravity="center"
+        android:background="#aaaaaaaa"
+        />
 </LinearLayout>
