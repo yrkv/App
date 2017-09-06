@@ -26,6 +26,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import aaa.aaa.entity.Star;
 import aaa.aaa.level.LevelData;
 
 public class MainActivity extends AppCompatActivity {
@@ -46,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
             {0, 9},
             {9, 15},
             {15, 18}
+    };
+
+    //Dat reference doe
+    //This is where all of the Stars are hardcoded in; formatted [Level][StarPath][NumInPath]
+    private static final Star[][][] STAR_CONTAINER = {
+
     };
 
     private boolean[] unlocks = new boolean[stages[stages.length-1][1]];
