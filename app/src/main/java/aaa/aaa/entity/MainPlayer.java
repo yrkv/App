@@ -18,10 +18,10 @@ public class MainPlayer extends EntityBase {
 
     private static final int[][] collision = {
             {0, 0},
-            {-10, 50},
-            {-10, -50},
             {10, 50},
-            {10, -50}
+            {10, -50},
+            {-10, 50},
+            {-10, -50}
     };
 
     public MainPlayer(double x, double y, double xVelocity, double yVelocity, Level level) {
@@ -66,7 +66,7 @@ public class MainPlayer extends EntityBase {
         double y = entityBase.getY() - getY();
         float r  = entityBase.getSize();
 
-        double rot = (getDir() - 90) * Math.PI / 180;
+        double rot = -(getDir()) * Math.PI / 180;
 
         // rotation matrix to translate the entity's location by the player's rotation
         double newX = x * Math.cos(rot) - y * Math.sin(rot);

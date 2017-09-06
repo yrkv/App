@@ -31,7 +31,7 @@ import aaa.aaa.level.LevelData;
 public class MainActivity extends AppCompatActivity {
 
     //CONFIG
-    private final double TICKSPEED = 60.0; //in milliseconds
+    private final double TICKSPEED = 30.0; //in milliseconds
     //END CONFIG
     public boolean playing = false;
     public boolean pause = false;
