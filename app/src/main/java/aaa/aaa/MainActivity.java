@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int[][] stages = {
             {0, 9},
             {9, 15},
-            {15, 18}
+            {15, 19}
     };
 
     //Dat reference doe
@@ -275,6 +275,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     float x = -1;
+    float y = -1;
     int s = 0;
     boolean canScroll = false;
     private static final int SCROLL_MINIMUM = 60;
@@ -370,6 +371,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     x = event.getRawX();
+                    y = event.getRawY();
                     canScroll = true;
                 }
                 if (event.getAction() == MotionEvent.ACTION_MOVE && canScroll) {
@@ -379,6 +381,7 @@ public class MainActivity extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
                     canScroll = false;
                     float xDiff = event.getRawX() - x;
+                    float yDiff = event.getRawY() - y;
 
                     if (xDiff > SCROLL_MINIMUM && s > 0) {
                         s--;
@@ -387,7 +390,7 @@ public class MainActivity extends AppCompatActivity {
                     else if (xDiff < -SCROLL_MINIMUM && s < STAGE_NAMES.length - 1) {
                         s++;
                         scrollTo(s);
-                    } else if (levelUnlocked(level)) {
+                    } else if (levelUnlocked(level) && yDiff < 50) {
                         selectedLevel = level;
                         GameLoop(v);
                     } else {
@@ -414,6 +417,7 @@ public class MainActivity extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_UP) {
                     canScroll = false;
                     float xDiff = event.getRawX() - x;
+                    float yDiff = event.getRawY() - y;
 
                     if (xDiff > SCROLL_MINIMUM && s > 0) {
                         s--;
@@ -422,7 +426,7 @@ public class MainActivity extends AppCompatActivity {
                     else if (xDiff < -SCROLL_MINIMUM && s < STAGE_NAMES.length - 1) {
                         s++;
                         scrollTo(s);
-                    } else if (levelUnlocked(level)) {
+                    } else if (levelUnlocked(level) && yDiff < 50) {
                         selectedLevel = level;
                         GameLoop(v); // TODO: replace this with the preview
                     } else {
@@ -442,75 +446,6 @@ public class MainActivity extends AppCompatActivity {
 
         scrollView.smoothScrollTo(stage * width, 0);
     }
-
-    /*private void generateLevelSelectButtons(View v) {
-        final ImageView background = (ImageView) findViewById(R.id.level_bg);
-
-        RelativeLayout layout = (RelativeLayout) findViewById(R.id.level_select);
-
-        Resources r = getResources();
-        int px = 2000;
-
-        final RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams( RelativeLayout.LayoutParams.MATCH_PARENT, px );
-        background.setLayoutParams(p);
-
-        ScrollView scrollView = (ScrollView) findViewById(R.id.level_select_scroll);
-
-        scrollView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                p.setMargins(0, -v.getScrollY(), 0, 0);
-
-                background.requestLayout();
-
-                return false;
-            }
-        });
-
-
-        LinearLayout select = (LinearLayout) findViewById(R.id.levelSelectLayout);
-
-        for (int i = stages[stage][0]; i < stages[stage][1]; i++) {
-            Button button = new Button(this);
-
-            px = (int) TypedValue.applyDimension(
-                    TypedValue.COMPLEX_UNIT_DIP,
-                    20,
-                    r.getDisplayMetrics()
-            );
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams( LinearLayout.LayoutParams.MATCH_PARENT, px * 2);
-            params.setMargins(0, 0, 0, px);
-            button.setLayoutParams(params);
-
-            button.setText("" + (i+1));
-
-            if (completed[i]) {
-                button.setBackgroundColor(0x8888ff88);
-            } else {
-                button.setBackgroundColor(0xaaaaaaaa);
-            }
-
-            if (!unlocks[i]) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    button.setForeground(getResources().getDrawable(R.drawable.lock, getTheme()));
-                }
-            }
-
-            final int level = i+1;
-
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (levelUnlocked(level)) {
-                        selectedLevel = level;
-                        GameLoop(v);
-                    }
-                }
-            });
-
-            select.addView(button);
-        }
-    }*/
 
     private boolean levelUnlocked(int selectedLevel) {
         return unlocks[selectedLevel-1];

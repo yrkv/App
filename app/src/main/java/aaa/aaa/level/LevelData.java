@@ -66,6 +66,8 @@ public class LevelData {
                 break;
             case 18: genLevel18(); // TODO: fix
                 break;
+            case 19: genLevel19();
+                break;
             case -1: startScreen();
         }
     }
@@ -239,6 +241,16 @@ public class LevelData {
         double dist = 250;
         new MainPlayer(0, dist, Math.sqrt(7500/dist), 0, level);
     }
+
+    private void genLevel19() {
+        new MainPlayer(0, 0, 10, 0, level);
+
+        new Planet(0, 400, 0.5f, 0, 0, 200, level).toggleGravity();
+        new Planet(0,-400, 0.5f, 0, 0, 200, level).toggleGravity();
+
+        new Earth(0, -750, 0, 0, 50, level);
+    }
+
     private void startScreen() {
         Earth earth = new Earth(0, 200, 0.5f, 0, 0, 75, level);
         earth.toggleGravity();
