@@ -364,7 +364,7 @@ public class MainActivity extends AppCompatActivity {
         if (completed[level-1]) {
             button.findViewById(R.id.button_color).setBackgroundColor(0x8888ff88);
         } else {
-            button.findViewById(R.id.button_color).setBackgroundColor(0xaaaaaaaa);
+            button.findViewById(R.id.button_color).setBackgroundColor(0xaaaaaaff);
         }
 
         if (!unlocks[level-1]) {
