@@ -27,8 +27,8 @@ public class EntityBase {
     protected ImageView imageView;
     private boolean tint = false;
     private float size;
-    private boolean render = false;
-    protected boolean display = true;
+    private boolean render = false; // used by the system to not render it right away
+    protected boolean display = true; // edit this value to toggle rendering programmatically
 
     public EntityBase(double x, double y, float dir, double xVelocity, double yVelocity, float size, Level level) {
         this.x = x;

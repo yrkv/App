@@ -1,5 +1,7 @@
 package aaa.aaa.entity;
 
+import android.widget.ImageView;
+
 import aaa.aaa.R;
 import aaa.aaa.level.Level;
 
@@ -7,16 +9,28 @@ import aaa.aaa.level.Level;
  * Created by Kaleb on 9/4/2017.
  */
 
-public class Star {
+public class Star extends EntityBase {
     private boolean unlocked = false;
     private boolean collected;
 
-    public Star(double x, double y) {
+    public Star(double x, double y, int starType, Level level) {
+        super(x, y, 0.5f, 0, 0, 50f, level);
         collected = false;
 
-        //TODO: This resource is potentially temporary; Also a tint must be added even if it is not kept.
-        //TODO: Figure out how to work around the fact that this method is not available.
-//        setImageView(R.drawable.star);
+        setImageView(R.drawable.star);
+        imageView.setColorFilter(typeToColor(starType));
+    }
+
+    private int typeToColor(int type) {
+        switch (type) {
+            case 0: return 0xff0000;
+            case 1: return 0x00ff00;
+            case 2: return 0x0000ff;
+            case 3: return 0xffff00;
+            case 4: return 0xff00ff;
+            case 5: return 0x00ffff;
+        }
+        return 31415; // because fuck it - error color
     }
 
     public boolean getUnlocked() {
