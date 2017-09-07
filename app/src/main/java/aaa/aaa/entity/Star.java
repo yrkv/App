@@ -11,7 +11,7 @@ public class Star {
     private boolean unlocked = false;
     private boolean collected;
 
-    public Star(double x, double y, float size) {
+    public Star(double x, double y) {
         collected = false;
 
         //TODO: This resource is potentially temporary; Also a tint must be added even if it is not kept.

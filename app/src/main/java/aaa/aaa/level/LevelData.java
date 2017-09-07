@@ -6,6 +6,7 @@ import android.widget.RelativeLayout;
 import aaa.aaa.MainActivity;
 import aaa.aaa.R;
 import aaa.aaa.entity.MainPlayer;
+import aaa.aaa.entity.Star;
 import aaa.aaa.entity.Wormhole;
 import aaa.aaa.entity.puller.BlackHole;
 import aaa.aaa.entity.puller.Earth;
@@ -23,6 +24,12 @@ public class LevelData {
 
         getLevelData(selectedLevel);
     }
+
+    //Dat reference doe
+    //This is where all of the Stars are hardcoded in; formatted [Level][StarPath][NumInPath]
+    private static final Star[][][] STAR_CONTAINER = {
+
+    };
 
     public Level getLevel() {
         return level;
@@ -78,14 +85,9 @@ public class LevelData {
     //
     //
     private void genLevel1() {
-//        new MainPlayer(-300, 1500, 4, -2, level);
-//        new Earth(0, 0, 0.5f, 0, 0, 80, level);
-//        new Planet(200, 900, 0.5f, 0, 0, 70, level, R.drawable.planet6);
-        Wormhole one = new Wormhole(200,-200,0,0,80,level);
-        Wormhole two = new Wormhole(-200,200,0,0,80,level);
-        two.mutualPair(one);
-        new Planet(400,-400,0.5f,0,0,100,level);
-        new MainPlayer(0,0,0,0,level);
+        new MainPlayer(-300, 1500, 4, -2, level);
+        new Earth(0, 0, 0.5f, 0, 0, 80, level);
+        new Planet(200, 900, 0.5f, 0, 0, 70, level, R.drawable.planet6);
     }
     private void genLevel2() {
         new MainPlayer(-500, 1700, 5, -3, level);

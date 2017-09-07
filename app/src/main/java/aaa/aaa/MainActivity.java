@@ -49,11 +49,6 @@ public class MainActivity extends AppCompatActivity {
             {15, 19}
     };
 
-    //Dat reference doe
-    //This is where all of the Stars are hardcoded in; formatted [Level][StarPath][NumInPath]
-    private static final Star[][][] STAR_CONTAINER = {
-
-    };
 
     private boolean[] unlocks = new boolean[stages[stages.length-1][1]];
     private boolean[] completed = new boolean[stages[stages.length-1][1]];
