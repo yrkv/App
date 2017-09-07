@@ -177,6 +177,9 @@ public class MainActivity extends AppCompatActivity {
             };
 
             playing = true;
+          	if(preview) {
+              	pause = true;
+            }
             Thread myThread = new Thread(myRunnable);
             myThread.start();
         }
