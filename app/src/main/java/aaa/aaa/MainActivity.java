@@ -283,11 +283,19 @@ public class MainActivity extends AppCompatActivity {
     public void createLevelSelect(View v) {
         final HorizontalScrollView scrollView = (HorizontalScrollView) findViewById(R.id.horizontalScroll);
 
+        scrollView.post(new Runnable() {
+            @Override
+            public void run() {
+                instantScrollTo(s);
+            }
+        });
+
         scrollView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     x = event.getRawX();
+                    y = event.getRawY();
                     canScroll = true;
                 }
                 if (event.getAction() == MotionEvent.ACTION_MOVE && canScroll) {
@@ -408,6 +416,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     x = event.getRawX();
+                    y = event.getRawY();
                     canScroll = true;
                 }
                 if (event.getAction() == MotionEvent.ACTION_MOVE && canScroll) {
@@ -418,6 +427,7 @@ public class MainActivity extends AppCompatActivity {
                     canScroll = false;
                     float xDiff = event.getRawX() - x;
                     float yDiff = event.getRawY() - y;
+                    System.out.println(yDiff);
 
                     if (xDiff > SCROLL_MINIMUM && s > 0) {
                         s--;
@@ -445,6 +455,12 @@ public class MainActivity extends AppCompatActivity {
         HorizontalScrollView scrollView = (HorizontalScrollView) findViewById(R.id.horizontalScroll);
 
         scrollView.smoothScrollTo(stage * width, 0);
+    }
+
+    private void instantScrollTo(int stage) {
+        HorizontalScrollView scrollView = (HorizontalScrollView) findViewById(R.id.horizontalScroll);
+
+        scrollView.scrollTo(stage * width, 0);
     }
 
     private boolean levelUnlocked(int selectedLevel) {
