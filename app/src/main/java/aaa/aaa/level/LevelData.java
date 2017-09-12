@@ -151,11 +151,12 @@ public class LevelData {
         new Planet(Math.sqrt(3)*-300,  300, 0.5f, 0, 0, 30, level, R.drawable.planet6);
         new Planet(Math.sqrt(3)*-300, -300, 0.5f, 0, 0, 30, level, R.drawable.planet6);
     }
-
-
-
-
-
+	//
+  	//end
+  	// THE BASICS
+  	//start
+  	// BLACK HOLES
+	//
     private void genLevel10() {
         new MainPlayer(0, 150, 6, 0, level);
         new Earth(0, 600, 0.5f, 0, 0, 75, level);
@@ -214,10 +215,10 @@ public class LevelData {
         b.addPuller(a);
     }
     //
-    //
+    //End
     // BLACK HOLES
-    //
-    //
+    //Start
+    // DYNAMIC PLANETS
     private void genLevel16() {
         Earth earth = new Earth(0, 200, 0.5f, 0, 0, 75, level);
         earth.toggleGravity();
@@ -243,7 +244,6 @@ public class LevelData {
         double dist = 250;
         new MainPlayer(0, dist, Math.sqrt(7500/dist), 0, level);
     }
-
     private void genLevel19() {
         new MainPlayer(0, 0, 10, 0, level);
 
@@ -251,6 +251,9 @@ public class LevelData {
         new Planet(0,-400, 0.5f, 0, 0, 200, level).toggleGravity();
 
         new Earth(0, -750, 0, 0, 50, level);
+    }
+  	private void genLevel20() {
+    		 
     }
 
     private void startScreen() {
