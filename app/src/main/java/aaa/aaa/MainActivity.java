@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean[] completed = new boolean[stages[stages.length-1][1]];
     private boolean[] shownInfoScreens = new boolean[stages[stages.length-1][1]];
 
+    public boolean[][] completedStarPaths = new boolean[stages[stages.length-1][1]][10];
+
     private static final String[] STAGE_NAMES = {
             "Stage 1: The Basics",
             "Stage 2: Black Holes",
@@ -132,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
                     unlocks[selectedLevel] = true;
             }
             setContentView(R.layout.win_screen);
-
             playing = false;
         }
     }
@@ -282,10 +283,12 @@ public class MainActivity extends AppCompatActivity {
         int unlocksNum = sharedPref.getInt(getString(R.string.unlocks_data), defaultValue);
         int completedNum = sharedPref.getInt(getString(R.string.completed_data), 0);
         int infoNum = sharedPref.getInt(getString(R.string.info_data), 0);
+        String starData = sharedPref.getString("com.downToEarth.starData", arrToString(completedStarPaths));
 
         unlocks = numToArr(unlocksNum);
         completed = numToArr(completedNum);
         shownInfoScreens = numToArr(infoNum);
+        completedStarPaths = stringToArr(starData);
     }
 
     private void writeData() {
@@ -295,6 +298,7 @@ public class MainActivity extends AppCompatActivity {
         editor.putInt(getString(R.string.unlocks_data), arrToInt(unlocks));
         editor.putInt(getString(R.string.completed_data), arrToInt(completed));
         editor.putInt(getString(R.string.info_data), arrToInt(shownInfoScreens));
+        editor.putString("com.downToEarth.starData", arrToString(completedStarPaths));
         editor.apply();
     }
 
@@ -314,6 +318,33 @@ public class MainActivity extends AppCompatActivity {
             num = num>>1;
         }
         return out;
+    }
+
+    private String arrToString(boolean[][] arr) {
+        String text = "";
+
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[i].length; j++) {
+                text += arr[i][j] ? 1 : 0;
+            }
+        }
+
+        return text;
+    }
+
+    private boolean[][] stringToArr(String s) {
+        boolean[][] arr = new boolean[stages[stages.length-1][1]][10];
+
+        for (int i = 0; i < arr.length; i++) {
+            String sub = s.substring(i * 10, i * 10 + 10);
+            for (int j = 0; j < 10; j ++) {
+                char b = sub.charAt(j);
+
+                arr[i][j] = (b == '1');
+            }
+        }
+
+        return arr;
     }
 
     float x = -1;

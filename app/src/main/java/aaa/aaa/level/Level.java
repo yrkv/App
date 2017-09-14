@@ -37,9 +37,15 @@ public class Level {
     // prevents using stars on levels that don't have them.
     // check this whenever you do anything with stars.
     private boolean useStars;
+    private int selectedLevel;
+    private int starPath;
 
     private Star[] stars;
     private int[][] starData;
+
+    private boolean starPathCompleted = false;
+
+    private int currentStar = 0;
 
     private boolean airlockLeft = false;
     private boolean airlockRight = false;
@@ -54,6 +60,8 @@ public class Level {
         this.mainActivity = mainActivity;
         this.context = context;
         this.layout = layout;
+        this.selectedLevel = selectedLevel;
+        this.starPath = starPath;
 
         useStars = selectedLevel > 0 && selectedLevel <= StarData.STAR_CONTAINER.length;
 
@@ -65,6 +73,20 @@ public class Level {
             for (int i = 0; i < starData.length; i++) {
                 stars[i] = new Star(starData[i][0], starData[i][1], starPath, this);
             }
+
+            stars[currentStar].enable();
+        }
+    }
+
+    public void nextStar() {
+        currentStar++;
+        if (currentStar < stars.length)
+            stars[currentStar].enable();
+        else {
+            // star path finished
+            // set flag to complete star path then the level is won
+
+            starPathCompleted = true;
         }
     }
 
@@ -182,6 +204,10 @@ public class Level {
     }
 
     public void Win() {
+        if (starPathCompleted && selectedLevel > 0) {
+            mainActivity.completedStarPaths[selectedLevel-1][starPath] = true;
+        }
+
         mainActivity.Win();
     }
 
