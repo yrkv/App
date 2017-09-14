@@ -12,6 +12,8 @@ import aaa.aaa.level.Level;
 
 public class Indicator extends EntityBase {
     private Puller parent;
+    private float x;
+    private float y;
 
     public Indicator(Puller parent) {
         super(-100000, -100000, 0.5f, 0, 0, 40, parent.getLevel());
@@ -32,9 +34,27 @@ public class Indicator extends EntityBase {
 
     @Override
     protected boolean onTouch(View v, MotionEvent event) {
-        if (event.getAction() == 0) {
-            if (getParent().getGravity())
-                getParent().toggleGravity();
+        if(!getLevel().mainActivity.preview) {
+            if (event.getAction() == 0) {
+                if (getParent().getGravity())
+                    getParent().toggleGravity();
+            }
+        }
+        if(getLevel().mainActivity.preview) {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                x = event.getX();
+                y = event.getY();
+            }
+            if (event.getAction() == MotionEvent.ACTION_MOVE) {
+                if (event.getX() != x) {
+                    getLevel().xOffset -= event.getX() - x;
+                    x = event.getX();
+                }
+                if (event.getY() != y) {
+                    getLevel().yOffset -= event.getY() - y;
+                    y = event.getY();
+                }
+            }
         }
         return true;
     }

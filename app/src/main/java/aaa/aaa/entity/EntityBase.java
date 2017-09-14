@@ -191,10 +191,10 @@ public class EntityBase {
     }
 
     public boolean move() {
-        xVelocity *= slowCoeff;
-        yVelocity *= slowCoeff;
 
         if(canMove()) {
+            xVelocity *= slowCoeff;
+            yVelocity *= slowCoeff;
             x += xVelocity;
             y += yVelocity;
         }

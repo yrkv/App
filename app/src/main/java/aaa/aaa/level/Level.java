@@ -23,7 +23,7 @@ import aaa.aaa.entity.puller.Puller;
  */
 
 public class Level {
-    private MainActivity mainActivity;
+    public MainActivity mainActivity;
     private ArrayList<EntityBase> entities = new ArrayList<>();
     private ArrayList<Puller> pullers = new ArrayList<>();
     private RelativeLayout layout;
@@ -48,6 +48,7 @@ public class Level {
 
     private boolean canAirlock = false;
     private float x = -1;
+    private float y = -1;
 
     public Level(RelativeLayout layout, Context context, MainActivity mainActivity, int selectedLevel, int starPath) {
         this.mainActivity = mainActivity;
@@ -90,28 +91,28 @@ public class Level {
 
     public void setBackground(ImageView background) {
         this.background = background;
-
-        this.background.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    x = event.getX();
-                    canAirlock = true;
-                }
-                if (event.getAction() == MotionEvent.ACTION_MOVE && canAirlock) {
-                    float xDiff = event.getX() - x;
-                    if (xDiff < -50) {
-                        airlockLeft();
-                        canAirlock = false;
+        if(mainActivity.preview) {
+            this.background.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                        x = event.getX();
+                        y = event.getY();
                     }
-                    if (xDiff > 50) {
-                        airlockRight();
-                        canAirlock = false;
+                    if (event.getAction() == MotionEvent.ACTION_MOVE) {
+                        if (event.getX() != x) {
+                            xOffset -= event.getX() - x;
+                            x = event.getX();
+                        }
+                        if (event.getY() != y) {
+                            yOffset -= event.getY() - y;
+                            y = event.getY();
+                        }
                     }
+                    return true;
                 }
-                return true;
-            }
-        });
+            });
+        }
     }
 
     private void airlockLeft() {

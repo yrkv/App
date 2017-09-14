@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private final double TICKSPEED = 60.0; //in milliseconds
     //END CONFIG
     public boolean playing = false;
+    public boolean preview = false;
     public boolean pause = false;
     private int selectedLevel = 1;
 
@@ -113,6 +114,10 @@ public class MainActivity extends AppCompatActivity {
         pause = false;
     }
 
+    public void preview(View v) {
+
+    }
+
     public boolean isPause() {
         return pause;
     }
@@ -185,6 +190,44 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void previewLoop(View v) {
+        previewLoop();
+    }
+
+    public void previewLoop() {
+        final LevelData levelData;
+        setContentView(R.layout.game_activity);
+        levelData = new LevelData((RelativeLayout) findViewById(R.id.next_activity), this, this, selectedLevel);
+
+        levelData.getLevel().setBackground((ImageView) findViewById(R.id.background));
+        levelData.getLevel().xOffset = 0;
+        levelData.getLevel().yOffset = 0;
+
+        Runnable myRunnable = new Runnable() {
+            double t = System.currentTimeMillis();
+            double dt = 1000.0 / TICKSPEED;
+
+            @Override
+            public void run() {
+                while (playing) {
+                    if (System.currentTimeMillis() - t > dt) {
+                        t += dt;
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                levelData.getLevel().render();
+                                levelData.getLevel().updateGUI();
+                            }
+                        });
+                    }
+                }
+            }
+        };
+
+        playing = true;
+        Thread myThread = new Thread(myRunnable);
+        myThread.start();
+    }
+
     private int levelToInfoScreen(int level) {
         switch (level) {
             case 1:
@@ -199,6 +242,7 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         pause = false;
         playing = false;
+        preview = false;
         if (viewHistory.size() > 1) {
             viewHistory.remove(viewHistory.size() - 1);
             int lastView = viewHistory.get(viewHistory.size() - 1);
@@ -436,7 +480,8 @@ public class MainActivity extends AppCompatActivity {
                         scrollTo(s);
                     } else if (levelUnlocked(level) && yDiff < 50) {
                         selectedLevel = level;
-                        GameLoop(v); // TODO: replace this with the preview
+                        preview = true;
+                        previewLoop(v); // TODO: replace this with the preview
                     } else {
                         scrollTo(s);
                     }

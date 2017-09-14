@@ -16,6 +16,9 @@ import aaa.aaa.level.Level;
 
 public class MainPlayer extends EntityBase {
 
+    private float x;
+    private float y;
+
     private static final int[][] collision = {
             {0, 0},
             {10, 50},
@@ -31,6 +34,27 @@ public class MainPlayer extends EntityBase {
         getLevel().mainPlayer = this;
 
         setImageView(R.drawable.player);
+    }
+
+    @Override
+    protected boolean onTouch(View v, MotionEvent event) {
+        if(getLevel().mainActivity.preview) {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                x = event.getX();
+                y = event.getY();
+            }
+            if (event.getAction() == MotionEvent.ACTION_MOVE) {
+                if (event.getX() != x) {
+                    getLevel().xOffset -= event.getX() - x;
+                    x = event.getX();
+                }
+                if (event.getY() != y) {
+                    getLevel().yOffset -= event.getY() - y;
+                    y = event.getY();
+                }
+            }
+        }
+        return true;
     }
 
     @Override
@@ -60,9 +84,9 @@ public class MainPlayer extends EntityBase {
 
         float dir = (float) Math.atan(getYVelocity()/getXVelocity());
 
-        if(getXVelocity() < 0) dir = (float) (dir + Math.PI);
+        if (getXVelocity() < 0) dir = (float) (dir + Math.PI);
 
-        setDir((float) (dir * 180/Math.PI) + 90);
+        setDir((float) (dir * 180 / Math.PI) + 90);
 
         getLevel().yOffset = (int) (getY() * getLevel().getZoom());
         getLevel().xOffset = (int) (getX() * getLevel().getZoom());
