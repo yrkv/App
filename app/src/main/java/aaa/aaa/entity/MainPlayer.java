@@ -33,6 +33,7 @@ public class MainPlayer extends EntityBase {
         getLevel().xOffset = (int) (getX() * getLevel().getZoom());
         getLevel().mainPlayer = this;
 
+
         setImageView(R.drawable.player);
     }
 
