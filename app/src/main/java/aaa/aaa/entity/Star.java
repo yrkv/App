@@ -10,14 +10,14 @@ import aaa.aaa.level.Level;
  */
 
 public class Star extends EntityBase {
-    private boolean unlocked = false;
-    private boolean collected;
+    private boolean enabled = false;
+    private boolean collected = false;
 
     private static final float COLLISION_SIZE = 200;
 
     public Star(double x, double y, int starType, Level level) {
         super(x, y, 0.5f, 0, 0, 50f, level);
-        collected = false;
+        display = false;
 
         setImageView(R.drawable.star);
         imageView.setColorFilter(0x88000000 + typeToColor(starType));
@@ -40,22 +40,17 @@ public class Star extends EntityBase {
     }
 
     public void collide() {
-        display = false;
+        if (enabled) {
+            enabled = false;
+            collected = true;
+            display = false;
+
+            getLevel().nextStar();
+        }
     }
 
-    public boolean getUnlocked() {
-        return unlocked;
-    }
-
-    public boolean setUnlocked(boolean unlocked) {
-        return this.unlocked = unlocked;
-    }
-
-    public boolean isCollected() {
-        return collected;
-    }
-
-    public boolean setCollected(boolean collected) {
-        return this.collected = collected;
+    public void enable() {
+        enabled = true;
+        display = true;
     }
 }
