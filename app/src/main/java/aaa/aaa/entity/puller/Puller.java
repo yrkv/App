@@ -60,23 +60,7 @@ public class Puller extends EntityBase {
                 toggleGravity();
             }
         }
-        if(getLevel().mainActivity.preview) {
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                x = event.getX();
-                y = event.getY();
-            }
-            if (event.getAction() == MotionEvent.ACTION_MOVE) {
-                if (event.getX() != x) {
-                    getLevel().xOffset -= event.getX() - x;
-                    x = event.getX();
-                }
-                if (event.getY() != y) {
-                    getLevel().yOffset -= event.getY() - y;
-                    y = event.getY();
-                }
-            }
-        }
-        return true;
+        return (!getLevel().mainActivity.preview);
     }
 
     public void toggleGravity() {
