@@ -227,4 +227,6 @@ public class EntityBase {
     }
 
     public void update() {}
+  
+  	public void previewUpdate() {}
 }
