@@ -13,12 +13,14 @@ public class Star extends EntityBase {
     private boolean unlocked = false;
     private boolean collected;
 
+    private static final float COLLISION_SIZE = 200;
+
     public Star(double x, double y, int starType, Level level) {
         super(x, y, 0.5f, 0, 0, 50f, level);
         collected = false;
 
         setImageView(R.drawable.star);
-        imageView.setColorFilter(typeToColor(starType));
+        imageView.setColorFilter(0x88000000 + typeToColor(starType));
     }
 
     private int typeToColor(int type) {
@@ -31,6 +33,14 @@ public class Star extends EntityBase {
             case 5: return 0x00ffff;
         }
         return 31415; // because fuck it - error color
+    }
+
+    public float getSize() {
+        return COLLISION_SIZE;
+    }
+
+    public void collide() {
+        display = false;
     }
 
     public boolean getUnlocked() {

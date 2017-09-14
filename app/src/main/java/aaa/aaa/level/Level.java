@@ -1,6 +1,7 @@
 package aaa.aaa.level;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,6 +14,8 @@ import aaa.aaa.MainActivity;
 import aaa.aaa.R;
 import aaa.aaa.entity.EntityBase;
 import aaa.aaa.entity.MainPlayer;
+import aaa.aaa.entity.Star;
+import aaa.aaa.entity.StarData;
 import aaa.aaa.entity.puller.Puller;
 
 /**
@@ -31,6 +34,13 @@ public class Level {
     private float zoom = (float) Math.PI;
     public MainPlayer mainPlayer;
 
+    // prevents using stars on levels that don't have them.
+    // check this whenever you do anything with stars.
+    private boolean useStars;
+
+    private Star[] stars;
+    private int[][] starData;
+
     private boolean airlockLeft = false;
     private boolean airlockRight = false;
 
@@ -39,10 +49,22 @@ public class Level {
     private boolean canAirlock = false;
     private float x = -1;
 
-    public Level(RelativeLayout layout, Context context, MainActivity mainActivity) {
+    public Level(RelativeLayout layout, Context context, MainActivity mainActivity, int selectedLevel, int starPath) {
         this.mainActivity = mainActivity;
         this.context = context;
         this.layout = layout;
+
+        useStars = selectedLevel > 0 && selectedLevel <= StarData.STAR_CONTAINER.length;
+
+        if (useStars) {
+            starData = StarData.STAR_CONTAINER[selectedLevel-1][starPath];
+
+            stars = new Star[starData.length];
+
+            for (int i = 0; i < starData.length; i++) {
+                stars[i] = new Star(starData[i][0], starData[i][1], starPath, this);
+            }
+        }
     }
 
     public void enableAirlocks() {
@@ -118,6 +140,11 @@ public class Level {
 
     public ArrayList<EntityBase> getEntities() {
         return entities;
+    }
+
+    @Nullable
+    public Star[] getStars() {
+        return stars;
     }
 
     public void update() {

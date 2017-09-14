@@ -48,6 +48,16 @@ public class MainPlayer extends EntityBase {
             }
         }
 
+        Star[] stars = getLevel().getStars();
+
+        if (stars != null) {
+            for (Star star : stars) {
+                if (checkCollisionWith(star)) {
+                    star.collide();
+                }
+            }
+        }
+
         float dir = (float) Math.atan(getYVelocity()/getXVelocity());
 
         if(getXVelocity() < 0) dir = (float) (dir + Math.PI);

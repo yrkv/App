@@ -20,16 +20,11 @@ public class LevelData {
     final Level level;
 
     public LevelData(RelativeLayout layout, Context context, MainActivity mainActivity, int selectedLevel) {
-        level = new Level(layout, context, mainActivity);
+        level = new Level(layout, context, mainActivity, selectedLevel, 0);
 
         getLevelData(selectedLevel);
     }
 
-    //Dat reference doe
-    //This is where all of the Stars are hardcoded in; formatted [Level][StarPath][NumInPath]
-    private static final Star[][][] STAR_CONTAINER = {
-
-    };
 
     public Level getLevel() {
         return level;
