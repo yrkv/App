@@ -59,7 +59,7 @@ public class MainPlayer extends EntityBase {
     }
   
   	@Override
-   	public void previewUpdate() {
+   	public void updatePreview() {
       	float dir = (float) Math.atan(getYVelocity()/getXVelocity());
       	if (getXVelocity() < 0) dir = (float) (dir + Math.PI);
       	setDir((float) (dir * 180 / Math.PI) + 90);
