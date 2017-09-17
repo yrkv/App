@@ -64,7 +64,7 @@ public class MainPlayer extends EntityBase {
       	if (getXVelocity() < 0) dir = (float) (dir + Math.PI);
       	setDir((float) (dir * 180 / Math.PI) + 90);
       
-      	setPreviewVelocity();
+      	setPreviewVelocity(getX(), getY(), getDir(), getXVelocity(), getYVelocity());
     }
 
     @Override
