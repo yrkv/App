@@ -216,6 +216,7 @@ public class MainActivity extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             public void run() {
                                 levelData.getLevel().render();
+                              	levelData.getLevel().previewUpdate();
                                 levelData.getLevel().updateGUI();
                             }
                         });
