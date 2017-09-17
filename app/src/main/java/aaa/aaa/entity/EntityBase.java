@@ -76,8 +76,16 @@ public class EntityBase {
         else
             imageView.clearColorFilter();
     }
+  
+  	public void setPreviewVelocity(double x, double y, float dir, double xV, double yV) {
+		absVelocity = Math.sqrt(xV * xV + xY * xY);
+      	if(absVelocity != 0) {
+      		new ArrowBase().render(40*level.getZoom(), absVelocity*100*level.getZoom(), dir, x, y);
+        	new ArrowHead().render(80*level.getZoom(), 80*level.getZoom(), dir, (x + Math.cos(dir)*absVelocity*100*level.getZoom()), (y + Math.sin(dir)*absVelocity*100*level.getZoom()));
+        }
+    }
 
-    private void render(float w, float h, float dir, int x, int y) {
+    public void render(float w, float h, float dir, int x, int y) {
         if (display) {
             imageView.setTranslationX(x - imageView.getWidth() / 2 - level.xOffset + level.getLayout().getWidth() / 2);
             imageView.setTranslationY(y - imageView.getHeight() / 2 - level.yOffset + level.getLayout().getHeight() / 2);
