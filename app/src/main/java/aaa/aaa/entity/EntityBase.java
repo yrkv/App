@@ -78,7 +78,7 @@ public class EntityBase {
     }
   
   	public void setPreviewVelocity(double x, double y, float dir, double xV, double yV) {
-		absVelocity = Math.sqrt(xV * xV + xY * xY);
+		double absVelocity = Math.sqrt(xV * xV + xY * xY);
       	if(absVelocity != 0) {
       		new ArrowBase().render(40*level.getZoom(), absVelocity*100*level.getZoom(), dir, x, y);
         	new ArrowHead().render(80*level.getZoom(), 80*level.getZoom(), dir, (x + Math.cos(dir)*absVelocity*100*level.getZoom()), (y + Math.sin(dir)*absVelocity*100*level.getZoom()));
