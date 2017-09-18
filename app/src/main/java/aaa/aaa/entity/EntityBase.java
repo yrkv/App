@@ -55,7 +55,7 @@ public class EntityBase {
                 return getThis().onTouch(v, event);
             }
         });
-        render();
+//        render();
         imageView.setImageResource(resource);
         render = true;
     }
@@ -76,14 +76,6 @@ public class EntityBase {
             imageView.setColorFilter(Color.argb(100, 100, 255, 255));
         else
             imageView.clearColorFilter();
-    }
-  
-  	public void setPreviewVelocity(double x, double y, float dir, double xV, double yV) {
-		double absVelocity = Math.sqrt(xV * xV + yV * yV);
-      	if(absVelocity != 0) {
-      		new ArrowBase(level).render(40*level.getZoom(), (float) absVelocity*100*level.getZoom(), dir, (int) x, (int) y);
-        	new ArrowHead(level).render(80*level.getZoom(), 80*level.getZoom(), dir, (int) (x + Math.cos(dir)*absVelocity*100*level.getZoom()), (int) (y + Math.sin(dir)*absVelocity*100*level.getZoom()));
-        }
     }
 
     public void render(float w, float h, float dir, int x, int y) {

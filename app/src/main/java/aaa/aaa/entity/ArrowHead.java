@@ -8,9 +8,31 @@ import aaa.aaa.level.Level;
  */
 
 public class ArrowHead extends EntityBase {
-    public ArrowHead(Level level) {
-        super(0,0,0,0,0,0,level,false);
+
+    private double parentVelocity;
+    private float parentDirection;
+
+    public ArrowHead(int parentX, int parentY, double parentXVelocity, double parentYVelocity, Level level) {
+        super(parentX,parentY,0,0,0,0,level,false);
+
+        parentVelocity = Math.sqrt(parentXVelocity*parentXVelocity + parentYVelocity*parentYVelocity);
 
         setImageView(R.drawable.arrowhead);
+    }
+
+    public void setParentVelocity(double pxv, double pyv) {
+        parentVelocity = Math.sqrt(pxv * pxv + pyv * pyv);
+    }
+
+    public double getParentVelocity() {
+        return parentVelocity;
+    }
+
+    public void setParentDirection(float pdir) {
+        parentDirection = pdir;
+    }
+
+    public float getParentDirection() {
+        return parentDirection;
     }
 }

@@ -15,9 +15,12 @@ import aaa.aaa.level.Level;
  */
 
 public class MainPlayer extends EntityBase {
+    private static final int ARROW_WIDTH = 20;
 
     private float x;
     private float y;
+    private ArrowHead arrowHead;
+    private ArrowBase arrowBase;
 
     private static final int[][] collision = {
             {0, 0},
@@ -33,6 +36,8 @@ public class MainPlayer extends EntityBase {
         getLevel().xOffset = (int) (getX() * getLevel().getZoom());
         getLevel().mainPlayer = this;
 
+        arrowHead = new ArrowHead((int)getX(),(int)getY(),getXVelocity(),getYVelocity(),level);
+        arrowBase = new ArrowBase((int)getX(),(int)getY(),getXVelocity(),getYVelocity(),level);
 
         setImageView(R.drawable.player);
     }
@@ -63,8 +68,11 @@ public class MainPlayer extends EntityBase {
       	float dir = (float) Math.atan(getYVelocity()/getXVelocity());
       	if (getXVelocity() < 0) dir = (float) (dir + Math.PI);
       	setDir((float) (dir * 180 / Math.PI) + 90);
-      
-      	setPreviewVelocity(getX(), getY(), getDir(), getXVelocity(), getYVelocity());
+
+//        double thatOneShit = 100*arrowBase.getParentVelocity()*getLevel().getZoom();
+//
+//        arrowBase.render(50,10000,dir,(int)getX(),(int)getY());
+//        arrowHead.render(ARROW_WIDTH, ARROW_WIDTH, dir, (int) (getX() + Math.cos(thatOneShit)), (int) (getY() + Math.sin(thatOneShit)));
     }
 
 //    @Override
