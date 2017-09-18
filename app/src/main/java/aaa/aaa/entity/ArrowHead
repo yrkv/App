@@ -1,7 +1,0 @@
-public class ArrowHead() extends EntityBase {
-    public ArrowHead() {
-        super(0,0,0,0,0,0,new Level);
-        
-        setImageView(R.drawable.planet2);
-    }
-}

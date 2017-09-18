@@ -10,13 +10,18 @@ import aaa.aaa.level.Level;
 public class DustStorm extends EntityBase{
 
     public DustStorm(int x, int y, double xVelocity, double yVelocity, float size, Level level) {
-        super(x,y,0.5f,xVelocity,yVelocity,size,level);
+        super(x,y,0.5f,xVelocity,yVelocity,size,level,true);
         setImageView(R.drawable.planet6);
     }
 
     public DustStorm(int x, int y, float dir, double xVelocity, double yVelocity, float size, Level level) {
-        super(x,y,dir,xVelocity,yVelocity,size,level);
+        super(x,y,dir,xVelocity,yVelocity,size,level,true);
         setImageView(R.drawable.planet6);
+    }
+
+    @Override
+    public void previewUpdate() {
+
     }
 
     @Override

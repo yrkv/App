@@ -176,6 +176,12 @@ public class Level {
         }
     }
 
+    public void previewUpdate() {
+        for(EntityBase entity : entities) {
+            entity.previewUpdate();
+        }
+    }
+
     //TODO: actually set this up lmao
     public void updateGUI() {
 //        for(GUI gui : guiComponents) {

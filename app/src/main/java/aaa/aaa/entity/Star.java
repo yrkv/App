@@ -16,7 +16,7 @@ public class Star extends EntityBase {
     private static final float COLLISION_SIZE = 200;
 
     public Star(double x, double y, int starType, Level level) {
-        super(x, y, 0.5f, 0, 0, 50f, level);
+        super(x, y, 0.5f, 0, 0, 50f, level, true);
         display = false;
 
         setImageView(R.drawable.star);

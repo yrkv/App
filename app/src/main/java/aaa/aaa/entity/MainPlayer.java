@@ -28,7 +28,7 @@ public class MainPlayer extends EntityBase {
     };
 
     public MainPlayer(double x, double y, double xVelocity, double yVelocity, Level level) {
-        super(x, y, 0.5f, xVelocity, yVelocity, 50, level);
+        super(x, y, 0.5f, xVelocity, yVelocity, 50, level,true);
         getLevel().yOffset = (int) (getY() * getLevel().getZoom());
         getLevel().xOffset = (int) (getX() * getLevel().getZoom());
         getLevel().mainPlayer = this;
@@ -59,13 +59,25 @@ public class MainPlayer extends EntityBase {
     }
   
   	@Override
-   	public void updatePreview() {
+   	public void previewUpdate() {
       	float dir = (float) Math.atan(getYVelocity()/getXVelocity());
       	if (getXVelocity() < 0) dir = (float) (dir + Math.PI);
       	setDir((float) (dir * 180 / Math.PI) + 90);
       
       	setPreviewVelocity(getX(), getY(), getDir(), getXVelocity(), getYVelocity());
     }
+
+//    @Override
+//    public void previewUpdate() {
+//
+//        float dir = (float) Math.atan(getYVelocity()/getXVelocity());
+//
+//        if (getXVelocity() < 0) dir = (float) (dir + Math.PI);
+//
+//        setDir((float) (dir * 180 / Math.PI) + 90);
+//
+//        setPreviewVelocity();
+//    }
 
     @Override
     public void update() {

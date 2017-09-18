@@ -32,13 +32,13 @@ public class Puller extends EntityBase {
     private boolean gravity = false;
 
     public Puller(double x, double y, float dir, double xVelocity, double yVelocity, float size, Level level) {
-        super(x, y, dir, xVelocity, yVelocity, size, level);
+        super(x, y, dir, xVelocity, yVelocity, size, level, true);
         PULLCOEFF = size * 100;
         getLevel().getPullers().add(this);
     }
 
     public Puller(double x, double y, double xVelocity, double yVelocity, float size, Level level) {
-        super(x, y, 0.5f, xVelocity, yVelocity, size, level);
+        super(x, y, 0.5f, xVelocity, yVelocity, size, level, true);
         PULLCOEFF = size * 100;
         getLevel().getPullers().add(this);
     }
@@ -96,6 +96,11 @@ public class Puller extends EntityBase {
 
     public boolean isEarth() {
         return false;
+    }
+
+    @Override
+    public void previewUpdate() {
+
     }
 
     @Override

@@ -13,7 +13,7 @@ public class Wormhole extends EntityBase {
     private boolean paired = false;
 
     public Wormhole(int x, int y, double xVelocity, double yVelocity, float size, Level level) {
-        super(x,y,0.5f,xVelocity,yVelocity,size,level);
+        super(x,y,0.5f,xVelocity,yVelocity,size,level,true);
         setImageView(R.drawable.blackhole);
     }
 
@@ -38,6 +38,11 @@ public class Wormhole extends EntityBase {
             pair = null;
             paired = false;
         }
+    }
+
+    @Override
+    public void previewUpdate() {
+
     }
 
     @Override

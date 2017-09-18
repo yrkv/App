@@ -30,7 +30,7 @@ public class EntityBase {
     private boolean render = false; // used by the system to not render it right away
     protected boolean display = true; // edit this value to toggle rendering programmatically
 
-    public EntityBase(double x, double y, float dir, double xVelocity, double yVelocity, float size, Level level) {
+    public EntityBase(double x, double y, float dir, double xVelocity, double yVelocity, float size, Level level, boolean addToList) {
         this.x = x;
         this.y = y;
         this.dir = dir;
@@ -38,8 +38,9 @@ public class EntityBase {
         this.yVelocity = yVelocity;
         this.level = level;
         this.size = size;
-
-        level.getEntities().add(this);
+        if(addToList) {
+            level.getEntities().add(this);
+        }
     }
 
     protected ImageView getImageView() {
@@ -78,10 +79,10 @@ public class EntityBase {
     }
   
   	public void setPreviewVelocity(double x, double y, float dir, double xV, double yV) {
-		double absVelocity = Math.sqrt(xV * xV + xY * xY);
+		double absVelocity = Math.sqrt(xV * xV + yV * yV);
       	if(absVelocity != 0) {
-      		new ArrowBase().render(40*level.getZoom(), absVelocity*100*level.getZoom(), dir, x, y);
-        	new ArrowHead().render(80*level.getZoom(), 80*level.getZoom(), dir, (x + Math.cos(dir)*absVelocity*100*level.getZoom()), (y + Math.sin(dir)*absVelocity*100*level.getZoom()));
+      		new ArrowBase(level).render(40*level.getZoom(), (float) absVelocity*100*level.getZoom(), dir, (int) x, (int) y);
+        	new ArrowHead(level).render(80*level.getZoom(), 80*level.getZoom(), dir, (int) (x + Math.cos(dir)*absVelocity*100*level.getZoom()), (int) (y + Math.sin(dir)*absVelocity*100*level.getZoom()));
         }
     }
 
@@ -179,6 +180,17 @@ public class EntityBase {
     public boolean canMove() {
         return true;
     }
+//    Could be made to show accel arrow but thats annoying 2 lazy
+//    protected double previewXVelocity(Puller puller) {
+//        double dir = getDirectionTo(puller);
+//        double r = getDistanceTo(puller);
+//
+//        double gravForce = puller.getPULLCOEFF() / (r * r);
+//    }
+//
+//    protected double previewYVelocity(Puller puller) {
+//
+//    }
 
     protected double changeXVelocity(Puller puller) {
         double dir = getDirectionTo(puller);

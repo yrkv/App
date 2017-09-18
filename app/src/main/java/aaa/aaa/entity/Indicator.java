@@ -16,10 +16,15 @@ public class Indicator extends EntityBase {
     private float y;
 
     public Indicator(Puller parent) {
-        super(-100000, -100000, 0.5f, 0, 0, 40, parent.getLevel());
+        super(-100000, -100000, 0.5f, 0, 0, 40, parent.getLevel(),true);
         this.parent = parent;
     }
+    @Override
+    public void previewUpdate() {
 
+    }
+
+    @Override
     public void update() {
         if ((parent.getGravity() || parent.isEarth()) && !(parent.isOnScreen())) {
             double dir = getLevel().mainPlayer.getDirectionTo(parent);
