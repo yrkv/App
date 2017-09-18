@@ -3,14 +3,16 @@
     android:background="@drawable/round_corners"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/starsLayout"
         android:layout_width="0dp"
         android:layout_weight="0.3"
+        android:gravity="center"
+        android:orientation="horizontal"
         android:layout_height="match_parent">
 
 
-    </RelativeLayout>
+    </LinearLayout>
 
     <TextView
         android:background="#aaaaaaaa"

@@ -1,32 +1,26 @@
 package aaa.aaa;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.content.res.Resources;
-import android.graphics.Rect;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
-import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import aaa.aaa.entity.Star;
+import aaa.aaa.entity.StarData;
 import aaa.aaa.level.LevelData;
 
 public class MainActivity extends AppCompatActivity {
@@ -52,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private boolean[] unlocks = new boolean[stages[stages.length-1][1]];
-    private boolean[] completed = new boolean[stages[stages.length-1][1]];
+    public  boolean[] completed = new boolean[stages[stages.length-1][1]];
     private boolean[] shownInfoScreens = new boolean[stages[stages.length-1][1]];
 
     public boolean[][] completedStarPaths = new boolean[stages[stages.length-1][1]][10];
@@ -408,7 +402,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            ((TextView) stage.findViewById(R.id.stageName)).setText(STAGE_NAME);
+            ((TextView) stage.findViewById(R.id.stageName)).setText(starsStage(i) + "/" + maxStarsStage(i) + "  " + STAGE_NAME);
 
             levelSelects.addView(stage);
 
@@ -419,6 +413,49 @@ public class MainActivity extends AppCompatActivity {
                 createLevelButton((LinearLayout) stage.findViewById(R.id.levelsLayout), scrollView, level);
             }
         }
+    }
+
+    private String totalStars() {
+        int a = 0, b = 0;
+
+        for (int i = 0; i < stages.length; i++) {
+            a += starsStage(i);
+            b += maxStarsStage(i);
+        }
+
+        return a + "/" + b;
+    }
+
+    private int starsStage(int stage) {
+        int c = 0;
+        for (int i = stages[stage][0]; i < stages[stage][1]; i++) {
+            c += stars(i);
+        }
+        return c;
+    }
+
+    private int maxStarsStage(int stage) {
+        int c = 0;
+        for (int i = stages[stage][0]; i < stages[stage][1]; i++) {
+            c += maxStars(i);
+        }
+        return c;
+    }
+
+    private int stars(int level) {
+        int c = 0;
+        if (level >= 0)
+            for (int i = 0; i < 10; i++)
+                if (completedStarPaths[level][i])
+                    c++;
+        return c;
+    }
+
+    private int maxStars(int level) {
+        if (level >= 0 && level < StarData.STAR_CONTAINER.length)
+            return StarData.STAR_CONTAINER[level].length;
+        else
+            return 0;
     }
 
     private void createLevelButton(LinearLayout layout, final HorizontalScrollView scrollView, final int level) {
@@ -447,6 +484,21 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        LinearLayout starsLayout = (LinearLayout) button.findViewById(R.id.starsLayout);
+        for (int i = 0; i < completedStarPaths[level-1].length; i++) {
+            if (completedStarPaths[level-1][i]) {
+                ImageView star = new ImageView(this);
+
+                star.setImageResource(R.drawable.star);
+                star.setColorFilter(0xff000000 + Star.typeToColor(i));
+
+                LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(px / 2, px / 2);
+
+                star.setLayoutParams(p);
+
+                starsLayout.addView(star);
+            }
+        }
 
         button.setOnTouchListener(new View.OnTouchListener() {
             @Override

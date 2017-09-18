@@ -23,7 +23,7 @@ public class Star extends EntityBase {
         imageView.setColorFilter(0x88000000 + typeToColor(starType));
     }
 
-    private int typeToColor(int type) {
+    public static int typeToColor(int type) {
         switch (type) {
             case 0: return 0xff0000;
             case 1: return 0x00ff00;

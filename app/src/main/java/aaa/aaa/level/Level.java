@@ -63,7 +63,7 @@ public class Level {
         this.selectedLevel = selectedLevel;
         this.starPath = starPath;
 
-        useStars = selectedLevel > 0 && selectedLevel <= StarData.STAR_CONTAINER.length;
+        useStars = selectedLevel > 0 && selectedLevel <= StarData.STAR_CONTAINER.length && starPath > -1;
 
         if (useStars) {
             starData = StarData.STAR_CONTAINER[selectedLevel-1][starPath];
@@ -84,7 +84,7 @@ public class Level {
             stars[currentStar].enable();
         else {
             // star path finished
-            // set flag to complete star path then the level is won
+            // set flag to complete star path when the level is won
 
             starPathCompleted = true;
         }

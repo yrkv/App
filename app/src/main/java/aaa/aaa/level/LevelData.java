@@ -7,6 +7,7 @@ import aaa.aaa.MainActivity;
 import aaa.aaa.R;
 import aaa.aaa.entity.MainPlayer;
 import aaa.aaa.entity.Star;
+import aaa.aaa.entity.StarData;
 import aaa.aaa.entity.Wormhole;
 import aaa.aaa.entity.puller.BlackHole;
 import aaa.aaa.entity.puller.Earth;
@@ -20,7 +21,22 @@ public class LevelData {
     final Level level;
 
     public LevelData(RelativeLayout layout, Context context, MainActivity mainActivity, int selectedLevel) {
-        level = new Level(layout, context, mainActivity, selectedLevel, 0);
+        int path = -1;
+
+        if (selectedLevel > 0 && mainActivity.completed[selectedLevel-1] && selectedLevel <= StarData.STAR_CONTAINER.length) {
+            boolean[] starsCollected = mainActivity.completedStarPaths[selectedLevel - 1];
+            int starPathsCount = StarData.STAR_CONTAINER[selectedLevel - 1].length;
+
+            int star = (int) (Math.random() * 10000) % starPathsCount;
+
+            for (int i = star; i < star + starPathsCount; i++) {
+                if (!starsCollected[i % starPathsCount]) {
+                    path = i % starPathsCount;
+                }
+            }
+        }
+
+        level = new Level(layout, context, mainActivity, selectedLevel, path);
 
         getLevelData(selectedLevel);
     }
