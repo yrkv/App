@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:spinnerMode="dialog"
+    android:background="@drawable/bg"
+    android:onClick="Restart">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textColor="#dddddd"
+        android:gravity="center"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:text="Level Status Info"/>
+
+    <View
+        android:id="@+id/view7"
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:background="#FFFFFFFF"
+        android:textAlignment="center"
+        android:layout_alignBottom="@+id/title" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:paddingTop="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="10dp"
+        android:layout_height="100sp"
+        android:textColor="#dddddd"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:text="What exactly do the different colors mean in Level Select?"/>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:background="#FFFFFFFF"
+        android:textAlignment="center"
+        android:layout_alignBottom="@+id/title" />
+
+    <TextView
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:id="@+id/editText5"
+        android:textColor="#88ff88"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="none"
+        android:text="If the box is this strange green color, it means that you have completed the level."
+        android:textSize="18sp" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:background="#FFFFFFFF"
+        android:textAlignment="center"
+        android:layout_alignBottom="@+id/title" />
+
+    <TextView
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:id="@+id/editText6"
+        android:textColor="#aaaaff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="none"
+        android:text="If the box is tinted with a bluish purple, then the level is unlocked but not completed."
+        android:textSize="18sp" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:background="#FFFFFFFF"
+        android:textAlignment="center"
+        android:layout_alignBottom="@+id/title" />
+
+    <TextView
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:id="@+id/editText7"
+        android:textColor="#ffaaaa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="none"
+        android:text="If the box is this pale red color, it means the level is currently LOCKED."
+        android:textSize="18sp" />
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="fill_parent"
+        android:layout_height="2dip"
+        android:background="#FFFFFFFF"
+        android:textAlignment="center"
+        android:layout_alignBottom="@+id/title" />
+
+
+</LinearLayout>

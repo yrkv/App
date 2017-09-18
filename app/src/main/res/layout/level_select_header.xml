@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/round_corners"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/starsLayout"
+        android:layout_width="0dp"
+        android:layout_weight="0.3"
+        android:gravity="center"
+        android:text="Stars Collected"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+    </TextView>
+
+    <TextView
+        android:background="#aaaaaaaa"
+        android:text="#"
+        android:id="@+id/levelText"
+        android:layout_width="0dp"
+        android:layout_weight="0.15"
+        android:gravity="center"
+        android:layout_height="match_parent"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="0.25"
+        android:layout_height="match_parent"
+        android:id="@+id/button_color"
+        android:gravity="center"
+        android:text="Level Status"
+        />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="0.3"
+        android:layout_height="match_parent"
+        android:text="preview"
+        android:id="@+id/preview"
+        android:gravity="center"
+        android:background="#aaaaaaaa"
+        />
+</LinearLayout>

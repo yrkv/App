@@ -86,16 +86,13 @@ public class Puller extends EntityBase {
         return attracts;
     }
 
+    @Override
     public boolean getGravity() {
         return gravity;
     }
 
     public double getPULLCOEFF() {
         return PULLCOEFF;
-    }
-
-    public boolean isEarth() {
-        return false;
     }
 
     @Override

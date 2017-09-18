@@ -24,7 +24,7 @@ public class Earth extends Puller {
         setImageView(R.drawable.earth);
     }
 
-    public boolean isEarth() {
+    public boolean isImportant() {
         return true;
     }
 }

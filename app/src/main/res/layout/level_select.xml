@@ -5,6 +5,7 @@
     android:background="@drawable/sunrise"
     android:layout_height="match_parent">
 
+
     <TextView
         android:id="@+id/stageName"
         android:layout_width="match_parent"
@@ -15,9 +16,8 @@
         android:textSize="24sp"
         android:textColor="#ffffff"
         />
-
     <View
-        android:id="@+id/horizontalBar"
+    android:id="@+id/horizontalBar"
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:background="#bbbbbb"

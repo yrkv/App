@@ -75,6 +75,12 @@ public class Level {
             }
 
             stars[currentStar].enable();
+
+            if(mainActivity.preview) {
+                for(int i = 0; i < stars.length; i++) {
+                    nextStar();
+                }
+            }
         }
     }
 

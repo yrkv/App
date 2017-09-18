@@ -61,10 +61,26 @@
         android:layout_below="@+id/start"
         android:layout_alignLeft="@+id/start"
         android:layout_alignStart="@+id/start"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="240dp"
         android:onClick="tutorial"
         android:textSize="20sp"
         />
+
+    <Button
+        android:id="@+id/levelstatusinfo"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        android:text="Level Status Info"
+        android:layout_below="@+id/tutorial"
+        android:layout_alignLeft="@+id/start"
+        android:layout_alignStart="@+id/start"
+        android:layout_marginTop="10dp"
+        android:onClick="levelStatusInfo"
+        android:textSize="20sp"
+        />
+
+
 
     <!--<Button
         android:id="@+id/start"

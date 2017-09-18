@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int[][] stages = {
             {0, 9},
-            {9, 15},
-            {15, 19}
+            {9, 14},
+            {14, 18}
     };
 
 
@@ -52,9 +52,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean[][] completedStarPaths = new boolean[stages[stages.length-1][1]][10];
 
     private static final String[] STAGE_NAMES = {
-            "Stage 1: The Basics",
-            "Stage 2: Black Holes",
-            "Stage 3: Dynamic Planets"
+            "Stage 1",
+            "Stage 2",
+            "Stage 3"
     };
 
     @Override
@@ -406,6 +406,22 @@ public class MainActivity extends AppCompatActivity {
 
             levelSelects.addView(stage);
 
+            //Testing shit for now \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+            LinearLayout layout = (LinearLayout) stage.findViewById(R.id.levelsLayout);
+
+            final View button = getLayoutInflater().inflate(R.layout.level_select_header, layout, false);
+
+            int px = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    40,
+                    getResources().getDisplayMetrics()
+            );
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, px);
+            params.setMargins(px / 4, px / 8, px / 4, 0);
+            button.setLayoutParams(params);
+
+            layout.addView(button);
+            //Testing shit for now ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
             for (int j = stages[i][0]; j < stages[i][1]; j++) {
                 final int level = j + 1;
@@ -480,7 +496,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (!unlocks[level-1]) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                button.findViewById(R.id.levelText).setForeground(getResources().getDrawable(R.drawable.lock, getTheme()));
+                button.findViewById(R.id.button_color).setBackgroundColor(0xaaffaaaa);
             }
         }
 
@@ -601,6 +617,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void tutorial(View v) {
         setContentView(R.layout.tutorial);
+        playing = false;
+    }
+
+    public void levelStatusInfo(View v) {
+        setContentView(R.layout.level_status_info);
         playing = false;
     }
 }

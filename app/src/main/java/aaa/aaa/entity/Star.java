@@ -18,6 +18,7 @@ public class Star extends EntityBase {
     public Star(double x, double y, int starType, Level level) {
         super(x, y, 0.5f, 0, 0, 50f, level, true);
         display = false;
+        new IndicatorStar(this);
 
         setImageView(R.drawable.star);
         imageView.setColorFilter(0x88000000 + typeToColor(starType));
@@ -47,6 +48,11 @@ public class Star extends EntityBase {
 
             getLevel().nextStar();
         }
+    }
+
+    @Override
+    public boolean isImportant() {
+        return enabled;
     }
 
     public void enable() {

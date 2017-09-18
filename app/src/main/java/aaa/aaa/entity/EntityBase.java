@@ -102,6 +102,18 @@ public class EntityBase {
         render(size * level.getZoom(), size * level.getZoom(), dir, (int) (x * level.getZoom()), (int) (y * level.getZoom()));
     }
 
+    public boolean isImportant() {
+        return false;
+    }
+
+    public void toggleGravity() {
+
+    }
+
+    public boolean getGravity() {
+        return false;
+    }
+
     public double getX() {
         return x;
     }
@@ -227,6 +239,16 @@ public class EntityBase {
 
         double xdiff = otherX - getX();
         double ydiff = otherY - getY();
+
+        double dir = Math.atan(ydiff/xdiff);
+        if(xdiff < 0) dir += Math.PI;
+
+        return dir;
+    }
+
+    protected double getDirectionTo(double x, double y) {
+        double xdiff = getX() - x;
+        double ydiff = getY() - y;
 
         double dir = Math.atan(ydiff/xdiff);
         if(xdiff < 0) dir += Math.PI;

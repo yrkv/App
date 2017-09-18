@@ -3,9 +3,6 @@ package aaa.aaa.entity;
 import android.view.MotionEvent;
 import android.view.View;
 
-import java.util.ArrayList;
-
-import aaa.aaa.MainActivity;
 import aaa.aaa.R;
 import aaa.aaa.entity.puller.Puller;
 import aaa.aaa.level.Level;
@@ -35,6 +32,8 @@ public class MainPlayer extends EntityBase {
         getLevel().yOffset = (int) (getY() * getLevel().getZoom());
         getLevel().xOffset = (int) (getX() * getLevel().getZoom());
         getLevel().mainPlayer = this;
+
+        new IndicatorPlayer(this);
 
         arrowHead = new ArrowHead((int)getX(),(int)getY(),getXVelocity(),getYVelocity(),level);
         arrowBase = new ArrowBase((int)getX(),(int)getY(),getXVelocity(),getYVelocity(),level);
@@ -95,7 +94,7 @@ public class MainPlayer extends EntityBase {
                 changeYVelocity(puller);
             }
             if(checkCollisionWith(puller)) {
-                if (puller.isEarth())
+                if (puller.isImportant())
                     getLevel().Win();
                 else
                     puller.crash();
