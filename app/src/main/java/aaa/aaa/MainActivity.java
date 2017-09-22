@@ -42,8 +42,11 @@ public class MainActivity extends AppCompatActivity {
     private static final int[][] stages = {
             {0, 9},
             {9, 14},
-            {14, 18},
-            {21,24}
+            {14, 21},
+            {21,29},
+            {29,38},
+            {38,46},
+            {46,53}
     };
 
 
@@ -57,7 +60,10 @@ public class MainActivity extends AppCompatActivity {
             "Stage 1",
             "Stage 2",
             "Stage 3",
-            "Stage 4"
+            "Stage 4",
+            "Stage 5",
+            "Stage 6",
+            "Stage 7"
     };
 
     @Override
