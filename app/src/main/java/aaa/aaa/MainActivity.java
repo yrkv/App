@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     //CONFIG
     private final double TICKSPEED = 60.0; //in milliseconds
+    private final boolean DEVMODE = true;
     //END CONFIG
     public boolean playing = false;
     public boolean preview = false;
@@ -41,7 +42,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int[][] stages = {
             {0, 9},
             {9, 14},
-            {14, 18}
+            {14, 18},
+            {21,24}
     };
 
 
@@ -54,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String[] STAGE_NAMES = {
             "Stage 1",
             "Stage 2",
-            "Stage 3"
+            "Stage 3",
+            "Stage 4"
     };
 
     @Override
@@ -607,7 +610,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private boolean levelUnlocked(int selectedLevel) {
-        return unlocks[selectedLevel-1];
+
+        return DEVMODE || unlocks[selectedLevel-1];
     }
 
     public void info(View v) {

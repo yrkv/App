@@ -13,7 +13,7 @@ public class Star extends EntityBase {
     private boolean enabled = false;
     private boolean collected = false;
 
-    private static final float COLLISION_SIZE = 200;
+    private static final float COLLISION_SIZE = 100;
 
     public Star(double x, double y, int starType, Level level) {
         super(x, y, 0.5f, 0, 0, 50f, level, true);

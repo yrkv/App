@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/duststorminfo">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        android:inputType="none"
+        android:text="In some areas, there is a lot of dust. This dust will slow you down if you are moving through it."
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:id="@+id/textView4"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

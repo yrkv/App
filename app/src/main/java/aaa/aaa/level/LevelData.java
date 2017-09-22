@@ -5,6 +5,7 @@ import android.widget.RelativeLayout;
 
 import aaa.aaa.MainActivity;
 import aaa.aaa.R;
+import aaa.aaa.entity.DustStorm;
 import aaa.aaa.entity.MainPlayer;
 import aaa.aaa.entity.Star;
 import aaa.aaa.entity.StarData;
@@ -84,7 +85,11 @@ public class LevelData {
                 break;
             case 18: genLevel18();
                 break;
-            case -1: startScreen();
+            case 22: genLevel22();
+                break;
+            case 23: genLevel23();
+                break;
+            default: startScreen();
         }
     }
 
@@ -255,6 +260,25 @@ public class LevelData {
     }
   	private void genLevel20() {
     		 
+    }
+    private void genLevel22() {
+        new DustStorm(0,-700,0,0,200,level);
+
+        new Earth(-400,0,0,0,65,level);
+
+        new MainPlayer(0,0,0,-4,level);
+    }
+    private void genLevel23() {
+        new DustStorm(0,0,0,0,170,level);
+
+        new Planet(-400,0,0,0,0,80,level,R.drawable.planet5).toggleGravity();
+        new Planet(0,-400,0,0,0,80,level,R.drawable.planet5).toggleGravity();
+        new Planet(400,0,0,0,0,80,level,R.drawable.planet5).toggleGravity();
+        new Planet(0,400,0,0,0,80,level,R.drawable.planet5).toggleGravity();
+
+        new Earth(-1300,-1300,0,0,75,level);
+
+        new MainPlayer(0,0,0,0,level);
     }
 
     private void startScreen() {
