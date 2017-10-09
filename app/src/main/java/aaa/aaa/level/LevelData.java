@@ -27,12 +27,13 @@ public class LevelData {
         if (selectedLevel > 0 && mainActivity.completed[selectedLevel-1] && selectedLevel <= StarData.STAR_CONTAINER.length) {
             boolean[] starsCollected = mainActivity.completedStarPaths[selectedLevel - 1];
             int starPathsCount = StarData.STAR_CONTAINER[selectedLevel - 1].length;
+            if (starPathsCount > 0) {
+                int star = (int) (Math.random() * 10000) % starPathsCount;
 
-            int star = (int) (Math.random() * 10000) % starPathsCount;
-
-            for (int i = star; i < star + starPathsCount; i++) {
-                if (!starsCollected[i % starPathsCount]) {
-                    path = i % starPathsCount;
+                for (int i = star; i < star + starPathsCount; i++) {
+                    if (!starsCollected[i % starPathsCount]) {
+                        path = i % starPathsCount;
+                    }
                 }
             }
         }
@@ -85,9 +86,17 @@ public class LevelData {
                 break;
             case 18: genLevel18();
                 break;
+            case 19: genLevel19();
+                break;
+            case 20: genLevel20();
+                break;
+            case 21: genlevel21();
+                break;
             case 22: genLevel22();
                 break;
             case 23: genLevel23();
+                break;
+            case -1: startScreen();
                 break;
             default: startScreen();
         }
@@ -258,8 +267,23 @@ public class LevelData {
 
         new Earth(0, -750, 0, 0, 50, level);
     }
+    private void genLevel19() {
+        new MainPlayer(0, 0, 2.5, 2.5, level);
+
+        new Planet(400, 800, 0.5f, 0, 0, 50, level).toggleGravity();
+
+        new Planet(800, 400, 0.5f, 0, 0, 100, level);
+
+        new Planet(1500, 500, 0.5f, 0, 0, 100, level);
+        new Planet(1500,-500, 0.5f, 0, 0, 100, level);
+
+        new Earth(400, 2000, 0.5f, 0, 0, 50, level);
+    }
   	private void genLevel20() {
     		 
+    }
+    private void genlevel21() {
+
     }
     private void genLevel22() {
         new DustStorm(0,-700,0,0,200,level);
@@ -280,7 +304,6 @@ public class LevelData {
 
         new MainPlayer(0,0,0,0,level);
     }
-
     private void startScreen() {
         Earth earth = new Earth(0, 200, 0.5f, 0, 0, 75, level);
         earth.toggleGravity();

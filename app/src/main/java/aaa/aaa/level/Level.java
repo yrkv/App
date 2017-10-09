@@ -63,7 +63,7 @@ public class Level {
         this.selectedLevel = selectedLevel;
         this.starPath = starPath;
 
-        useStars = selectedLevel > 0 && selectedLevel <= StarData.STAR_CONTAINER.length && starPath > -1;
+        useStars = selectedLevel > 0 && selectedLevel <= StarData.STAR_CONTAINER.length && starPath > -1 && StarData.STAR_CONTAINER[selectedLevel-1].length > 0;
 
         if (useStars) {
             starData = StarData.STAR_CONTAINER[selectedLevel-1][starPath];
