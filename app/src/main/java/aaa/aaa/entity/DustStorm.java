@@ -9,7 +9,7 @@ import aaa.aaa.level.Level;
 
 public class DustStorm extends EntityBase{
 
-    public DustStorm(int x, int y, double xVelocity, double yVelocity, float size, Level level) {
+    public DustStorm(double x, double y, double xVelocity, double yVelocity, float size, Level level) {
         super(x,y,0.5f,xVelocity,yVelocity,size,level,true);
         setImageView(R.drawable.duststorm);
     }

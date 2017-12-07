@@ -17,7 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import aaa.aaa.entity.Star;
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     //CONFIG
     private final double TICKSPEED = 60.0; //in milliseconds
-    private final boolean DEVMODE = true;
+    private final boolean DEVMODE = false;
     //END CONFIG
     public boolean playing = false;
     public boolean preview = false;
@@ -55,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     public  boolean[] completed = new boolean[stages[stages.length-1][1]];
     private boolean[] shownInfoScreens = new boolean[stages[stages.length-1][1]];
 
+    //new boolean[#stages][10]
     public boolean[][] completedStarPaths = new boolean[stages[stages.length-1][1]][10];
 
     private static final String[] STAGE_NAMES = {
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         height = displayMetrics.heightPixels;
         width = displayMetrics.widthPixels;
 
-        selectedLevel = -1;
+        selectedLevel = 0;
         gameLoop();
     }
 
@@ -147,12 +147,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void gameLoop() {
-        if (selectedLevel != -1 && !shownInfoScreens[selectedLevel-1] && levelToInfoScreen(selectedLevel) != -1) {
+        if (selectedLevel != 0 && !shownInfoScreens[selectedLevel-1] && levelToInfoScreen(selectedLevel) != -1) {
             shownInfoScreens[selectedLevel-1] = true;
             setContentView(levelToInfoScreen(selectedLevel));
         } else {
             final LevelData levelData;
-            if (selectedLevel == -1) {
+            if (selectedLevel == 0) {
                 setContentView(R.layout.activity_main);
                 levelData = new LevelData((RelativeLayout) findViewById(R.id.activity_main), this, this, selectedLevel);
             } else {
@@ -256,7 +256,7 @@ public class MainActivity extends AppCompatActivity {
             if (lastView == R.layout.updated_level_select)
                 createLevelSelect(this.getCurrentFocus());
             if (lastView == R.layout.activity_main) {
-                selectedLevel = -1;
+                selectedLevel = 0;
                 gameLoop();
             }
             if (lastView == R.layout.game_activity ||
@@ -284,27 +284,43 @@ public class MainActivity extends AppCompatActivity {
 
     private void readData() {
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        int defaultValue = 1;
-        int unlocksNum = sharedPref.getInt(getString(R.string.unlocks_data), defaultValue);
-        int completedNum = sharedPref.getInt(getString(R.string.completed_data), 0);
-        int infoNum = sharedPref.getInt(getString(R.string.info_data), 0);
-        String starData = sharedPref.getString("com.downToEarth.starData", arrToString(completedStarPaths));
+        String defaultValue = "1";
+        String unlocksNum = sharedPref.getString(getString(R.string.unlocks_data), defaultValue);
+        String completedNum = sharedPref.getString(getString(R.string.completed_data), "0");
+        String infoNum = sharedPref.getString(getString(R.string.info_data), "0");
+        String starData = sharedPref.getString("com.downToEarth.starData", dblArrToString(completedStarPaths));
 
-        unlocks = numToArr(unlocksNum);
-        completed = numToArr(completedNum);
-        shownInfoScreens = numToArr(infoNum);
-        completedStarPaths = stringToArr(starData);
+        unlocks = stringToArr(unlocksNum);
+        completed = stringToArr(completedNum);
+        shownInfoScreens = stringToArr(infoNum);
+        completedStarPaths = stringToDblArr(starData);
     }
 
     private void writeData() {
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
 
-        editor.putInt(getString(R.string.unlocks_data), arrToInt(unlocks));
-        editor.putInt(getString(R.string.completed_data), arrToInt(completed));
-        editor.putInt(getString(R.string.info_data), arrToInt(shownInfoScreens));
-        editor.putString("com.downToEarth.starData", arrToString(completedStarPaths));
+        editor.putString(getString(R.string.unlocks_data), arrToString(unlocks));
+        editor.putString(getString(R.string.completed_data), arrToString(completed));
+        editor.putString(getString(R.string.info_data), arrToString(shownInfoScreens));
+        editor.putString("com.downToEarth.starData", dblArrToString(completedStarPaths));
         editor.apply();
+    }
+
+    private String arrToString(boolean[] arr) {
+        String text = "";
+        for(int i = 0; i < unlocks.length; i++) {
+            text += arr[i] ? "1" : "0";
+        }
+        return text;
+    }
+
+    private boolean[] stringToArr(String text) {
+        boolean[] arr = new boolean[unlocks.length];
+        for(int i = 0; i < text.length(); i++) {
+            arr[i] = (text.substring(i,i+1).equals("1")) ? true : false;
+        }
+        return arr;
     }
 
     private int arrToInt(boolean[] arr) {
@@ -325,11 +341,13 @@ public class MainActivity extends AppCompatActivity {
         return out;
     }
 
-    private String arrToString(boolean[][] arr) {
+    //PLEASE only use this if the size of the second part of the array desired is 10!!
+    //This is written soley for the starpathcompletion checker.
+    private String dblArrToString(boolean[][] arr) {
         String text = "";
 
         for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr[i].length; j++) {
+            for (int j = 0; j < 10; j++) {
                 text += arr[i][j] ? 1 : 0;
             }
         }
@@ -337,7 +355,7 @@ public class MainActivity extends AppCompatActivity {
         return text;
     }
 
-    private boolean[][] stringToArr(String s) {
+    private boolean[][] stringToDblArr(String s) {
         boolean[][] arr = new boolean[stages[stages.length-1][1]][10];
 
         for (int i = 0; i < arr.length; i++) {

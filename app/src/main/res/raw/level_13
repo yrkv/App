@@ -1,0 +1,12 @@
+Player
+800 0 -2 -3
+Earth
+0 0 0 0 100 0
+Planet
+0 400 5 0 70 1 0
+0 -400 -5 0 70 1 0
+400 0 0 -5 70 1 0
+-400 0 0 5 70 1 0
+Black Hole
+Worm Hole
+Dust Storm
