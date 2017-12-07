@@ -37,7 +37,8 @@ public class Level {
     // prevents using stars on levels that don't have them.
     // check this whenever you do anything with stars.
     private boolean useStars;
-    private int selectedLevel;
+    private int selectedLevel = 0;
+    private String customSelectedLevel;
     private int starPath;
 
     private Star[] stars;
@@ -82,6 +83,14 @@ public class Level {
                 }
             }
         }
+    }
+
+    public Level(RelativeLayout layout, Context context, MainActivity mainActivity, String selectedLevel, int starPath) {
+        this.mainActivity = mainActivity;
+        this.context = context;
+        this.layout = layout;
+        this.customSelectedLevel = selectedLevel;
+        this.starPath = starPath;
     }
 
     public void nextStar() {

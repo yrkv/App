@@ -41,6 +41,17 @@
         android:layout_alignBottom="@+id/title" />
 
     <Button
+        android:id="@+id/custom"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:onClick="CustomLevels"
+        android:text="Custom Levels"
+        android:textSize="10sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
         android:id="@+id/start"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="160dp"

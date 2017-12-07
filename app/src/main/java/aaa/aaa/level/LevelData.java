@@ -60,6 +60,15 @@ public class LevelData {
         genLevel("level_" + Integer.toString(selectedLevel));
     }
 
+    public LevelData(RelativeLayout layout, Context context, MainActivity mainActivity, String selectedLevel) {
+        int path = -1;
+
+        level = new Level(layout, context, mainActivity, selectedLevel, path);
+
+//        getLevelData(selectedLevel);
+        genLevel("level_" + selectedLevel);
+    }
+
 
     public Level getLevel() {
         return level;

@@ -33,6 +33,12 @@ public class MainActivity extends AppCompatActivity {
     public boolean preview = false;
     public boolean pause = false;
     private int selectedLevel = 1;
+    private String customSelectedLevel = "1";
+
+    private final String INTENT_PRESET = "Preset";
+    private final String INTENT_CUSTOM = "Custom";
+
+    private String currentIntent = INTENT_PRESET;
 
     public static int width = 0;
     public static int height = 0;
@@ -54,8 +60,16 @@ public class MainActivity extends AppCompatActivity {
     public  boolean[] completed = new boolean[stages[stages.length-1][1]];
     private boolean[] shownInfoScreens = new boolean[stages[stages.length-1][1]];
 
+    public ArrayList<String> customStages = new ArrayList<String>();
+    private ArrayList<Boolean> customCompleted = new ArrayList<Boolean>();
+
     //new boolean[#stages][10]
     public boolean[][] completedStarPaths = new boolean[stages[stages.length-1][1]][10];
+
+    private static final String[] CUSTOM_STAGE_NAMES = {
+            "Local",
+            "Online"
+    };
 
     private static final String[] STAGE_NAMES = {
             "Stage 1",
@@ -69,6 +83,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //THIS IS TEMPORARY FOR TESTING PURPOSES \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+        customStages.add("wowzer");
+        customCompleted.add(true);
+        //THIS IS TEMPORARY FOR TESTING PURPOSES /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         readData();
@@ -81,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
         width = displayMetrics.widthPixels;
 
         selectedLevel = 0;
-        gameLoop();
+        gameLoop(INTENT_PRESET);
     }
 
     public void setContentView(int layoutResID) {
@@ -95,6 +113,12 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
 
         writeData();
+    }
+
+    public void CustomLevels(View v) {
+        setContentView(R.layout.updated_level_select);
+        createCustomLevelSelect(v);
+        playing = false;
     }
 
     public void LevelSelect(View v) {
@@ -143,21 +167,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void GameLoop(final View view) {
-        gameLoop();
+        gameLoop(currentIntent);
     }
 
-    public void gameLoop() {
+    public void gameLoop(String intent) {
+        currentIntent = intent;
+        boolean isPreset = intent.equals(INTENT_PRESET);
+
         if (selectedLevel != 0 && !shownInfoScreens[selectedLevel-1] && levelToInfoScreen(selectedLevel) != -1) {
             shownInfoScreens[selectedLevel-1] = true;
             setContentView(levelToInfoScreen(selectedLevel));
         } else {
             final LevelData levelData;
-            if (selectedLevel == 0) {
+            if (isPreset && selectedLevel == 0) {
                 setContentView(R.layout.activity_main);
                 levelData = new LevelData((RelativeLayout) findViewById(R.id.activity_main), this, this, selectedLevel);
             } else {
                 setContentView(R.layout.game_activity);
-                levelData = new LevelData((RelativeLayout) findViewById(R.id.next_activity), this, this, selectedLevel);
+                if(isPreset) {
+                    levelData = new LevelData((RelativeLayout) findViewById(R.id.next_activity), this, this, selectedLevel);
+                } else {
+                    levelData = new LevelData((RelativeLayout) findViewById(R.id.next_activity), this, this, customSelectedLevel);
+                }
             }
 
             levelData.getLevel().setBackground((ImageView) findViewById(R.id.background));
@@ -195,14 +226,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void previewLoop(View v) {
-        previewLoop();
+    public void previewLoop(View v, String intent) {
+        previewLoop(intent);
     }
 
-    public void previewLoop() {
+    public void previewLoop(String intent) {
+        boolean isPreset = intent.equals(INTENT_PRESET);
+
         final LevelData levelData;
         setContentView(R.layout.game_activity);
-        levelData = new LevelData((RelativeLayout) findViewById(R.id.next_activity), this, this, selectedLevel);
+        if(isPreset) {
+            levelData = new LevelData((RelativeLayout) findViewById(R.id.next_activity), this, this, selectedLevel);
+        } else {
+            levelData = new LevelData((RelativeLayout) findViewById(R.id.next_activity), this, this, customSelectedLevel);
+        }
 
         levelData.getLevel().setBackground((ImageView) findViewById(R.id.background));
         levelData.getLevel().xOffset = 0;
@@ -257,7 +294,7 @@ public class MainActivity extends AppCompatActivity {
                 createLevelSelect(this.getCurrentFocus());
             if (lastView == R.layout.activity_main) {
                 selectedLevel = 0;
-                gameLoop();
+                gameLoop(INTENT_PRESET);
             }
             if (lastView == R.layout.game_activity ||
                     lastView == R.layout.gameover ||
@@ -373,8 +410,95 @@ public class MainActivity extends AppCompatActivity {
     float x = -1;
     float y = -1;
     int s = 0;
+    int cs = 0;
     boolean canScroll = false;
     private static final int SCROLL_MINIMUM = 60;
+
+    public void createCustomLevelSelect(View v) {
+        final HorizontalScrollView scrollView = (HorizontalScrollView) findViewById(R.id.horizontalScroll);
+
+        scrollView.post(new Runnable() {
+            @Override
+            public void run() {
+                instantScrollTo(cs);
+            }
+        });
+
+        scrollView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    x = event.getRawX();
+                    y = event.getRawY();
+                    canScroll = true;
+                }
+                if (event.getAction() == MotionEvent.ACTION_MOVE && canScroll) {
+                    float xDiff = event.getRawX() - x;
+                    scrollView.setScrollX((int) (-xDiff) + width * cs);
+                }
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    canScroll = false;
+                    float xDiff = event.getRawX() - x;
+
+                    if (xDiff > SCROLL_MINIMUM && cs > 0) {
+                        cs--;
+                    }
+                    if (xDiff < -SCROLL_MINIMUM && cs < CUSTOM_STAGE_NAMES.length - 1) {
+                        cs++;
+                    }
+                    scrollTo(cs);
+                }
+                return true;
+            }
+        });
+
+        LinearLayout levelSelects = (LinearLayout) findViewById(R.id.levelSelects);
+
+        for (int i = 0; i < CUSTOM_STAGE_NAMES.length; i++) {
+            String STAGE_NAME = CUSTOM_STAGE_NAMES[i];
+            RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(width, ViewGroup.LayoutParams.MATCH_PARENT);
+
+            RelativeLayout stage = (RelativeLayout) getLayoutInflater().inflate(R.layout.level_select, levelSelects, false);
+            stage.setLayoutParams(p);
+
+            stage.findViewById(R.id.levelsLayout).setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    return false;
+                }
+            });
+
+            ((TextView) stage.findViewById(R.id.stageName)).setText(STAGE_NAME);
+
+            levelSelects.addView(stage);
+
+            //Testing shit for now \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+            LinearLayout layout = (LinearLayout) stage.findViewById(R.id.levelsLayout);
+
+            final View button = getLayoutInflater().inflate(R.layout.level_select_header, layout, false);
+
+            int px = (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    40,
+                    getResources().getDisplayMetrics()
+            );
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, px);
+            params.setMargins(px / 4, px / 8, px / 4, 0);
+            button.setLayoutParams(params);
+
+            layout.addView(button);
+            //Testing shit for now ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+            if(i == 0) {
+                for (int j = 0; j < customStages.size(); j++) {
+                    System.out.println("Custom stage iteration: " + j);
+                    final String level = customStages.get(j);
+                    System.out.println("Custom stage name: " + level);
+
+                    createLevelButton((LinearLayout) stage.findViewById(R.id.levelsLayout), scrollView, level, j);
+                }
+            }
+        }
+    }
 
     public void createLevelSelect(View v) {
         final HorizontalScrollView scrollView = (HorizontalScrollView) findViewById(R.id.horizontalScroll);
@@ -502,6 +626,104 @@ public class MainActivity extends AppCompatActivity {
             return 0;
     }
 
+    private void createLevelButton(LinearLayout layout, final HorizontalScrollView scrollView, final String level, int levelIndex) {
+        final View button = getLayoutInflater().inflate(R.layout.level_select_button, layout, false);
+
+        int px = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                40,
+                getResources().getDisplayMetrics()
+        );
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, px);
+        params.setMargins(px / 4, px / 8, px / 4, 0);
+        button.setLayoutParams(params);
+
+        ((TextView) button.findViewById(R.id.levelText)).setText("" + level); // keep the ""+, it makes it use the right method
+
+        if (customCompleted.get(levelIndex)) {
+            button.findViewById(R.id.button_color).setBackgroundColor(0x8888ff88);
+        } else {
+            button.findViewById(R.id.button_color).setBackgroundColor(0xaaaaaaff);
+        }
+
+        button.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    x = event.getRawX();
+                    y = event.getRawY();
+                    canScroll = true;
+                }
+                if (event.getAction() == MotionEvent.ACTION_MOVE && canScroll) {
+                    float xDiff = event.getRawX() - x;
+                    scrollView.setScrollX((int) (-xDiff) + width * cs);
+                }
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    canScroll = false;
+                    float xDiff = event.getRawX() - x;
+                    float yDiff = event.getRawY() - y;
+
+                    if (xDiff > SCROLL_MINIMUM && cs > 0) {
+                        cs--;
+                        scrollTo(cs);
+                    }
+                    else if (xDiff < -SCROLL_MINIMUM && cs < STAGE_NAMES.length - 1) {
+                       cs++;
+                        scrollTo(cs);
+                    } else if (yDiff < 50) {
+                        customSelectedLevel = level;
+                        gameLoop(INTENT_CUSTOM);
+                    } else {
+                        scrollTo(cs);
+                    }
+                }
+
+                return true;
+            }
+        });
+
+        button.findViewById(R.id.preview).setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    x = event.getRawX();
+                    y = event.getRawY();
+                    canScroll = true;
+                }
+                if (event.getAction() == MotionEvent.ACTION_MOVE && canScroll) {
+                    float xDiff = event.getRawX() - x;
+                    scrollView.setScrollX((int) (-xDiff) + width * cs);
+                }
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    canScroll = false;
+                    float xDiff = event.getRawX() - x;
+                    float yDiff = event.getRawY() - y;
+                    System.out.println(yDiff);
+
+                    if (xDiff > SCROLL_MINIMUM && cs > 0) {
+                        cs--;
+                        scrollTo(cs);
+                    }
+                    else if (xDiff < -SCROLL_MINIMUM && cs < STAGE_NAMES.length - 1) {
+                        cs++;
+                        scrollTo(cs);
+                    } else if (yDiff < 50) {
+                        customSelectedLevel = level;
+                        preview = true;
+                        previewLoop(v,INTENT_CUSTOM);
+                    } else {
+                        scrollTo(cs);
+                    }
+                }
+
+                return true;
+            }
+        });
+
+        layout.addView(button);
+    }
+
     private void createLevelButton(LinearLayout layout, final HorizontalScrollView scrollView, final int level) {
         final View button = getLayoutInflater().inflate(R.layout.level_select_button, layout, false);
 
@@ -570,7 +792,7 @@ public class MainActivity extends AppCompatActivity {
                         scrollTo(s);
                     } else if (levelUnlocked(level) && yDiff < 50) {
                         selectedLevel = level;
-                        GameLoop(v);
+                        gameLoop(INTENT_PRESET);
                     } else {
                         scrollTo(s);
                     }
@@ -609,7 +831,7 @@ public class MainActivity extends AppCompatActivity {
                     } else if (levelUnlocked(level) && yDiff < 50) {
                         selectedLevel = level;
                         preview = true;
-                        previewLoop(v); // TODO: replace this with the preview
+                        previewLoop(v,INTENT_PRESET);
                     } else {
                         scrollTo(s);
                     }
